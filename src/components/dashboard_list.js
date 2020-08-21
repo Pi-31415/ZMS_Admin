@@ -14,6 +14,7 @@ import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
 //import Divider from '@material-ui/core/Divider';
 import Avatarimg from '../img/avatar.png';
+import { faBookReader } from '@fortawesome/free-solid-svg-icons';
 
 export default function DashboardList() {
   const [nametoshow, setNametoshow] = useState("");
@@ -76,6 +77,7 @@ export default function DashboardList() {
             </ListItemIcon>
             <ListItemText primary={nametoshow} />
           </ListItem>
+
           <Link to="/admin/dashboard/home" className="custom-link-normal">
             <ListItem button>
               <ListItemIcon>
@@ -84,6 +86,16 @@ export default function DashboardList() {
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
+
+          <Link to="/admin/dashboard/home" className="custom-link-normal">
+            <ListItem button>
+              <ListItemIcon>
+              <FontAwesomeIcon icon={faBookReader} size='2x' />
+              </ListItemIcon>
+              <ListItemText primary="Students" />
+            </ListItem>
+          </Link>
+
           <Link to="/admin/dashboard/analytics" className="custom-link-normal">
             <ListItem button>
               <ListItemIcon>

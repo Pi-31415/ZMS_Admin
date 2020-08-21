@@ -98,11 +98,12 @@ export default function Dashboard() {
             <main className={classes.content} style={{ backgroundColor: '#eee' }}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
+
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
                             <Iframe url="https://zmsedu.com/analysis/"
                                 width="100%"
-                                height="450px"
+                                height="600px"
                                 id="myId"
                                 frameBorder="0"
                                 className="myClassname"
@@ -110,6 +111,7 @@ export default function Dashboard() {
                                 position="relative" />
                         </Grid>
                     </Grid>
+                    
                     <Box pt={4}>
                         <Copyright />
                     </Box>

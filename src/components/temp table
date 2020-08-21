@@ -1,0 +1,100 @@
+import React, { useState, useEffect } from 'react';
+import MaterialTable from 'material-table';
+import axios from 'axios';
+
+export default function StudentTable() {
+
+    /* useEffect(() => {
+         const query = {
+             
+           };
+         axios.post('https://zmsedu.com/api/admin/user/get', query)
+             .then(response => setApidata(response.data.USERS))
+             .catch(error => {
+                 console.log(error);
+             });
+ 
+         //console.log(apidata);
+     });*/
+
+    const [columnlist, setColumnlist] = [
+
+        { title: 'Username', field: 'USERNAME' },
+        { title: 'First Name', field: 'FIRST_NAME' },
+        { title: 'Last Name', field: 'LAST_NAME' },
+        { title: 'Phone', field: 'PHONE', type: 'numeric' },
+        { title: 'Email', field: 'EMAIL' },
+        { title: 'Role', field: 'ROLE' },
+    ]
+
+    let [responseData, setResponseData] = React.useState([]);
+
+    const fetchData = React.useCallback(() => {
+        const query = {
+
+        };
+        axios.post('https://zmsedu.com/api/admin/user/get', query)
+            .then((response) => {
+                setResponseData(responseData => responseData.concat(response.data));
+                console.log(responseData);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [])
+
+    React.useEffect(() => {
+        fetchData()
+    }, [fetchData])
+
+
+
+    /*
+    <MaterialTable
+            title="Students"
+            columns={columnlist}
+            data={apidata}
+            editable={{
+                onRowAdd: (newData) =>
+                    new Promise((resolve) => {
+                        setTimeout(() => {
+                            resolve();
+                            setState((prevState) => {
+                                const data = [...prevState.data];
+                                data.push(newData);
+                                return { ...prevState, data };
+                            });
+                        }, 600);
+                    }),
+                onRowUpdate: (newData, oldData) =>
+                    new Promise((resolve) => {
+                        setTimeout(() => {
+                            resolve();
+                            if (oldData) {
+                                setState((prevState) => {
+                                    const data = [...prevState.data];
+                                    data[data.indexOf(oldData)] = newData;
+                                    return { ...prevState, data };
+                                });
+                            }
+                        }, 600);
+                    }),
+                onRowDelete: (oldData) =>
+                    new Promise((resolve) => {
+                        setTimeout(() => {
+                            resolve();
+                            setState((prevState) => {
+                                const data = [...prevState.data];
+                                data.splice(data.indexOf(oldData), 1);
+                                return { ...prevState, data };
+                            });
+                        }, 600);
+                    }),
+            }}
+        />
+    */
+
+    return (
+        <h1>Hi</h1>
+    );
+}

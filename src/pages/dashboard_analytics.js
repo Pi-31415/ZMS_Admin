@@ -8,6 +8,7 @@ import Navbar from '../components/navbar';
 import Copyright from '../components/copyright';
 import Iframe from 'react-iframe';
 import Paper from '@material-ui/core/Paper';
+import { Typography } from '@material-ui/core';
 //import Upload from '../components/upload';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -103,6 +104,10 @@ export default function Dashboard() {
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
                             <Paper className={classes.paper}>
+                                <Typography variant="h5" component="h2">
+                                    Click Count
+                                </Typography>
+                                <p>This is the total count of how many times visitors click on the Course links and read the descriptions for each course.</p>
                                 <Iframe url="https://zmsedu.com/analysis/iframe_bar.html"
                                     width="100%"
                                     height="600px"
@@ -116,7 +121,11 @@ export default function Dashboard() {
                         </Grid>
 
                         <Grid item xs={12}>
-                        <Paper className={classes.paper}>
+                            <Paper className={classes.paper}>
+                                <Typography variant="h5" component="h2">
+                                    Page Visit Count
+                                </Typography>
+                                <p>Counting is done every time the launchpage (https://zmsedu.com/) is loaded on any device. Data is shown for last 30 days.</p>
                                 <Iframe url="https://zmsedu.com/analysis/iframe_chart.html"
                                     width="100%"
                                     height="600px"
@@ -129,10 +138,11 @@ export default function Dashboard() {
                         </Grid>
 
                         <Grid item xs={12}>
-                        <Paper className={classes.paper}>
+                            <Paper className={classes.paper}>
+
                                 <Iframe url="https://zmsedu.com/analysis/iframe_ratio.html"
                                     width="100%"
-                                    height="600px"
+                                    height="300px"
                                     id="myId"
                                     frameBorder="0"
                                     className="myClassname"
@@ -142,7 +152,11 @@ export default function Dashboard() {
                         </Grid>
 
                         <Grid item xs={12}>
-                        <Paper className={classes.paper}>
+                            <Paper className={classes.paper}>
+                                <Typography variant="h5" component="h2">
+                                    Server Log
+                                </Typography>
+                                <p>This is the list of activities the users perform on the launchpage. Scroll down to see more.</p>
                                 <Iframe url="https://zmsedu.com/analysis/iframe_server.html"
                                     width="100%"
                                     height="600px"

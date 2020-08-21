@@ -7,7 +7,6 @@ function Header(props) {
     const { useState } = React;
 
     const [columns, setColumns] = useState([
-        { title: 'ID', field: 'ID' },
         { title: 'Username', field: 'USERNAME' },
         { title: 'First Name', field: 'FIRST_NAME' },
         { title: 'Last Name', field: 'LAST_NAME' },
@@ -40,7 +39,7 @@ function Header(props) {
 
     return (
         <MaterialTable
-            title="Editable Preview"
+            title="Students"
             columns={columns}
             data={data.users}
             editable={{

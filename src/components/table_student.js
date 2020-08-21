@@ -25,7 +25,7 @@ function Header(props) {
 
     useEffect(() => {
         axios.post(`https://zmsedu.com/api/admin/user/get`, {
-            ROLE: "Student"
+        
         })
             .then(res => {
                 const users = res.data.USERS;

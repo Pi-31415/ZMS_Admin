@@ -36,7 +36,7 @@ function Header(props) {
                 setData({ users });
                 console.log(data);
             }).catch(error => {
-                console.log(error);
+                alert(error);
             });
     }, []);
 
@@ -101,10 +101,10 @@ function Header(props) {
                                         console.log(data);
                                         resolve();
                                     }).catch(error => {
-                                        console.log(error);
+                                        alert(error);
                                     });
                             }).catch(error => {
-                                console.log(error);
+                                alert(error);
                             });
 
 
@@ -136,10 +136,10 @@ function Header(props) {
                                         console.log(data);
                                         resolve();
                                     }).catch(error => {
-                                        console.log(error);
+                                        alert(error);
                                     });
                             }).catch(error => {
-                                console.log(error);
+                                alert(error);
                             });
 
 
@@ -165,10 +165,10 @@ function Header(props) {
                                         console.log(data);
                                         resolve();
                                     }).catch(error => {
-                                        console.log(error);
+                                        alert(error);
                                     });
                             }).catch(error => {
-                                console.log(error);
+                                alert(error);
                             });
 
                     }),

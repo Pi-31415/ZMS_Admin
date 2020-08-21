@@ -1,32 +1,40 @@
-import React, { useState, useEffect } from "react";
-
+import React from 'react';
+import MaterialTable from 'material-table';
 import axios from 'axios';
 
-const App = props => {
-    const [users, setUsers] = useState();
-    useEffect(() => {
-        axios.post('https://zmsedu.com/api/admin/user/get', {
+export default class PersonList extends React.Component {
+    state = {
+        users: []
+    }
 
-        })
-            .then(function (response) {
-                console.log(response.data);
-                var result = Object.keys(response.data.USERS).map((key) => [Number(key), response.data.USERS[key]]);
-                setUsers(result);
-                console.log(users);
+    componentDidMount() {
+        axios.post(`https://zmsedu.com/api/admin/user/get`)
+            .then(res => {
+                const users = res.data.USERS;
 
-
-            })
-            .catch(function (error) {
+                this.setState({ users });
+                console.log(this.state);
+            }).catch(error => {
                 console.log(error);
             });
-    }, []);
-    const add = () => {
-
     }
-    return (<div>
 
-
-        <button onClick={add}>New User</button>
-    </div>);
+    render() {
+        return (
+            <div style={{ maxWidth: '100%' }}>
+                <MaterialTable
+                    columns={[
+                        { title: 'Username', field: 'USERNAME' },
+                        { title: 'First Name', field: 'FIRST_NAME' },
+                        { title: 'Last Name', field: 'LAST_NAME' },
+                        { title: 'Phone', field: 'PHONE', type: 'numeric' },
+                        { title: 'Email', field: 'EMAIL' },
+                        { title: 'Role', field: 'ROLE' },
+                    ]}
+                    data={this.state.users}
+                    title="Users"
+                />
+            </div>
+        )
+    }
 }
-export default App;

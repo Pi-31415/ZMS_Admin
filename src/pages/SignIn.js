@@ -134,9 +134,6 @@ export default function SignInSide() {
             </Typography>
             </Box>
             <Box mt={5} align="center">
-              <Typography>
-                <Link to="/portal/signup" className="custom-link">{"Don't have an account? Sign Up"}</Link>
-              </Typography>
             </Box>
             <Box mt={5}>
               <Copyright />

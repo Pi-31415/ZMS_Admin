@@ -1,8 +1,8 @@
 {
-	"name": "create-react-app",
+	"name": "refactored-zms-admin",
 	"version": "4.0.0",
 	"private": true,
-	"homepage": "https://zmsedu.com/portal/",
+	"homepage": "https://zmsedu.com/admin/",
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",

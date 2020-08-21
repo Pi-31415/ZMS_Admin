@@ -28,8 +28,8 @@ const App = props => {
       <div>
         <div style={{ padding: '0', margin: '0' }}>
           <Switch>
-          <Route path="/portal/dashboard/home"><Dashboard></Dashboard></Route>
-          <Route path="/portal"><SignInSide></SignInSide></Route>
+          <Route path="/admin/dashboard/home"><Dashboard></Dashboard></Route>
+          <Route path="/admin"><SignInSide></SignInSide></Route>
           </Switch>
         </div>
 

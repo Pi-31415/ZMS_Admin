@@ -87,7 +87,7 @@ export default function DashboardList() {
             </ListItem>
           </Link>
 
-          
+          {/*
           <Link to="/admin/dashboard/lessons" className="custom-link-normal">
             <ListItem button>
               <ListItemIcon>
@@ -95,7 +95,8 @@ export default function DashboardList() {
               </ListItemIcon>
               <ListItemText primary="Lessons" />
             </ListItem>
-          </Link>
+          </Link>*/
+        }
           <Link to="/admin/dashboard/students" className="custom-link-normal">
             <ListItem button>
               <ListItemIcon>

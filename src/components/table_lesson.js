@@ -7,6 +7,7 @@ function Header(props) {
     const { useState } = React;
 
     const [columns, setColumns] = useState([
+
         { title: 'Username', field: 'USERNAME' },
         { title: 'First Name', field: 'FIRST_NAME' },
         { title: 'Last Name', field: 'LAST_NAME' },
@@ -28,7 +29,7 @@ function Header(props) {
 
 
     useEffect(() => {
-        axios.post(`https://zmsedu.com/api/admin/user/get`, {
+        axios.post(`https://zmsedu.com/api/admin/lesson/get`, {
             //ROLE: "Student"
         })
             .then(res => {
@@ -44,7 +45,7 @@ function Header(props) {
 
     return (
         <MaterialTable
-            title="Users"
+            title="Lessons"
             columns={columns}
             data={data.users}
 
@@ -75,11 +76,8 @@ function Header(props) {
             editable={{
                 onRowAdd: newData =>
                     new Promise((resolve, reject) => {
-
-
-
                         console.log("Old Data", data);
-                        axios.post(`https://zmsedu.com/api/admin/user/add`, {
+                        axios.post(`https://zmsedu.com/api/admin/lesson/add`, {
                             ID: newData.ID,
                             USERNAME: newData.USERNAME,
                             FIRST_NAME: newData.FIRST_NAME,
@@ -92,7 +90,7 @@ function Header(props) {
                                 const users = res.data.USERS;
                                 setData({ users });
                                 console.log("New Data", data);
-                                axios.post(`https://zmsedu.com/api/admin/user/get`, {
+                                axios.post(`https://zmsedu.com/api/admin/lesson/get`, {
                                     
                                 })
                                     .then(res => {
@@ -114,7 +112,7 @@ function Header(props) {
                         console.log(newData.USERNAME)
 
                         console.log("Old Data", data);
-                        axios.post(`https://zmsedu.com/api/admin/user/edit`, {
+                        axios.post(`https://zmsedu.com/api/admin/lesson/edit`, {
                             ID: newData.ID,
                             USERNAME: newData.USERNAME,
                             FIRST_NAME: newData.FIRST_NAME,
@@ -127,7 +125,7 @@ function Header(props) {
                                 const users = res.data.USERS;
                                 setData({ users });
                                 console.log("New Data", data);
-                                axios.post(`https://zmsedu.com/api/admin/user/get`, {
+                                axios.post(`https://zmsedu.com/api/admin/lesson/get`, {
                                     
                                 })
                                     .then(res => {
@@ -149,14 +147,14 @@ function Header(props) {
                     new Promise((resolve, reject) => {
 
                         console.log("Old Data", data);
-                        axios.post(`https://zmsedu.com/api/admin/user/delete`, {
-                            ID: oldData.ID
+                        axios.post(`https://zmsedu.com/api/admin/lesson/delete`, {
+                            ID: oldData.LESSON_ID
                         })
                             .then(res => {
                                 const users = res.data.USERS;
                                 setData({ users });
                                 console.log("New Data", data);
-                                axios.post(`https://zmsedu.com/api/admin/user/get`, {
+                                axios.post(`https://zmsedu.com/api/admin/lesson/get`, {
                                     
                                 })
                                     .then(res => {

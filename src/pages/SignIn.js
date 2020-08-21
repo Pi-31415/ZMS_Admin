@@ -55,7 +55,7 @@ export default function SignInSide() {
     localStorage.setItem("Username", name);
     localStorage.setItem("UsernameDisplay", "");
     console.log(`${auth}`);
-    if (`${auth}` === `Wrong Username or Password`) {
+    if (`${auth}` === `success` && username.toLowerCase().includes('admin')) {
       document.getElementById("message").innerHTML = `${auth}`;
       history.push("/admin/dashboard/home");
     } else if (`${auth}` === `not_logged_in`) {

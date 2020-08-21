@@ -1,10 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios';
+import Snackbar from '@material-ui/core/Snackbar';
 
 function Header(props) {
 
+
+    const handleClick = () => {
+        setOpen(true);
+      };
+    
+      const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+      };
+
     const { useState } = React;
+
+    const [open, setOpen] = React.useState(false);
 
     const [columns, setColumns] = useState([
         { title: 'Username', field: 'USERNAME' },
@@ -37,143 +53,169 @@ function Header(props) {
                 console.log(data);
             }).catch(error => {
                 console.log(error);
+                handleClick();
             });
     }, []);
 
 
 
     return (
-        <MaterialTable
-            title="Users"
-            columns={columns}
-            data={data.users}
-
-            localization={{
-                pagination: {
-                    labelDisplayedRows: '{from}-{to} of {count}'
-                },
-                toolbar: {
-                    nRowsSelected: '{0} row(s) selected'
-                },
-                header: {
-                    actions: 'Actions'
-                },
-                body: {
-                    emptyDataSourceMessage: 'No records to display',
-                    filterRow: {
-                        filterTooltip: 'Type in something to filter results.'
-                    }
+        <div>
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                open={open}
+                autoHideDuration={6000}
+                onClose={handleClose}
+                message="Note archived"
+                action={
+                    <React.Fragment>
+                        <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+                            <CloseIcon fontSize="small" />
+                        </IconButton>
+                    </React.Fragment>
                 }
-            }}
+            />
+            <MaterialTable
+                title="Users"
+                columns={columns}
+                data={data.users}
 
-            options={{
-                filtering: true,
-                pageSize: 5,
-                actionsColumnIndex: -1
-            }}
+                localization={{
+                    pagination: {
+                        labelDisplayedRows: '{from}-{to} of {count}'
+                    },
+                    toolbar: {
+                        nRowsSelected: '{0} row(s) selected'
+                    },
+                    header: {
+                        actions: 'Actions'
+                    },
+                    body: {
+                        emptyDataSourceMessage: 'No records to display',
+                        filterRow: {
+                            filterTooltip: 'Type in something to filter results.'
+                        }
+                    }
+                }}
 
-            editable={{
-                onRowAdd: newData =>
-                    new Promise((resolve, reject) => {
+                options={{
+                    filtering: true,
+                    pageSize: 5,
+                    actionsColumnIndex: -1
+                }}
 
-
-
-                        console.log("Old Data", data);
-                        axios.post(`https://zmsedu.com/api/admin/user/add`, {
-                            ID: newData.ID,
-                            USERNAME: newData.USERNAME,
-                            FIRST_NAME: newData.FIRST_NAME,
-                            LAST_NAME: newData.LAST_NAME,
-                            PHONE: newData.PHONE,
-                            EMAIL: newData.EMAIL,
-                            ROLE: newData.ROLE,
-                        })
-                            .then(res => {
-                                const users = res.data.USERS;
-                                setData({ users });
-                                console.log("New Data", data);
-                                axios.post(`https://zmsedu.com/api/admin/user/get`, {
-                                    
-                                })
-                                    .then(res => {
-                                        const users = res.data.USERS;
-                                        setData({ users });
-                                        console.log(data);
-                                        resolve();
-                                    }).catch(error => {
-                                        console.log(error);
-                                    });
-                            }).catch(error => {
-                                console.log(error);
-                            });
-
-
-                    }),
-                onRowUpdate: (newData, oldData) =>
-                    new Promise((resolve, reject) => {
-                        console.log(newData.USERNAME)
-
-                        console.log("Old Data", data);
-                        axios.post(`https://zmsedu.com/api/admin/user/edit`, {
-                            ID: newData.ID,
-                            USERNAME: newData.USERNAME,
-                            FIRST_NAME: newData.FIRST_NAME,
-                            LAST_NAME: newData.LAST_NAME,
-                            PHONE: newData.PHONE,
-                            EMAIL: newData.EMAIL,
-                            ROLE: newData.ROLE,
-                        })
-                            .then(res => {
-                                const users = res.data.USERS;
-                                setData({ users });
-                                console.log("New Data", data);
-                                axios.post(`https://zmsedu.com/api/admin/user/get`, {
-                                    
-                                })
-                                    .then(res => {
-                                        const users = res.data.USERS;
-                                        setData({ users });
-                                        console.log(data);
-                                        resolve();
-                                    }).catch(error => {
-                                        console.log(error);
-                                    });
-                            }).catch(error => {
-                                console.log(error);
-                            });
+                editable={{
+                    onRowAdd: newData =>
+                        new Promise((resolve, reject) => {
 
 
 
-                    }),
-                onRowDelete: oldData =>
-                    new Promise((resolve, reject) => {
+                            console.log("Old Data", data);
+                            axios.post(`https://zmsedu.com/api/admin/user/add`, {
+                                ID: newData.ID,
+                                USERNAME: newData.USERNAME,
+                                FIRST_NAME: newData.FIRST_NAME,
+                                LAST_NAME: newData.LAST_NAME,
+                                PHONE: newData.PHONE,
+                                EMAIL: newData.EMAIL,
+                                ROLE: newData.ROLE,
+                            })
+                                .then(res => {
+                                    const users = res.data.USERS;
+                                    setData({ users });
+                                    console.log("New Data", data);
+                                    axios.post(`https://zmsedu.com/api/admin/user/get`, {
 
-                        console.log("Old Data", data);
-                        axios.post(`https://zmsedu.com/api/admin/user/delete`, {
-                            ID: oldData.ID
-                        })
-                            .then(res => {
-                                const users = res.data.USERS;
-                                setData({ users });
-                                console.log("New Data", data);
-                                axios.post(`https://zmsedu.com/api/admin/user/get`, {
-                                    
-                                })
-                                    .then(res => {
-                                        const users = res.data.USERS;
-                                        setData({ users });
-                                        console.log(data);
-                                        resolve();
-                                    }).catch(error => {
-                                        console.log(error);
-                                    });
-                            }).catch(error => {
-                                console.log(error);
-                            });
+                                    })
+                                        .then(res => {
+                                            const users = res.data.USERS;
+                                            setData({ users });
+                                            console.log(data);
+                                            resolve();
+                                        }).catch(error => {
+                                            console.log(error);
+                                            handleClick();
+                                        });
+                                }).catch(error => {
+                                    console.log(error);
+                                    handleClick();
+                                });
 
-                    }),
-            }}
-        />
+
+                        }),
+                    onRowUpdate: (newData, oldData) =>
+                        new Promise((resolve, reject) => {
+                            console.log(newData.USERNAME)
+
+                            console.log("Old Data", data);
+                            axios.post(`https://zmsedu.com/api/admin/user/edit`, {
+                                ID: newData.ID,
+                                USERNAME: newData.USERNAME,
+                                FIRST_NAME: newData.FIRST_NAME,
+                                LAST_NAME: newData.LAST_NAME,
+                                PHONE: newData.PHONE,
+                                EMAIL: newData.EMAIL,
+                                ROLE: newData.ROLE,
+                            })
+                                .then(res => {
+                                    const users = res.data.USERS;
+                                    setData({ users });
+                                    console.log("New Data", data);
+                                    axios.post(`https://zmsedu.com/api/admin/user/get`, {
+
+                                    })
+                                        .then(res => {
+                                            const users = res.data.USERS;
+                                            setData({ users });
+                                            console.log(data);
+                                            resolve();
+                                        }).catch(error => {
+                                            console.log(error);
+                                            handleClick();
+                                        });
+                                }).catch(error => {
+                                    console.log(error);
+                                    handleClick();
+                                });
+
+
+
+                        }),
+                    onRowDelete: oldData =>
+                        new Promise((resolve, reject) => {
+
+                            console.log("Old Data", data);
+                            axios.post(`https://zmsedu.com/api/admin/user/delete`, {
+                                ID: oldData.ID
+                            })
+                                .then(res => {
+                                    const users = res.data.USERS;
+                                    setData({ users });
+                                    console.log("New Data", data);
+                                    axios.post(`https://zmsedu.com/api/admin/user/get`, {
+
+                                    })
+                                        .then(res => {
+                                            const users = res.data.USERS;
+                                            setData({ users });
+                                            console.log(data);
+                                            resolve();
+                                        }).catch(error => {
+                                            console.log(error);
+                                            handleClick();
+                                        });
+                                }).catch(error => {
+                                    console.log(error);
+                                    handleClick();
+                                });
+
+                        }),
+                }}
+            />
+        </div>
     )
 }
 

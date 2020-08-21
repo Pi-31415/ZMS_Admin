@@ -6,6 +6,7 @@ import '../scss/custom.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
+import {faChartBar} from '@fortawesome/free-solid-svg-icons';
 //import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 //import { faCalculator } from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
@@ -77,7 +78,7 @@ export default function DashboardList() {
             </ListItemIcon>
             <ListItemText primary={nametoshow} />
           </ListItem>
-          <Link to="/portal/dashboard/home" className="custom-link-normal">
+          <Link to="/admin/dashboard/home" className="custom-link-normal">
             <ListItem button>
               <ListItemIcon>
                 <FontAwesomeIcon icon={faHome} size='2x' />
@@ -85,12 +86,21 @@ export default function DashboardList() {
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
+          <Link to="/admin/dashboard/analytics" className="custom-link-normal">
+            <ListItem button>
+              <ListItemIcon>
+                <FontAwesomeIcon icon={faChartBar} size='2x' />
+              </ListItemIcon>
+              <ListItemText primary="Analytics" />
+            </ListItem>
+          </Link>
+
         </div>
       </List>
 
       <List>
         <div>
-          <Link to="/portal/" className="custom-link-normal">
+          <Link to="/admin/" className="custom-link-normal">
             <ListItem button>
               <ListItemIcon>
                 <FontAwesomeIcon icon={faSignOutAlt} size='2x' />

@@ -6,7 +6,7 @@ import {
   
 } from 'react-router-dom';
 import SignInSide from './pages/SignIn';
-import Dashboard from './pages/dashboard';
+import Dashboard from './pages/dashboard_home';
 
 /*
 

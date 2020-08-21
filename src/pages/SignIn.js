@@ -50,13 +50,14 @@ export default function SignInSide() {
 
 
   useEffect(() => {
-    console.log(`${username}`);
-    localStorage.setItem("Username", `${username}`);
+    var name = username.charAt(0).toUpperCase() + username.slice(1);
+    console.log(name);
+    localStorage.setItem("Username", name);
     localStorage.setItem("UsernameDisplay", "");
     console.log(`${auth}`);
-    if (`${auth}` === `success`) {
+    if (`${auth}` === `Wrong Username or Password`) {
       document.getElementById("message").innerHTML = `${auth}`;
-      history.push("/portal/dashboard/home");
+      history.push("/admin/dashboard/home");
     } else if (`${auth}` === `not_logged_in`) {
       document.getElementById("message").innerHTML = ``;
     }
@@ -92,7 +93,7 @@ export default function SignInSide() {
           <img src={zmslogo} align="center" alt="logo" width="100"></img>
           <Box mt={5} align="center">
             <Typography>
-              <h3>Admin Login</h3>
+            Admin Login
             </Typography>
           </Box>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>

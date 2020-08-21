@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Navbar from '../components/navbar';
 import Copyright from '../components/copyright';
 import Iframe from 'react-iframe';
+import Paper from '@material-ui/core/Paper';
 //import Upload from '../components/upload';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -101,17 +102,60 @@ export default function Dashboard() {
 
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
-                            <Iframe url="https://zmsedu.com/analysis/"
-                                width="100%"
-                                height="600px"
-                                id="myId"
-                                frameBorder="0"
-                                className="myClassname"
-                                display="initial"
-                                position="relative" />
+                            <Paper className={classes.paper}>
+                                <Iframe url="https://zmsedu.com/analysis/iframe_bar.html"
+                                    width="100%"
+                                    height="600px"
+                                    id="myId"
+                                    frameBorder="0"
+                                    className="myClassname"
+                                    display="initial"
+                                    position="relative" />
+                            </Paper>
+
                         </Grid>
+
+                        <Grid item xs={12}>
+                        <Paper className={classes.paper}>
+                                <Iframe url="https://zmsedu.com/analysis/iframe_chart.html"
+                                    width="100%"
+                                    height="600px"
+                                    id="myId"
+                                    frameBorder="0"
+                                    className="myClassname"
+                                    display="initial"
+                                    position="relative" />
+                            </Paper>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                        <Paper className={classes.paper}>
+                                <Iframe url="https://zmsedu.com/analysis/iframe_ratio.html"
+                                    width="100%"
+                                    height="600px"
+                                    id="myId"
+                                    frameBorder="0"
+                                    className="myClassname"
+                                    display="initial"
+                                    position="relative" />
+                            </Paper>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                        <Paper className={classes.paper}>
+                                <Iframe url="https://zmsedu.com/analysis/iframe_server.html"
+                                    width="100%"
+                                    height="600px"
+                                    id="myId"
+                                    frameBorder="0"
+                                    className="myClassname"
+                                    display="initial"
+                                    position="relative" />
+                            </Paper>
+                        </Grid>
+
                     </Grid>
-                    
+
                     <Box pt={4}>
                         <Copyright />
                     </Box>

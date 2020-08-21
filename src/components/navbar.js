@@ -123,7 +123,7 @@ export default function Navbar() {
                     <MenuIcon />
                 </IconButton>
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                    ZMS Portal
+                    ZMS Admin Portal
                 </Typography>
 
             </Toolbar>

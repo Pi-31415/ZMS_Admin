@@ -12,7 +12,11 @@ function Header(props) {
         { title: 'Last Name', field: 'LAST_NAME' },
         { title: 'Phone', field: 'PHONE', type: 'numeric' },
         { title: 'Email', field: 'EMAIL' },
-        { title: 'Role', field: 'ROLE' },
+        {
+            title: 'Role',
+            field: 'ROLE',
+            lookup: { 'Teacher': 'Teacher', 'Student': 'Student', 'Admin': 'Admin', 'Tutor': 'Tutor' },
+        },
     ]);
 
     const [data, setData] = useState(
@@ -25,7 +29,7 @@ function Header(props) {
 
     useEffect(() => {
         axios.post(`https://zmsedu.com/api/admin/user/get`, {
-        
+            //ROLE: "Student"
         })
             .then(res => {
                 const users = res.data.USERS;
@@ -37,15 +41,41 @@ function Header(props) {
     }, []);
 
 
+
     return (
         <MaterialTable
-            title="Students"
+            title="Users"
             columns={columns}
             data={data.users}
+
+            localization={{
+                pagination: {
+                    labelDisplayedRows: '{from}-{to} of {count}'
+                },
+                toolbar: {
+                    nRowsSelected: '{0} row(s) selected'
+                },
+                header: {
+                    actions: 'Actions'
+                },
+                body: {
+                    emptyDataSourceMessage: 'No records to display',
+                    filterRow: {
+                        filterTooltip: 'Type in something to filter results.'
+                    }
+                }
+            }}
+
+            options={{
+                filtering: true,
+                pageSize: 20,
+                actionsColumnIndex: -1
+            }}
+
             editable={{
                 onRowAdd: newData =>
                     new Promise((resolve, reject) => {
-                        
+
 
 
                         console.log("Old Data", data);
@@ -63,7 +93,7 @@ function Header(props) {
                                 setData({ users });
                                 console.log("New Data", data);
                                 axios.post(`https://zmsedu.com/api/admin/user/get`, {
-                                    ROLE: "Student"
+                                    
                                 })
                                     .then(res => {
                                         const users = res.data.USERS;
@@ -98,7 +128,7 @@ function Header(props) {
                                 setData({ users });
                                 console.log("New Data", data);
                                 axios.post(`https://zmsedu.com/api/admin/user/get`, {
-                                    ROLE: "Student"
+                                    
                                 })
                                     .then(res => {
                                         const users = res.data.USERS;
@@ -127,7 +157,7 @@ function Header(props) {
                                 setData({ users });
                                 console.log("New Data", data);
                                 axios.post(`https://zmsedu.com/api/admin/user/get`, {
-                                    ROLE: "Student"
+                                    
                                 })
                                     .then(res => {
                                         const users = res.data.USERS;

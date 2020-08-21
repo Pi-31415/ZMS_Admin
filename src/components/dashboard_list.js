@@ -92,7 +92,7 @@ export default function DashboardList() {
               <ListItemIcon>
               <FontAwesomeIcon icon={faBookReader} size='2x' />
               </ListItemIcon>
-              <ListItemText primary="Students" />
+              <ListItemText primary="Users" />
             </ListItem>
           </Link>
 

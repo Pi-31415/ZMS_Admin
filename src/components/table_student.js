@@ -46,7 +46,39 @@ function Header(props) {
             editable={{
                 onRowAdd: newData =>
                     new Promise((resolve, reject) => {
-                        alert("Add");
+                        
+
+
+                        console.log("Old Data", data);
+                        axios.post(`https://zmsedu.com/api/admin/user/add`, {
+                            ID: newData.ID,
+                            USERNAME: newData.USERNAME,
+                            FIRST_NAME: newData.FIRST_NAME,
+                            LAST_NAME: newData.LAST_NAME,
+                            PHONE: newData.PHONE,
+                            EMAIL: newData.EMAIL,
+                            ROLE: newData.ROLE,
+                        })
+                            .then(res => {
+                                const users = res.data.USERS;
+                                setData({ users });
+                                console.log("New Data", data);
+                                axios.post(`https://zmsedu.com/api/admin/user/get`, {
+                                    ROLE: "Student"
+                                })
+                                    .then(res => {
+                                        const users = res.data.USERS;
+                                        setData({ users });
+                                        console.log(data);
+                                        resolve();
+                                    }).catch(error => {
+                                        console.log(error);
+                                    });
+                            }).catch(error => {
+                                console.log(error);
+                            });
+
+
                     }),
                 onRowUpdate: (newData, oldData) =>
                     new Promise((resolve, reject) => {

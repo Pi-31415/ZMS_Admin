@@ -14,7 +14,7 @@ import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
 //import Divider from '@material-ui/core/Divider';
 import Avatarimg from '../img/avatar.png';
-import { faBookReader } from '@fortawesome/free-solid-svg-icons';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 export default function DashboardList() {
   const [nametoshow, setNametoshow] = useState("");
@@ -90,7 +90,7 @@ export default function DashboardList() {
           <Link to="/admin/dashboard/students" className="custom-link-normal">
             <ListItem button>
               <ListItemIcon>
-              <FontAwesomeIcon icon={faBookReader} size='2x' />
+              <FontAwesomeIcon icon={faUsers} size='2x' />
               </ListItemIcon>
               <ListItemText primary="Users" />
             </ListItem>

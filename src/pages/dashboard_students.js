@@ -6,9 +6,6 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Navbar from '../components/navbar';
 import Copyright from '../components/copyright';
-import Iframe from 'react-iframe';
-import Paper from '@material-ui/core/Paper';
-import { Typography } from '@material-ui/core';
 import StudentTable from '../components/table_student'
 //import Upload from '../components/upload';
 const drawerWidth = 240;

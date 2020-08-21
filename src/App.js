@@ -6,8 +6,8 @@ import {
   
 } from 'react-router-dom';
 import SignInSide from './pages/SignIn';
-import Dashboard from './pages/dashboard_home';
-
+import DashboardHome from './pages/dashboard_home';
+import DashboardAnalytics from './pages/dashboard_analytics';
 /*
 
 <Route path="/portal/signup"><SignUp></SignUp></Route>
@@ -28,7 +28,8 @@ const App = props => {
       <div>
         <div style={{ padding: '0', margin: '0' }}>
           <Switch>
-          <Route path="/admin/dashboard/home"><Dashboard></Dashboard></Route>
+          <Route path="/admin/dashboard/analytics"><DashboardAnalytics></DashboardAnalytics></Route>
+          <Route path="/admin/dashboard/home"><DashboardHome></DashboardHome></Route>
           <Route path="/admin"><SignInSide></SignInSide></Route>
           </Switch>
         </div>

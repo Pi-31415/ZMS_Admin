@@ -168,7 +168,7 @@ function Header(props) {
                                         alert(error);
                                     });
                             }).catch(error => {
-                                alert(error);
+                                alert("This user is added for testing purposes and cannot be deleted. Please contact admin, and reload the page.");
                             });
 
                     }),

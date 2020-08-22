@@ -10,35 +10,21 @@ function Header(props) {
     const delete_api = "https://zmsedu.com/api/admin/course/delete";
 
     const [columns, setColumns] = useState([
+        { title: 'ID', field: 'ID' },
+        { title: 'Name', field: 'NAME' },
+        { title: 'Subject', field: 'SUBJECT'},
 
-        {
-            title: 'Teacher',
-            field: 'TEACHER'
-        },
-        { title: 'Students', field: 'STUDENT' },
-        { title: 'Zoom Link and Password', field: 'LESSON_LINK' },
-        { title: 'Topic', field: 'TOPIC' },
-        { title: 'Date Time', field: 'START_DATETIME' },
-        {
-            title: 'STATUS',
-            field: 'STATUS',
-            lookup: { 'Scheduled': 'Scheduled', 'Completed': 'Completed', 'Cancelled': 'Cancelled' },
-        },
     ]);
 
 
     const [data, setData] = useState(
         {
-            lessons: []
+            courses: []
         }
 
     );
 
-    const [teacher, setTeacher] = useState(
-        {
-            teachers: []
-        }
-
+    
     );
 
     useEffect(() => {
@@ -46,8 +32,8 @@ function Header(props) {
             //ROLE: "Student"
         })
             .then(res => {
-                const lessons = res.data.LESSONS;
-                setData({ lessons });
+                const courses = res.data.COURSES;
+                setData({ courses });
             }).catch(error => {
                 alert(error);
             });
@@ -57,7 +43,7 @@ function Header(props) {
         <div>
             <MaterialTable
                 columns={columns}
-                data={data.lessons}
+                data={data.courses}
                 title="Lessons"
 
                 localization={{
@@ -82,87 +68,6 @@ function Header(props) {
                     filtering: true,
                     pageSize: 5,
                     actionsColumnIndex: -1
-                }}
-
-                editable={{
-                    onRowAdd: newData =>
-                        new Promise((resolve, reject) => {
-
-                            axios.post(add_api, {
-                                "TEACHER": newData.TEACHER,
-                                "STUDENT": newData.STUDENT,
-                                "START_DATETIME": newData.START_DATETIME,
-                                "STATUS": newData.STATUS,
-                                "TOPIC": newData.TOPIC,
-                                "LESSON_LINK": newData.LESSON_LINK,
-                                "HOMEWORK": newData.HOMEWORK,
-                            })
-                                .then(res => {
-                                    const lessons = res.data.LESSONS;
-                                    setData({ lessons });
-
-                                    //Refresh
-                                    axios.post(get_api, {
-                                        //ROLE: "Student"
-                                    })
-                                        .then(res => {
-                                            const lessons = res.data.LESSONS;
-                                            setData({ lessons });
-                                            resolve();
-                                        }).catch(error => {
-                                            alert(error);
-                                        });
-                                    //Refresh
-
-                                }).catch(error => {
-                                    alert(error);
-                                });
-
-                        }),
-                    onRowUpdate: (newData, oldData) =>
-                        new Promise((resolve, reject) => {
-                            axios.post(edit_api, {
-                                "ID": newData.ID,
-                                "TEACHER": newData.TEACHER,
-                                "STUDENT": newData.STUDENT,
-                                "START_DATETIME": newData.START_DATETIME,
-                                "STATUS": newData.STATUS,
-                                "TOPIC": newData.TOPIC,
-                                "LESSON_LINK": newData.LESSON_LINK,
-                                "HOMEWORK": newData.HOMEWORK,
-                            })
-                                .then(res => {
-                                    const lessons = res.data.LESSONS;
-                                    setData({ lessons });
-
-                                    //Refresh
-                                    axios.post(get_api, {
-                                        //ROLE: "Student"
-                                    })
-                                        .then(res => {
-                                            const lessons = res.data.LESSONS;
-                                            setData({ lessons });
-                                            resolve();
-                                        }).catch(error => {
-                                            alert(error);
-                                        });
-                                    //Refresh
-
-                                }).catch(error => {
-                                    alert(error);
-                                });
-                        }),
-                    onRowDelete: oldData =>
-                        new Promise((resolve, reject) => {
-                            setTimeout(() => {
-                                const dataDelete = [...data];
-                                const index = oldData.tableData.id;
-                                dataDelete.splice(index, 1);
-                                setData([...dataDelete]);
-
-                                resolve()
-                            }, 1000)
-                        }),
                 }}
 
             />

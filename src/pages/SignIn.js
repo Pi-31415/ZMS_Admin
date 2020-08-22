@@ -53,9 +53,9 @@ export default function SignInSide() {
     var name = username.charAt(0).toUpperCase() + username.slice(1);
     console.log(name);
     localStorage.setItem("Username", name);
-    localStorage.setItem("TOKEN", "");
+    localStorage.setItem("TOKEN", token);
     console.log(`${auth}`);
-    if (`${auth}` === `success` && username.toLowerCase().includes('admin')) {
+    if (`${auth}` === `success` && `${role}` === `Admin`) {
       document.getElementById("message").innerHTML = `${auth}`;
       history.push("/admin/dashboard/home");
     } else if (`${auth}` === `not_logged_in`) {
@@ -68,7 +68,9 @@ export default function SignInSide() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   const [auth, setAuth] = useState("not_logged_in");
+  const [token, setToken] = useState("");
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -79,7 +81,9 @@ export default function SignInSide() {
     axios.post('https://zmsedu.com/api/login', query)
       .then(response => {
         console.log(response.data);
-        //setAuth(response.data.RESULT);
+        setToken(response.data.TOKEN);
+        setRole(response.data.ROLE);
+        setAuth(response.data.RESULT);
       })
       .catch(error => {
         setAuth("Wrong Username or Password");

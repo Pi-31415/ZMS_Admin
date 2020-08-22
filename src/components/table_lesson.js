@@ -5,19 +5,20 @@ import axios from 'axios';
 function Header(props) {
     const { useState } = React;
     const get_api = "https://zmsedu.com/api/admin/lesson/get";
+    const add_api = "https://zmsedu.com/api/admin/lesson/add";
 
 
     const [columns, setColumns] = useState([
-        { title: 'COURSE_ID', field: 'COURSE_ID' },
-        { title: 'TEACHER', field: 'TEACHER' },
-        { title: 'STUDENT', field: 'STUDENT' },
-        { title: 'LESSON_LINK', field: 'LESSON_LINK' },
-        { title: 'TOPIC', field: 'TOPIC' },
-        { title: 'START_DATETIME', field: 'START_DATETIME'},
+        { title: 'Course', field: 'COURSE_ID' },
+        { title: 'Teacher', field: 'TEACHER' },
+        { title: 'Students', field: 'STUDENT' },
+        { title: 'Zoom Link and Password', field: 'LESSON_LINK' },
+        { title: 'Topic', field: 'TOPIC' },
+        { title: 'Date Time', field: 'START_DATETIME' },
         {
             title: 'STATUS',
             field: 'STATUS',
-            lookup: { 'Scheduled': 'Scheduled', 'Completed': 'Completed', 'Cancelled': 'Cancelled'},
+            lookup: { 'Scheduled': 'Scheduled', 'Completed': 'Completed', 'Cancelled': 'Cancelled' },
         },
     ]);
 
@@ -45,7 +46,63 @@ function Header(props) {
         <MaterialTable
             columns={columns}
             data={data.lessons}
-            title="Demo Title"
+            title="Lessons"
+
+            localization={{
+                pagination: {
+                    labelDisplayedRows: '{from}-{to} of {count}'
+                },
+                toolbar: {
+                    nRowsSelected: '{0} row(s) selected'
+                },
+                header: {
+                    actions: 'Actions'
+                },
+                body: {
+                    emptyDataSourceMessage: 'No records to display',
+                    filterRow: {
+                        filterTooltip: 'Type in something to filter results.'
+                    }
+                }
+            }}
+
+            options={{
+                filtering: true,
+                pageSize: 5,
+                actionsColumnIndex: -1
+            }}
+
+            editable={{
+                onRowAdd: newData =>
+                    new Promise((resolve, reject) => {
+                        
+
+
+                    }),
+                onRowUpdate: (newData, oldData) =>
+                    new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            const dataUpdate = [...data];
+                            const index = oldData.tableData.id;
+                            dataUpdate[index] = newData;
+                            setData([...dataUpdate]);
+
+                            resolve();
+                        }, 1000)
+                    }),
+                onRowDelete: oldData =>
+                    new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            const dataDelete = [...data];
+                            const index = oldData.tableData.id;
+                            dataDelete.splice(index, 1);
+                            setData([...dataDelete]);
+
+                            resolve()
+                        }, 1000)
+                    }),
+            }}
+
         />
     )
 };

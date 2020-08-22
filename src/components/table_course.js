@@ -4,9 +4,10 @@ import axios from 'axios';
 
 function Header(props) {
     const { useState } = React;
-    const get_api = "https://zmsedu.com/api/admin/lesson/get";
-    const add_api = "https://zmsedu.com/api/admin/lesson/add";
-    const edit_api = "https://zmsedu.com/api/admin/lesson/edit";
+    const get_api = "https://zmsedu.com/api/admin/course/get";
+    const add_api = "https://zmsedu.com/api/admin/course/add";
+    const edit_api = "https://zmsedu.com/api/admin/course/edit";
+    const delete_api = "https://zmsedu.com/api/admin/course/delete";
 
     const [columns, setColumns] = useState([
 

@@ -88,6 +88,15 @@ export default function DashboardList() {
             </ListItem>
           </Link>
 
+          <Link to="/admin/dashboard/courses" className="custom-link-normal">
+            <ListItem button>
+              <ListItemIcon>
+              <FontAwesomeIcon icon={faBookOpen} size='2x' />
+              </ListItemIcon>
+              <ListItemText primary="Courses" />
+            </ListItem>
+          </Link>
+
           
           <Link to="/admin/dashboard/lessons" className="custom-link-normal">
             <ListItem button>

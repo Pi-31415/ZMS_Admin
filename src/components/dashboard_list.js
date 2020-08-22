@@ -15,6 +15,7 @@ import List from '@material-ui/core/List';
 import {faBookOpen} from '@fortawesome/free-solid-svg-icons';
 //import Divider from '@material-ui/core/Divider';
 import Avatarimg from '../img/avatar.png';
+import {faBookmark} from '@fortawesome/free-solid-svg-icons';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 export default function DashboardList() {
@@ -91,7 +92,7 @@ export default function DashboardList() {
           <Link to="/admin/dashboard/courses" className="custom-link-normal">
             <ListItem button>
               <ListItemIcon>
-              <FontAwesomeIcon icon={faBookOpen} size='2x' />
+              <FontAwesomeIcon icon={faBookmark} size='2x' />
               </ListItemIcon>
               <ListItemText primary="Courses" />
             </ListItem>

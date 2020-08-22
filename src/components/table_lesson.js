@@ -100,6 +100,20 @@ function Header(props) {
                                 .then(res => {
                                     const lessons = res.data.LESSONS;
                                     setData({ lessons });
+
+                                    //Refresh
+                                    axios.post(get_api, {
+                                        //ROLE: "Student"
+                                    })
+                                        .then(res => {
+                                            const lessons = res.data.LESSONS;
+                                            setData({ lessons });
+                                            resolve();
+                                        }).catch(error => {
+                                            alert(error);
+                                        });
+                                    //Refresh
+
                                 }).catch(error => {
                                     alert(error);
                                 });

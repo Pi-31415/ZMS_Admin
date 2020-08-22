@@ -53,7 +53,7 @@ export default function SignInSide() {
     var name = username.charAt(0).toUpperCase() + username.slice(1);
     console.log(name);
     localStorage.setItem("Username", name);
-    localStorage.setItem("UsernameDisplay", "");
+    localStorage.setItem("TOKEN", "");
     console.log(`${auth}`);
     if (`${auth}` === `success` && username.toLowerCase().includes('admin')) {
       document.getElementById("message").innerHTML = `${auth}`;

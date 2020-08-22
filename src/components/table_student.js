@@ -15,7 +15,7 @@ function Header(props) {
         {
             title: 'Role',
             field: 'ROLE',
-            lookup: { 'Teacher': 'Teacher', 'Student': 'Student', 'Admin': 'Admin', 'Tutor': 'Tutor' },
+            lookup: { 'Teacher': 'Teacher', 'Student': 'Student', 'Admin': 'Admin', },
         },
     ]);
 
@@ -34,7 +34,7 @@ function Header(props) {
             .then(res => {
                 const users = res.data.USERS;
                 setData({ users });
-                console.log(data);
+                console.log("Adding",data);
             }).catch(error => {
                 alert(error);
             });

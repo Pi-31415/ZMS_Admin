@@ -62,15 +62,10 @@ function Header(props) {
             }).catch(error => {
                 alert(error);
             });
-
-
     }, []);
 
     return (
-        <div>
-            <ul>
-                {teacher.teachers.map(u => <li key={u.ID}>{u.USERNAME}</li>)} 
-            </ul>
+        <div> 
             <MaterialTable
                 columns={columns}
                 data={data.lessons}

@@ -4,6 +4,10 @@ import axios from 'axios';
 
 function Header(props) {
 
+    const get_api = "https://zmsedu.com/api/admin/lesson/get";
+    const update_api = "https://zmsedu.com/api/admin/lesson/edit";
+    const delete_api = "https://zmsedu.com/api/admin/lesson/delete";
+
     const { useState } = React;
 
     const [columns, setColumns] = useState([
@@ -29,7 +33,7 @@ function Header(props) {
 
 
     useEffect(() => {
-        axios.post(`https://zmsedu.com/api/admin/lesson/get`, {
+        axios.post(get_api, {
             //ROLE: "Student"
         })
             .then(res => {
@@ -90,7 +94,7 @@ function Header(props) {
                                 const users = res.data.USERS;
                                 setData({ users });
                                 console.log("New Data", data);
-                                axios.post(`https://zmsedu.com/api/admin/lesson/get`, {
+                                axios.post(get_api, {
                                     
                                 })
                                     .then(res => {
@@ -112,7 +116,7 @@ function Header(props) {
                         console.log(newData.USERNAME)
 
                         console.log("Old Data", data);
-                        axios.post(`https://zmsedu.com/api/admin/lesson/edit`, {
+                        axios.post(update_api, {
                             ID: newData.ID,
                             USERNAME: newData.USERNAME,
                             FIRST_NAME: newData.FIRST_NAME,
@@ -125,7 +129,7 @@ function Header(props) {
                                 const users = res.data.USERS;
                                 setData({ users });
                                 console.log("New Data", data);
-                                axios.post(`https://zmsedu.com/api/admin/lesson/get`, {
+                                axios.post(get_api, {
                                     
                                 })
                                     .then(res => {
@@ -147,14 +151,14 @@ function Header(props) {
                     new Promise((resolve, reject) => {
 
                         console.log("Old Data", data);
-                        axios.post(`https://zmsedu.com/api/admin/lesson/delete`, {
+                        axios.post(delete_api, {
                             ID: oldData.LESSON_ID
                         })
                             .then(res => {
                                 const users = res.data.USERS;
                                 setData({ users });
                                 console.log("New Data", data);
-                                axios.post(`https://zmsedu.com/api/admin/lesson/get`, {
+                                axios.post(get_api, {
                                     
                                 })
                                     .then(res => {

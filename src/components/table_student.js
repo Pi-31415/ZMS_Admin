@@ -4,9 +4,14 @@ import axios from 'axios';
 
 function Header(props) {
 
+    const get_api = "https://zmsedu.com/api/admin/user/get";
+    const update_api = "https://zmsedu.com/api/admin/user/edit";
+    const delete_api = "https://zmsedu.com/api/admin/user/delete";
+
     const { useState } = React;
 
     const [columns, setColumns] = useState([
+
         { title: 'Username', field: 'USERNAME' },
         { title: 'First Name', field: 'FIRST_NAME' },
         { title: 'Last Name', field: 'LAST_NAME' },
@@ -28,7 +33,7 @@ function Header(props) {
 
 
     useEffect(() => {
-        axios.post(`https://zmsedu.com/api/admin/user/get`, {
+        axios.post(get_api, {
             //ROLE: "Student"
         })
             .then(res => {
@@ -75,11 +80,8 @@ function Header(props) {
             editable={{
                 onRowAdd: newData =>
                     new Promise((resolve, reject) => {
-
-
-
                         console.log("Old Data", data);
-                        axios.post(`https://zmsedu.com/api/admin/user/add`, {
+                        axios.post(`https://zmsedu.com/api/admin/lesson/add`, {
                             ID: newData.ID,
                             USERNAME: newData.USERNAME,
                             FIRST_NAME: newData.FIRST_NAME,
@@ -92,7 +94,7 @@ function Header(props) {
                                 const users = res.data.USERS;
                                 setData({ users });
                                 console.log("New Data", data);
-                                axios.post(`https://zmsedu.com/api/admin/user/get`, {
+                                axios.post(get_api, {
                                     
                                 })
                                     .then(res => {
@@ -114,7 +116,7 @@ function Header(props) {
                         console.log(newData.USERNAME)
 
                         console.log("Old Data", data);
-                        axios.post(`https://zmsedu.com/api/admin/user/edit`, {
+                        axios.post(update_api, {
                             ID: newData.ID,
                             USERNAME: newData.USERNAME,
                             FIRST_NAME: newData.FIRST_NAME,
@@ -127,7 +129,7 @@ function Header(props) {
                                 const users = res.data.USERS;
                                 setData({ users });
                                 console.log("New Data", data);
-                                axios.post(`https://zmsedu.com/api/admin/user/get`, {
+                                axios.post(get_api, {
                                     
                                 })
                                     .then(res => {
@@ -149,14 +151,14 @@ function Header(props) {
                     new Promise((resolve, reject) => {
 
                         console.log("Old Data", data);
-                        axios.post(`https://zmsedu.com/api/admin/user/delete`, {
-                            ID: oldData.ID
+                        axios.post(delete_api, {
+                            ID: oldData.LESSON_ID
                         })
                             .then(res => {
                                 const users = res.data.USERS;
                                 setData({ users });
                                 console.log("New Data", data);
-                                axios.post(`https://zmsedu.com/api/admin/user/get`, {
+                                axios.post(get_api, {
                                     
                                 })
                                     .then(res => {

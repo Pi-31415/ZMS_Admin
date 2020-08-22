@@ -24,8 +24,6 @@ function Header(props) {
 
     );
 
-    
-    );
 
     useEffect(() => {
         axios.post(get_api, {
@@ -44,7 +42,7 @@ function Header(props) {
             <MaterialTable
                 columns={columns}
                 data={data.courses}
-                title="Lessons"
+                title="Courses"
 
                 localization={{
                     pagination: {

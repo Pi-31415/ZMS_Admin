@@ -9,7 +9,7 @@ function Header(props) {
     const edit_api = "https://zmsedu.com/api/admin/lesson/edit";
 
     const [columns, setColumns] = useState([
-        
+
         {
             title: 'Teacher',
             field: 'TEACHER'
@@ -120,14 +120,35 @@ function Header(props) {
                         }),
                     onRowUpdate: (newData, oldData) =>
                         new Promise((resolve, reject) => {
-                            setTimeout(() => {
-                                const dataUpdate = [...data];
-                                const index = oldData.tableData.id;
-                                dataUpdate[index] = newData;
-                                setData([...dataUpdate]);
+                            axios.post(edit_api, {
+                                "TEACHER": newData.TEACHER,
+                                "STUDENT": newData.STUDENT,
+                                "START_DATETIME": newData.START_DATETIME,
+                                "STATUS": newData.STATUS,
+                                "TOPIC": newData.TOPIC,
+                                "LESSON_LINK": newData.LESSON_LINK,
+                                "HOMEWORK": newData.HOMEWORK,
+                            })
+                                .then(res => {
+                                    const lessons = res.data.LESSONS;
+                                    setData({ lessons });
 
-                                resolve();
-                            }, 1000)
+                                    //Refresh
+                                    axios.post(get_api, {
+                                        //ROLE: "Student"
+                                    })
+                                        .then(res => {
+                                            const lessons = res.data.LESSONS;
+                                            setData({ lessons });
+                                            resolve();
+                                        }).catch(error => {
+                                            alert(error);
+                                        });
+                                    //Refresh
+
+                                }).catch(error => {
+                                    alert(error);
+                                });
                         }),
                     onRowDelete: oldData =>
                         new Promise((resolve, reject) => {

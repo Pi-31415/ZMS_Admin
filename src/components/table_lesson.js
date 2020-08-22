@@ -41,7 +41,6 @@ function Header(props) {
     );
 
     useEffect(() => {
-
         axios.post(get_api, {
             //ROLE: "Student"
         })
@@ -51,21 +50,10 @@ function Header(props) {
             }).catch(error => {
                 alert(error);
             });
-        //API for teachers
-        axios.post('https://zmsedu.com/api/admin/user/get', {
-            ROLE: "Teacher"
-        })
-            .then(res => {
-                const teachers = res.data.USERS;
-                setTeacher({ teachers });
-                console.log(teachers);
-            }).catch(error => {
-                alert(error);
-            });
     }, []);
 
     return (
-        <div> 
+        <div>
             <MaterialTable
                 columns={columns}
                 data={data.lessons}
@@ -99,7 +87,22 @@ function Header(props) {
                     onRowAdd: newData =>
                         new Promise((resolve, reject) => {
 
-
+                            axios.post(add_api, {
+                                "TEACHER": newData.TEACHER,
+                                "STUDENT": newData.STUDENT,
+                                "START_DATETIME": newData.START_DATETIME,
+                                "STATUS": newData.STATUS,
+                                "TOPIC": newData.TOPIC,
+                                "LESSON_LINK": newData.LESSON_LINK,
+                                "HOMEWORK": newData.HOMEWORK,
+                                "COURSE": newData.COURSE
+                            })
+                                .then(res => {
+                                    const lessons = res.data.LESSONS;
+                                    setData({ lessons });
+                                }).catch(error => {
+                                    alert(error);
+                                });
 
                         }),
                     onRowUpdate: (newData, oldData) =>

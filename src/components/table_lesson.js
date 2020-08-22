@@ -121,6 +121,7 @@ function Header(props) {
                     onRowUpdate: (newData, oldData) =>
                         new Promise((resolve, reject) => {
                             axios.post(edit_api, {
+                                "ID": newData.ID,
                                 "TEACHER": newData.TEACHER,
                                 "STUDENT": newData.STUDENT,
                                 "START_DATETIME": newData.START_DATETIME,

@@ -9,7 +9,7 @@ function Header(props) {
 
 
     const [columns, setColumns] = useState([
-        { title: 'Course', field: 'COURSE_ID' },
+        
         {
             title: 'Teacher',
             field: 'TEACHER'
@@ -95,7 +95,6 @@ function Header(props) {
                                 "TOPIC": newData.TOPIC,
                                 "LESSON_LINK": newData.LESSON_LINK,
                                 "HOMEWORK": newData.HOMEWORK,
-                                "COURSE": newData.COURSE
                             })
                                 .then(res => {
                                     const lessons = res.data.LESSONS;

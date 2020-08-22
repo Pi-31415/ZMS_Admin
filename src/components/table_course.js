@@ -54,7 +54,6 @@ function Header(props) {
 
     return (
         <div>
-        <p>Please note that edit and delete are not functioning yet, still soting out.</p>
             <MaterialTable
                 columns={columns}
                 data={data.lessons}

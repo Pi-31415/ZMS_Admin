@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Navbar from '../components/navbar';
 import Copyright from '../components/copyright';
-//import Upload from '../components/upload';
+import Syllabus from '../components/syllabus';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -100,7 +100,7 @@ export default function Dashboard() {
 
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
-                            <h1>Syllabus</h1>
+                            <Syllabus></Syllabus>
 
                         </Grid>
 

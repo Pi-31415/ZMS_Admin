@@ -86,18 +86,39 @@ class Syllabus extends React.Component {
     }
 
     submitSyllabus = () => {
-        
+
         var query = {
             "COURSE_ID": this.state.COURSE_ID,
             "REFERENCE": [this.state.REFERENCE]
         }
-        console.log(query);
+        //console.log(query);
 
         //Update Syllabus
         axios.post("https://zmsedu.com/api/admin/syllabus/edit", query)
             .then(res => {
-                console.log(res.RESULT);
-                this.handleChange();
+                //Refresh
+
+                axios.post("https://zmsedu.com/api/admin/syllabus/get", {
+                    //ROLE: "Student"
+                })
+                    .then(res => {
+                        const courses = res.data.SYLLABUS;
+                        this.setState({ SELECTED: true });
+
+                        var i;
+                        for (i = 0; i < courses.length; i++) {
+                            if (courses[i].COURSE_ID == this.state.COURSE_ID) {
+                                var new_id = this.state.COURSE_ID - 1;
+                                //console.log(this.state.COURSE_ARRAY[new_id].NAME);
+                                this.setState({ COURSE_NAME: this.state.COURSE_ARRAY[new_id].NAME });
+                                this.setState({ REFERENCE: courses[i].REFERENCE[0] });
+
+                            }
+                        }
+                    }).catch(error => {
+                        alert(error);
+                    });
+
             }).catch(error => {
                 alert(error);
             });

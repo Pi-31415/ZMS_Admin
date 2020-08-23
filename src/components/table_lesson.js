@@ -23,10 +23,10 @@ function Header(props) {
 
     );
 
-    const api_get = "https://zmsedu.com/api/admin/user/get";
-    const api_update = "https://zmsedu.com/api/admin/user/edit";
-    const api_delete = "https://zmsedu.com/api/admin/user/delete";
-    const api_add = "https://zmsedu.com/api/admin/user/add";
+    const api_get = "https://zmsedu.com/api/admin/lesson/get";
+    const api_update = "https://zmsedu.com/api/admin/lesson/edit";
+    const api_delete = "https://zmsedu.com/api/admin/lesson/delete";
+    const api_add = "https://zmsedu.com/api/admin/lesson/add";
 
     useEffect(() => {
         axios.post(api_get, {
@@ -46,7 +46,7 @@ function Header(props) {
         <div style={{ maxWidth: '100%' }}>
             <MaterialTable
                 columns={columns}
-                data={[{ name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 }]}
+                data={data.lessons}
                 title="Demo Title"
             />
         </div>

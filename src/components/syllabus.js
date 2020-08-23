@@ -49,10 +49,11 @@ class Syllabus extends React.Component {
 
     }
 
-    handleChange = () => {
-        this.setState({ color: "blue" });
+    handleChange = (event) => {
+        console.log(event.target.value);
+        //this.setState({ color: "blue" });
     }
-    
+
     render() {
         return (
             <div>

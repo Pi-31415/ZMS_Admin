@@ -88,6 +88,10 @@ class Syllabus extends React.Component {
         this.setState({ REFERENCE: event.target.value });
     }
 
+    submitSyllabus = () =>{
+        alert("Submit");
+    }
+
     render() {
         let editor;
         if (this.state.SELECTED) {
@@ -106,8 +110,8 @@ class Syllabus extends React.Component {
                     variant="outlined"
                     style={{width:'100%'}}
                 />
-                <br/>
-                <Button variant="outlined">Default</Button>
+                <br/><br/>
+                <Button onClick={this.submitSyllabus} variant="outlined" color="primary">Update Syllabus</Button>
                 <h3>Below shows the preview as student for this syllabus.</h3>
                 <MDReactComponent text={this.state.REFERENCE} /> 
             </>;

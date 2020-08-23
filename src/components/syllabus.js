@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,12 +18,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-var course_names = [];
-var course_ids = [];
+var course_apicall = [];
 
 class Syllabus extends React.Component {
 
-        
+
     constructor(props) {
         super(props);
         this.state = {
@@ -32,8 +32,18 @@ class Syllabus extends React.Component {
     }
 
     componentDidMount() {
-        course_names[0]="Ayas";
-        console.log(course_names);
+
+        axios.post("https://zmsedu.com/api/admin/course/get", {
+            //ROLE: "Student"
+        })
+        .then(res => {
+            const courses = res.data.COURSES;
+            course_apicall = courses;
+            console.log(course_apicall);
+        }).catch(error => {
+            alert(error);
+        });
+        
     }
 
     changeColor = () => {

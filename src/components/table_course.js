@@ -70,6 +70,28 @@ function Header(props) {
                     onRowAdd: newData =>
                         new Promise((resolve, reject) => {
                             //Add
+
+                            axios.post(add_api, {
+                                NAME: newData.NAME,
+                                SUBJECT: newData.NAME,
+                                DESCRIPTION: newData.DESCRIPTION
+                            })
+                                .then(res => {
+                                    const courses = res.data.COURSES;
+                                    setData({ courses });
+                                    axios.post(get_api, {
+                                        //ROLE: "Student"
+                                    })
+                                        .then(res => {
+                                            const courses = res.data.COURSES;
+                                            setData({ courses });
+                                        }).catch(error => {
+                                            alert(error);
+                                        });
+                                }).catch(error => {
+                                    alert(error);
+                                });
+
                             //Add
                         }),
                     onRowUpdate: (newData, oldData) =>

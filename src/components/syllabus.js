@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -9,6 +8,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
+import MDReactComponent from 'markdown-react-js';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -80,7 +81,11 @@ class Syllabus extends React.Component {
             }).catch(error => {
                 alert(error);
             });
+    }
 
+    updateText = (event) => {
+        console.log(event.target.value);
+        this.setState({ REFERENCE: event.target.value });
     }
 
     render() {
@@ -89,7 +94,18 @@ class Syllabus extends React.Component {
 
             editor = <>
                 <h1>{this.state.COURSE_NAME + " Syllabus"}</h1>
+                <p>{this.state.COURSE_ID}</p>
                 <p>{this.state.REFERENCE}</p>
+                <TextField
+                    id="outlined-multiline-static"
+                    label="Multiline"
+                    multiline
+                    rows={20}
+                    onChange={this.updateText}
+                    defaultValue={this.state.REFERENCE}
+                    variant="outlined"
+                    style={{width:'100%'}}
+                />
             </>;
         }
         else {

@@ -10,6 +10,7 @@ function Header(props) {
     const delete_api = "https://zmsedu.com/api/admin/course/delete";
 
     const [columns, setColumns] = useState([
+        { title: 'ID', field: 'ID' },
         { title: 'Name', field: 'NAME' },
         { title: 'DESCRIPTION', field: 'DESCRIPTION' },
     ]);
@@ -72,6 +73,7 @@ function Header(props) {
                             //Add
 
                             axios.post(add_api, {
+                                ID: newData.ID,
                                 NAME: newData.NAME,
                                 SUBJECT: newData.NAME,
                                 DESCRIPTION: newData.DESCRIPTION
@@ -79,6 +81,7 @@ function Header(props) {
                                 .then(res => {
                                     const courses = res.data.COURSES;
                                     setData({ courses });
+                                    //Refresh
                                     axios.post(get_api, {
                                         //ROLE: "Student"
                                     })
@@ -88,6 +91,7 @@ function Header(props) {
                                         }).catch(error => {
                                             alert(error);
                                         });
+                                        //Refresh
                                 }).catch(error => {
                                     alert(error);
                                 });

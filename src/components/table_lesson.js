@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios';
+import Moment from 'react-moment';
 
 function Header(props) {
 
@@ -22,6 +23,16 @@ function Header(props) {
         },
         //Add Columns
     ]);
+
+    function formatdate(inputdate) {
+        //format the time from server and return the Hong Kong Time zone
+        var res = inputdate.split(".");
+        var moment = require('moment-timezone');
+        var utcCutoff = moment.utc(res[0], '');
+        var displayCutoff = utcCutoff.clone().tz('Asia/Hong_Kong');
+        localStorage.setItem("tutordate", moment(displayCutoff).format('hh:mm a'));
+        return displayCutoff;
+      }
 
     const [data, setData] = useState(
         {

@@ -67,7 +67,7 @@ function Header(props) {
 
                 options={{
                     filtering: true,
-                    pageSize: 12,
+                    pageSize: 20,
                     actionsColumnIndex: -1
                 }}
 

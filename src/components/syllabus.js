@@ -35,7 +35,7 @@ class Syllabus extends React.Component {
     }
 
     componentDidMount() {
-
+        //First get course
         axios.post("https://zmsedu.com/api/admin/course/get", {
             //ROLE: "Student"
         })
@@ -50,7 +50,7 @@ class Syllabus extends React.Component {
             });
 
     }
-
+    //Then get syllabus
     handleChange = (event) => {
         console.log(event.target.value);
         this.setState({ COURSE_ID: event.target.value });
@@ -60,8 +60,11 @@ class Syllabus extends React.Component {
         })
         .then(res => {
             const courses = res.data.SYLLABUS;
-            console.log(courses);
+            console.log(courses[this.state.COURSE_ID]);
             this.setState({ SELECTED: true });
+
+
+
 
         }).catch(error => {
             alert(error);
@@ -72,10 +75,13 @@ class Syllabus extends React.Component {
     render() {
         let editor;
         if(this.state.SELECTED){
-            editor = <h1>True</h1>;
+
+            editor = <h1>{this.state.COURSE_ID}</h1>;
         }
         else{
-            editor = <h1>Select a Class</h1>;
+
+
+            editor = <h1>Choose</h1>;
         }
 
         return (

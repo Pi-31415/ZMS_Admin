@@ -12,6 +12,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
 import {faBookOpen} from '@fortawesome/free-solid-svg-icons';
+import {faPencilRuler} from '@fortawesome/free-solid-svg-icons';
 //import Divider from '@material-ui/core/Divider';
 import Avatarimg from '../img/avatar.png';
 import {faBookmark} from '@fortawesome/free-solid-svg-icons';
@@ -90,7 +91,15 @@ export default function DashboardList() {
             </ListItem>
           </Link>
 
-          
+          <Link to="/admin/dashboard/syllabus" className="custom-link-normal">
+            <ListItem button>
+              <ListItemIcon>
+              <FontAwesomeIcon icon={faPencilRuler} size='2x' />
+              </ListItemIcon>
+              <ListItemText primary="Syllabus" />
+            </ListItem>
+          </Link>
+
           <Link to="/admin/dashboard/lessons" className="custom-link-normal">
             <ListItem button>
               <ListItemIcon>

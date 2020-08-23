@@ -7,6 +7,8 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios';
+import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -65,10 +67,10 @@ class Syllabus extends React.Component {
 
                 var i;
                 for (i = 0; i < courses.length; i++) {
-                    if(courses[i].COURSE_ID == this.state.COURSE_ID){
-                        var new_id = this.state.COURSE_ID-1;
-                        console.log(this.state.COURSE_ARRAY[new_id].NAME);
-                        this.state.COURSE_NAME = this.state.COURSE_ARRAY[new_id].NAME;
+                    if (courses[i].COURSE_ID == this.state.COURSE_ID) {
+                        var new_id = this.state.COURSE_ID - 1;
+                        //console.log(this.state.COURSE_ARRAY[new_id].NAME);
+                        this.setState({ COURSE_NAME: this.state.COURSE_ARRAY[new_id].NAME });
                     }
                 }
 
@@ -88,24 +90,26 @@ class Syllabus extends React.Component {
         else {
 
 
-            editor = <h1>Choose</h1>;
+            editor = <h1></h1>;
         }
 
         return (
             <div>
-                <InputLabel id="demo-simple-select-label">Please select a course to edit the syllabus: </InputLabel>
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={this.state.COURSE_ID}
-                    onChange={this.handleChange}
-                >
-                    {this.state.COURSE_ARRAY.map(u => <MenuItem value={u.ID}>{u.NAME}</MenuItem>)}
-                </Select>
+                <Paper>
+                    <Container >
+                        <InputLabel id="demo-simple-select-label">Please select a course to edit the syllabus: </InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={this.state.COURSE_ID}
+                            onChange={this.handleChange}
+                        >
+                            {this.state.COURSE_ARRAY.map(u => <MenuItem value={u.ID} key={u.ID}>{u.NAME}</MenuItem>)}
+                        </Select>
 
-                {editor}
-
-
+                        {editor}
+                    </Container>
+                </Paper>
 
             </div>
         );

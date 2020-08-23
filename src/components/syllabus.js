@@ -58,7 +58,6 @@ class Syllabus extends React.Component {
     handleChange = (event) => {
         //console.log(event.target.value);
         this.setState({ COURSE_ID: event.target.value });
-
         axios.post("https://zmsedu.com/api/admin/syllabus/get", {
             //ROLE: "Student"
         })
@@ -76,8 +75,6 @@ class Syllabus extends React.Component {
 
                     }
                 }
-
-
             }).catch(error => {
                 alert(error);
             });
@@ -99,7 +96,8 @@ class Syllabus extends React.Component {
         //Update Syllabus
         axios.post("https://zmsedu.com/api/admin/syllabus/edit", query)
             .then(res => {
-                console.log(res)
+                console.log(res.RESULT);
+                this.handleChange();
             }).catch(error => {
                 alert(error);
             });
@@ -109,7 +107,6 @@ class Syllabus extends React.Component {
     render() {
         let editor;
         if (this.state.SELECTED) {
-
             editor = <>
                 <h1>{this.state.COURSE_NAME + " Syllabus"}</h1>
                 <p>{this.state.COURSE_ID}</p>

@@ -46,7 +46,7 @@ class Syllabus extends React.Component {
                 const courses = res.data.COURSES;
                 course_apicall = courses;
                 this.setState({ COURSE_ARRAY: course_apicall });
-                console.log(this.state);
+                //console.log(this.state);
 
             }).catch(error => {
                 alert(error);
@@ -71,6 +71,8 @@ class Syllabus extends React.Component {
                         var new_id = this.state.COURSE_ID - 1;
                         //console.log(this.state.COURSE_ARRAY[new_id].NAME);
                         this.setState({ COURSE_NAME: this.state.COURSE_ARRAY[new_id].NAME });
+                        this.setState({ REFERENCE: courses[i].REFERENCE[0] });
+ 
                     }
                 }
 
@@ -85,7 +87,7 @@ class Syllabus extends React.Component {
         let editor;
         if (this.state.SELECTED) {
 
-            editor = <h1>{this.state.COURSE_NAME}</h1>;
+            editor = <h1>{this.state.COURSE_NAME + " Syllabus"}</h1>;
         }
         else {
 
@@ -95,9 +97,10 @@ class Syllabus extends React.Component {
 
         return (
             <div>
-                <Paper>
+                <Paper style={{ padding: 20,paddingTop:30 }}>
                     <Container >
                         <InputLabel id="demo-simple-select-label">Please select a course to edit the syllabus: </InputLabel>
+                        <br/>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"

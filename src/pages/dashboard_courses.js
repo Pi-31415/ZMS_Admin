@@ -5,8 +5,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Navbar from '../components/navbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Copyright from '../components/copyright';
 import CourseTable from '../components/table_course';
+import Paper from '@material-ui/core/Paper';
+import {faExclamation} from '@fortawesome/free-solid-svg-icons';
 //import Upload from '../components/upload';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -101,8 +104,9 @@ export default function Dashboard() {
 
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
-                        <p>Please note that all courses added must have course ID. <b>Please do not make any changes here unless necessary.</b></p>
-                        
+                            <Paper style={{ padding: 20, paddingTop: 30,marginBottom:20,color:'red' }}>
+                            <p> <FontAwesomeIcon icon={faExclamation} size='2x'/>    - Please note that all courses added must have course ID, and make sure there is no gap between the IDs (i.e. The IDs should go from 1 to 12 without leaving any integers.). <b>Please do not make any changes to ID here unless necessary.</b></p>
+                            </Paper>
                             <CourseTable></CourseTable>
                         </Grid>
 

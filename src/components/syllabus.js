@@ -17,15 +17,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+var course_names = [];
+var course_ids = [];
+
 class Syllabus extends React.Component {
+
+        
     constructor(props) {
         super(props);
         this.state = {
             COURSE_ID: 0,
             REFERENCE: "Mustang",
         };
-        var course_names = [];
-        var course_ids = [];
     }
 
     componentDidMount() {

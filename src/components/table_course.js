@@ -12,6 +12,10 @@ function Header(props) {
     const [columns, setColumns] = useState([
         { title: 'ID', field: 'ID' },
         { title: 'Name', field: 'NAME' },
+        {
+            title: 'Subject', field: 'SUBJECT',
+            lookup: { 'STEM': 'STEM', 'Humanities / Social Sciences': 'Humanities / Social Sciences', 'Business / Finance': 'Business / Finance','Other Specialties': 'Other Specialties' }
+        },
         { title: 'DESCRIPTION', field: 'DESCRIPTION' },
     ]);
 
@@ -75,7 +79,7 @@ function Header(props) {
                             axios.post(add_api, {
                                 ID: newData.ID,
                                 NAME: newData.NAME,
-                                SUBJECT: newData.NAME,
+                                SUBJECT: newData.SUBJECT,
                                 DESCRIPTION: newData.DESCRIPTION
                             })
                                 .then(res => {
@@ -88,10 +92,11 @@ function Header(props) {
                                         .then(res => {
                                             const courses = res.data.COURSES;
                                             setData({ courses });
+                                            resolve();
                                         }).catch(error => {
                                             alert(error);
                                         });
-                                        //Refresh
+                                    //Refresh
                                 }).catch(error => {
                                     alert(error);
                                 });
@@ -101,6 +106,30 @@ function Header(props) {
                     onRowUpdate: (newData, oldData) =>
                         new Promise((resolve, reject) => {
                             //Update
+                            axios.post(edit_api, {
+                                ID: newData.ID,
+                                NAME: newData.NAME,
+                                SUBJECT: newData.SUBJECT,
+                                DESCRIPTION: newData.DESCRIPTION
+                            })
+                                .then(res => {
+                                    const courses = res.data.COURSES;
+                                    setData({ courses });
+                                    //Refresh
+                                    axios.post(get_api, {
+                                        //ROLE: "Student"
+                                    })
+                                        .then(res => {
+                                            const courses = res.data.COURSES;
+                                            setData({ courses });
+                                            resolve();
+                                        }).catch(error => {
+                                            alert(error);
+                                        });
+                                    //Refresh
+                                }).catch(error => {
+                                    alert(error);
+                                });
                             //Update
                         }),
                     onRowDelete: oldData =>

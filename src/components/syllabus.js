@@ -55,7 +55,7 @@ class Syllabus extends React.Component {
     }
     //Then get syllabus
     handleChange = (event) => {
-        console.log(event.target.value);
+        //console.log(event.target.value);
         this.setState({ COURSE_ID: event.target.value });
 
         axios.post("https://zmsedu.com/api/admin/syllabus/get", {
@@ -72,7 +72,7 @@ class Syllabus extends React.Component {
                         //console.log(this.state.COURSE_ARRAY[new_id].NAME);
                         this.setState({ COURSE_NAME: this.state.COURSE_ARRAY[new_id].NAME });
                         this.setState({ REFERENCE: courses[i].REFERENCE[0] });
- 
+
                     }
                 }
 
@@ -87,7 +87,10 @@ class Syllabus extends React.Component {
         let editor;
         if (this.state.SELECTED) {
 
-            editor = <h1>{this.state.COURSE_NAME + " Syllabus"}</h1>;
+            editor = <>
+                <h1>{this.state.COURSE_NAME + " Syllabus"}</h1>
+                <p>{this.state.REFERENCE}</p>
+            </>;
         }
         else {
 
@@ -97,10 +100,10 @@ class Syllabus extends React.Component {
 
         return (
             <div>
-                <Paper style={{ padding: 20,paddingTop:30 }}>
+                <Paper style={{ padding: 20, paddingTop: 30 }}>
                     <Container >
                         <InputLabel id="demo-simple-select-label">Please select a course to edit the syllabus: </InputLabel>
-                        <br/>
+                        <br />
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"

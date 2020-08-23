@@ -21,17 +21,16 @@ class Syllabus extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            COURSES: [],
-            COURSEIDS: [],
             COURSE_ID: 0,
             REFERENCE: "Mustang",
         };
+        var course_names = [];
+        var course_ids = [];
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this.setState({ favoritecolor: "yellow" })
-        }, 1000)
+        course_names[0]="Ayas";
+        console.log(course_names);
     }
 
     changeColor = () => {

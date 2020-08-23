@@ -55,14 +55,15 @@ class Syllabus extends React.Component {
     render() {
         return (
             <div>
-                <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                
+                <InputLabel id="demo-simple-select-label">Please select a course to edit the syllabus: </InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={10}
+                    value={1}
                     onChange={this.handleChange}
                 >
-                    <MenuItem value={10}>Ten</MenuItem>
+                    {this.state.COURSE_ARRAY.map(u => <MenuItem value={u.ID}>{u.NAME}</MenuItem>)}
                 </Select>
             </div>
         );

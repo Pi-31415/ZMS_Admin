@@ -101,7 +101,8 @@ export default function Dashboard() {
 
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
-                        <p>Please note that all courses added must have course ID.</p>
+                        <p>Please note that all courses added must have course ID. <b>Please do not make any changes here unless necessary.</b></p>
+                        
                             <CourseTable></CourseTable>
                         </Grid>
 

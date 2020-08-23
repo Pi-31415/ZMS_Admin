@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 var course_apicall = [];
+var current_course = "";
 
 class Syllabus extends React.Component {
 
@@ -67,6 +68,7 @@ class Syllabus extends React.Component {
                     if(courses[i].COURSE_ID == this.state.COURSE_ID){
                         var new_id = this.state.COURSE_ID-1;
                         console.log(this.state.COURSE_ARRAY[new_id].NAME);
+                        this.state.COURSE_NAME = this.state.COURSE_ARRAY[new_id].NAME;
                     }
                 }
 
@@ -81,7 +83,7 @@ class Syllabus extends React.Component {
         let editor;
         if (this.state.SELECTED) {
 
-            editor = <h1>{this.state.COURSE_ID}</h1>;
+            editor = <h1>{this.state.COURSE_NAME}</h1>;
         }
         else {
 

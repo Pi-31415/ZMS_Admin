@@ -9,7 +9,7 @@ import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import MDReactComponent from 'markdown-react-js';
-
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -95,17 +95,21 @@ class Syllabus extends React.Component {
             editor = <>
                 <h1>{this.state.COURSE_NAME + " Syllabus"}</h1>
                 <p>{this.state.COURSE_ID}</p>
-                <p>{this.state.REFERENCE}</p>
+                
                 <TextField
                     id="outlined-multiline-static"
-                    label="Multiline"
+                    label={"Type in Syllabus Content for "+this.state.COURSE_NAME}
                     multiline
-                    rows={20}
+                    rows={10}
                     onChange={this.updateText}
                     defaultValue={this.state.REFERENCE}
                     variant="outlined"
                     style={{width:'100%'}}
                 />
+                <br/>
+                <Button variant="outlined">Default</Button>
+                <h3>Below shows the preview as student for this syllabus.</h3>
+                <MDReactComponent text={this.state.REFERENCE} /> 
             </>;
         }
         else {

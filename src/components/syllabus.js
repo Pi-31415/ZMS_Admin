@@ -111,7 +111,7 @@ class Syllabus extends React.Component {
         if (this.state.SELECTED) {
             editor = <>
                 <h1>{this.state.COURSE_NAME + " Syllabus"}</h1>
-                <p>{this.state.COURSE_ID}</p>
+                <p>Please use Markdown language to format the Syllabus as you would do in Microsoft Word. Please refer to <a target="_blank" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">this markdown guide</a>.</p>
 
                 <TextField
                     id="outlined-multiline-static"

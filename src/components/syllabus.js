@@ -26,6 +26,7 @@ class Syllabus extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            COURSE_ARRAY: [],
             COURSE_ID: 0,
             REFERENCE: "Mustang",
         };
@@ -36,14 +37,16 @@ class Syllabus extends React.Component {
         axios.post("https://zmsedu.com/api/admin/course/get", {
             //ROLE: "Student"
         })
-        .then(res => {
-            const courses = res.data.COURSES;
-            course_apicall = courses;
-            console.log(course_apicall);
-        }).catch(error => {
-            alert(error);
-        });
-        
+            .then(res => {
+                const courses = res.data.COURSES;
+                course_apicall = courses;
+                this.setState({ COURSE_ARRAY: course_apicall });
+                console.log(this.state);
+
+            }).catch(error => {
+                alert(error);
+            });
+
     }
 
     changeColor = () => {

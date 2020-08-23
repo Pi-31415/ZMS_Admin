@@ -10,6 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import MDReactComponent from 'markdown-react-js';
 import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -98,7 +100,7 @@ class Syllabus extends React.Component {
         axios.post("https://zmsedu.com/api/admin/syllabus/edit", query)
             .then(res => {
                 //console.log(res);
-                alert("Edit Successful");        
+                alert("Edit Successful. Now change the dropdown menu to another course if you need to update more syllabus.");        
 
             }).catch(error => {
                 alert(error);
@@ -125,7 +127,9 @@ class Syllabus extends React.Component {
                 />
                 <br /><br />
                 <Button onClick={this.submitSyllabus} variant="outlined" color="primary">Update Syllabus</Button>
+                <br />
                 <h3>Below shows the preview as student for this syllabus.</h3>
+                <Divider />
                 <MDReactComponent text={this.state.REFERENCE} />
             </>;
         }

@@ -67,7 +67,7 @@ function Header(props) {
 
                 options={{
                     filtering: true,
-                    pageSize: 5,
+                    pageSize: 12,
                     actionsColumnIndex: -1
                 }}
 
@@ -107,7 +107,7 @@ function Header(props) {
                         new Promise((resolve, reject) => {
                             //Update
                             axios.post(edit_api, {
-                                ID: newData.ID,
+                                ID: oldData.ID,
                                 NAME: newData.NAME,
                                 SUBJECT: newData.SUBJECT,
                                 DESCRIPTION: newData.DESCRIPTION
@@ -135,6 +135,28 @@ function Header(props) {
                     onRowDelete: oldData =>
                         new Promise((resolve, reject) => {
                             //Delete
+                            //Update
+                            axios.post(delete_api, {
+                                ID: oldData.ID,
+                            })
+                                .then(res => {
+                                    const courses = res.data.COURSES;
+                                    setData({ courses });
+                                    //Refresh
+                                    axios.post(get_api, {
+                                        //ROLE: "Student"
+                                    })
+                                        .then(res => {
+                                            const courses = res.data.COURSES;
+                                            setData({ courses });
+                                            resolve();
+                                        }).catch(error => {
+                                            alert(error);
+                                        });
+                                    //Refresh
+                                }).catch(error => {
+                                    alert(error);
+                                });
                             //Delete
                         }),
                 }}

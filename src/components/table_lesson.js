@@ -5,6 +5,14 @@ import axios from 'axios';
 function Header(props) {
 
     const [columns, setColumns] = useState([
+
+
+        { title: 'LESSON_ID', field: 'LESSON_ID' },
+        { title: 'COURSE_ID', field: 'COURSE_ID' },
+        { title: 'TEACHER', field: 'TEACHER'},
+        { title: 'STUDENT', field: 'STUDENT'},
+        { title: 'START_DATETIME', field: 'START_DATETIME'},
+        { title: 'STATUS', field: 'STATUS'},
         //Add Columns
     ]);
 
@@ -33,9 +41,17 @@ function Header(props) {
             });
     }, []);
 
+
     return (
-        <h1>Hello</h1>
+        <div style={{ maxWidth: '100%' }}>
+            <MaterialTable
+                columns={columns}
+                data={[{ name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 }]}
+                title="Demo Title"
+            />
+        </div>
     )
+
 
 }
 

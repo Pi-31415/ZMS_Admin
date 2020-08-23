@@ -11,8 +11,15 @@ function Header(props) {
         { title: 'COURSE_ID', field: 'COURSE_ID' },
         { title: 'TEACHER', field: 'TEACHER' },
         { title: 'STUDENT', field: 'STUDENT' },
-        { title: 'START_DATETIME', field: 'START_DATETIME' },
-        { title: 'STATUS', field: 'STATUS' },
+        {
+            title: 'START_DATETIME',
+            field: 'START_DATETIME'
+        },
+        {
+            title: 'STATUS',
+            field: 'STATUS',
+            lookup: { 'Complete': 'Complete', 'Incomplete': 'Incomplete', 'Cancelled': 'Cancelled' },
+        },
         //Add Columns
     ]);
 
@@ -48,7 +55,6 @@ function Header(props) {
                 columns={columns}
                 data={data.lessons}
                 title="Lessons"
-
 
                 localization={{
                     pagination: {

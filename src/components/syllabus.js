@@ -88,8 +88,22 @@ class Syllabus extends React.Component {
         this.setState({ REFERENCE: event.target.value });
     }
 
-    submitSyllabus = () =>{
-        alert("Submit");
+    submitSyllabus = () => {
+        
+        var query = {
+            "COURSE_ID": this.state.COURSE_ID,
+            "REFERENCE": [this.state.REFERENCE]
+        }
+        console.log(query);
+
+        //Update Syllabus
+        axios.post("https://zmsedu.com/api/admin/syllabus/edit", query)
+            .then(res => {
+                console.log(res)
+            }).catch(error => {
+                alert(error);
+            });
+
     }
 
     render() {
@@ -99,21 +113,21 @@ class Syllabus extends React.Component {
             editor = <>
                 <h1>{this.state.COURSE_NAME + " Syllabus"}</h1>
                 <p>{this.state.COURSE_ID}</p>
-                
+
                 <TextField
                     id="outlined-multiline-static"
-                    label={"Type in Syllabus Content for "+this.state.COURSE_NAME}
+                    label={"Type in Syllabus Content for " + this.state.COURSE_NAME}
                     multiline
                     rows={10}
                     onChange={this.updateText}
                     defaultValue={this.state.REFERENCE}
                     variant="outlined"
-                    style={{width:'100%'}}
+                    style={{ width: '100%' }}
                 />
-                <br/><br/>
+                <br /><br />
                 <Button onClick={this.submitSyllabus} variant="outlined" color="primary">Update Syllabus</Button>
                 <h3>Below shows the preview as student for this syllabus.</h3>
-                <MDReactComponent text={this.state.REFERENCE} /> 
+                <MDReactComponent text={this.state.REFERENCE} />
             </>;
         }
         else {

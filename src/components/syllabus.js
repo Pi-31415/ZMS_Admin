@@ -29,7 +29,8 @@ class Syllabus extends React.Component {
             COURSE_ARRAY: [],
             COURSE_ID: 1,
             COURSE_NAME: "",
-            REFERENCE: "Mustang",
+            REFERENCE: "",
+            SELECTED: false,
         };
     }
 

@@ -27,7 +27,8 @@ class Syllabus extends React.Component {
         super(props);
         this.state = {
             COURSE_ARRAY: [],
-            COURSE_ID: 0,
+            COURSE_ID: 1,
+            COURSE_NAME: "",
             REFERENCE: "Mustang",
         };
     }
@@ -51,7 +52,18 @@ class Syllabus extends React.Component {
 
     handleChange = (event) => {
         console.log(event.target.value);
-        //this.setState({ color: "blue" });
+        this.setState({ COURSE_ID: event.target.value });
+
+        axios.post(get_api, {
+            //ROLE: "Student"
+        })
+            .then(res => {
+                const courses = res.data.COURSES;
+                setData({ courses });
+            }).catch(error => {
+                alert(error);
+            });
+
     }
 
     render() {
@@ -62,7 +74,7 @@ class Syllabus extends React.Component {
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={1}
+                    value={this.state.COURSE_ID}
                     onChange={this.handleChange}
                 >
                     {this.state.COURSE_ARRAY.map(u => <MenuItem value={u.ID}>{u.NAME}</MenuItem>)}

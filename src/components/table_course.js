@@ -12,8 +12,7 @@ function Header(props) {
     const [columns, setColumns] = useState([
         { title: 'ID', field: 'ID' },
         { title: 'Name', field: 'NAME' },
-        { title: 'Subject', field: 'SUBJECT'},
-
+        { title: 'DESCRIPTION', field: 'DESCRIPTION'},
     ]);
 
 

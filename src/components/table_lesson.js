@@ -5,24 +5,6 @@ import Moment from 'react-moment';
 
 function Header(props) {
 
-    const [columns, setColumns] = useState([
-
-        { title: 'LESSON_ID', field: 'LESSON_ID' },
-        { title: 'COURSE_ID', field: 'COURSE_ID' },
-        { title: 'TEACHER', field: 'TEACHER' },
-        { title: 'STUDENT', field: 'STUDENT' },
-        {
-            title: 'START_DATETIME',
-            field: 'START_DATETIME',
-            render: rowData => <h1>{rowData.START_DATETIME}</h1>
-        },
-        {
-            title: 'STATUS',
-            field: 'STATUS',
-            lookup: { 'Complete': 'Complete', 'Incomplete': 'Incomplete', 'Cancelled': 'Cancelled' },
-        },
-        //Add Columns
-    ]);
 
     function formatdate(inputdate) {
         //format the time from server and return the Hong Kong Time zone
@@ -33,6 +15,29 @@ function Header(props) {
         localStorage.setItem("tutordate", moment(displayCutoff).format('hh:mm a'));
         return displayCutoff;
       }
+
+
+    const [columns, setColumns] = useState([
+
+        { title: 'LESSON_ID', field: 'LESSON_ID' },
+        { title: 'COURSE_ID', field: 'COURSE_ID' },
+        { title: 'TEACHER', field: 'TEACHER' },
+        { title: 'STUDENT', field: 'STUDENT' },
+        {
+            title: 'START_DATETIME',
+            field: 'START_DATETIME',
+            render: rowData => 
+            <Moment format="dddd, DD MMMM YYYY hh:mm a">
+                {formatdate(rowData.START_DATETIME)}
+              </Moment> 
+        },
+        {
+            title: 'STATUS',
+            field: 'STATUS',
+            lookup: { 'Complete': 'Complete', 'Incomplete': 'Incomplete', 'Cancelled': 'Cancelled' },
+        },
+        //Add Columns
+    ]);
 
     const [data, setData] = useState(
         {

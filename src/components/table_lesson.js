@@ -9,10 +9,10 @@ function Header(props) {
 
         { title: 'LESSON_ID', field: 'LESSON_ID' },
         { title: 'COURSE_ID', field: 'COURSE_ID' },
-        { title: 'TEACHER', field: 'TEACHER'},
-        { title: 'STUDENT', field: 'STUDENT'},
-        { title: 'START_DATETIME', field: 'START_DATETIME'},
-        { title: 'STATUS', field: 'STATUS'},
+        { title: 'TEACHER', field: 'TEACHER' },
+        { title: 'STUDENT', field: 'STUDENT' },
+        { title: 'START_DATETIME', field: 'START_DATETIME' },
+        { title: 'STATUS', field: 'STATUS' },
         //Add Columns
     ]);
 
@@ -47,7 +47,33 @@ function Header(props) {
             <MaterialTable
                 columns={columns}
                 data={data.lessons}
-                title="Demo Title"
+                title="Lessons"
+
+
+                localization={{
+                    pagination: {
+                        labelDisplayedRows: '{from}-{to} of {count}'
+                    },
+                    toolbar: {
+                        nRowsSelected: '{0} row(s) selected'
+                    },
+                    header: {
+                        actions: 'Actions'
+                    },
+                    body: {
+                        emptyDataSourceMessage: 'No records to display',
+                        filterRow: {
+                            filterTooltip: 'Type in something to filter results.'
+                        }
+                    }
+                }}
+
+                options={{
+                    filtering: true,
+                    pageSize: 5,
+                    actionsColumnIndex: -1
+                }}
+
             />
         </div>
     )

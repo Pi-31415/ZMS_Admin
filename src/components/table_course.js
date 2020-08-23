@@ -11,7 +11,7 @@ function Header(props) {
 
     const [columns, setColumns] = useState([
         { title: 'Name', field: 'NAME' },
-        { title: 'DESCRIPTION', field: 'DESCRIPTION'},
+        { title: 'DESCRIPTION', field: 'DESCRIPTION' },
     ]);
 
 
@@ -64,6 +64,24 @@ function Header(props) {
                     filtering: true,
                     pageSize: 5,
                     actionsColumnIndex: -1
+                }}
+
+                editable={{
+                    onRowAdd: newData =>
+                        new Promise((resolve, reject) => {
+                            //Add
+                            //Add
+                        }),
+                    onRowUpdate: (newData, oldData) =>
+                        new Promise((resolve, reject) => {
+                            //Update
+                            //Update
+                        }),
+                    onRowDelete: oldData =>
+                        new Promise((resolve, reject) => {
+                            //Delete
+                            //Delete
+                        }),
                 }}
 
             />

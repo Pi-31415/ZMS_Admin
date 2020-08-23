@@ -6,14 +6,14 @@ function Header(props) {
 
     const [columns, setColumns] = useState([
 
-
         { title: 'LESSON_ID', field: 'LESSON_ID' },
         { title: 'COURSE_ID', field: 'COURSE_ID' },
         { title: 'TEACHER', field: 'TEACHER' },
         { title: 'STUDENT', field: 'STUDENT' },
         {
             title: 'START_DATETIME',
-            field: 'START_DATETIME'
+            field: 'START_DATETIME',
+            render: rowData => <h1>{rowData.START_DATETIME}</h1>
         },
         {
             title: 'STATUS',

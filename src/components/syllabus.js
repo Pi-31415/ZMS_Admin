@@ -72,6 +72,7 @@ class Syllabus extends React.Component {
                         //console.log(this.state.COURSE_ARRAY[new_id].NAME);
                         this.setState({ COURSE_NAME: this.state.COURSE_ARRAY[new_id].NAME });
                         this.setState({ REFERENCE: courses[i].REFERENCE[0] });
+                        
 
                     }
                 }
@@ -97,8 +98,7 @@ class Syllabus extends React.Component {
         axios.post("https://zmsedu.com/api/admin/syllabus/edit", query)
             .then(res => {
                 //console.log(res);
-
-                
+                alert("Edit Successful");        
 
             }).catch(error => {
                 alert(error);
@@ -119,7 +119,7 @@ class Syllabus extends React.Component {
                     multiline
                     rows={10}
                     onChange={this.updateText}
-                    defaultValue={this.state.REFERENCE}
+                    value={this.state.REFERENCE}
                     variant="outlined"
                     style={{ width: '100%' }}
                 />

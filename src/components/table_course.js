@@ -10,7 +10,6 @@ function Header(props) {
     const delete_api = "https://zmsedu.com/api/admin/course/delete";
 
     const [columns, setColumns] = useState([
-        { title: 'ID', field: 'ID' },
         { title: 'Name', field: 'NAME' },
         { title: 'DESCRIPTION', field: 'DESCRIPTION'},
     ]);

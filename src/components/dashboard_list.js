@@ -5,7 +5,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import '../scss/custom.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 import {faChartBar} from '@fortawesome/free-solid-svg-icons';
 //import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 //import { faCalculator } from '@fortawesome/free-solid-svg-icons';
@@ -80,14 +79,7 @@ export default function DashboardList() {
             <ListItemText primary={nametoshow} />
           </ListItem>
 
-          <Link to="/admin/dashboard/home" className="custom-link-normal">
-            <ListItem button>
-              <ListItemIcon>
-                <FontAwesomeIcon icon={faHome} size='2x' />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItem>
-          </Link>
+          
 
           <Link to="/admin/dashboard/courses" className="custom-link-normal">
             <ListItem button>

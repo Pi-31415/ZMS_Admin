@@ -61,7 +61,7 @@ class Syllabus extends React.Component {
         .then(res => {
             const courses = res.data.SYLLABUS;
             console.log(courses);
-
+            this.setState({ SELECTED: true });
 
         }).catch(error => {
             alert(error);
@@ -70,6 +70,14 @@ class Syllabus extends React.Component {
     }
 
     render() {
+        let editor;
+        if(this.state.SELECTED){
+            editor = <h1>True</h1>;
+        }
+        else{
+            editor = <h1>Select a Class</h1>;
+        }
+
         return (
             <div>
                 <InputLabel id="demo-simple-select-label">Please select a course to edit the syllabus: </InputLabel>
@@ -81,6 +89,11 @@ class Syllabus extends React.Component {
                 >
                     {this.state.COURSE_ARRAY.map(u => <MenuItem value={u.ID}>{u.NAME}</MenuItem>)}
                 </Select>
+
+                {editor}
+                
+
+
             </div>
         );
     }

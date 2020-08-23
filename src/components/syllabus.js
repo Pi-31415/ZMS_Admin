@@ -54,22 +54,23 @@ class Syllabus extends React.Component {
         console.log(event.target.value);
         this.setState({ COURSE_ID: event.target.value });
 
-        axios.post(get_api, {
+        axios.post("https://zmsedu.com/api/admin/syllabus/get", {
             //ROLE: "Student"
         })
-            .then(res => {
-                const courses = res.data.COURSES;
-                setData({ courses });
-            }).catch(error => {
-                alert(error);
-            });
+        .then(res => {
+            const courses = res.data.SYLLABUS;
+            console.log(courses);
+
+
+        }).catch(error => {
+            alert(error);
+        });
 
     }
 
     render() {
         return (
             <div>
-                
                 <InputLabel id="demo-simple-select-label">Please select a course to edit the syllabus: </InputLabel>
                 <Select
                     labelId="demo-simple-select-label"

@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/admin/static/css/main.18d7077e.chunk.css",
+    "main.js": "/admin/static/js/main.fd8594ad.chunk.js",
+    "main.js.map": "/admin/static/js/main.fd8594ad.chunk.js.map",
+    "runtime-main.js": "/admin/static/js/runtime-main.1fac68e9.js",
+    "runtime-main.js.map": "/admin/static/js/runtime-main.1fac68e9.js.map",
+    "static/js/2.a074537d.chunk.js": "/admin/static/js/2.a074537d.chunk.js",
+    "static/js/2.a074537d.chunk.js.map": "/admin/static/js/2.a074537d.chunk.js.map",
+    "index.html": "/admin/index.html",
+    "precache-manifest.8a7ad73e68272a805b1c235f2a8d67fe.js": "/admin/precache-manifest.8a7ad73e68272a805b1c235f2a8d67fe.js",
+    "service-worker.js": "/admin/service-worker.js",
+    "static/css/main.18d7077e.chunk.css.map": "/admin/static/css/main.18d7077e.chunk.css.map",
+    "static/js/2.a074537d.chunk.js.LICENSE.txt": "/admin/static/js/2.a074537d.chunk.js.LICENSE.txt",
+    "static/media/avatar.png": "/admin/static/media/avatar.57a3e864.png",
+    "static/media/favicon_source.png": "/admin/static/media/favicon_source.458ed253.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1fac68e9.js",
+    "static/js/2.a074537d.chunk.js",
+    "static/css/main.18d7077e.chunk.css",
+    "static/js/main.fd8594ad.chunk.js"
+  ]
+}

@@ -49,18 +49,13 @@ class Syllabus extends React.Component {
             ROLE: "Teacher"
         })
             .then(res => {
-                const classes = res.data.CLASS;
-                class_apicall = classes;
-                this.setState({ CLASS_ARRAY: class_apicall, COURSE_ARRAY: course_apicall });
-                //console.log(this.state);
-                //then generate the lookup values for material-table
+                const users = res.data.USERS;
+                console.log(users);
                 var i;
-                for (i = 0; i < this.state.COURSE_ARRAY.length; i++) {
-                    coursename_lookup.push(this.state.COURSE_ARRAY[i].NAME);
-                    courseid_lookup.push(this.state.COURSE_ARRAY[i].ID);
-                    //courselookup_main[i] = [{ '1': 'İstanbul', '2': 'Şanlıurfa' }];
-                    courselookup_main[this.state.COURSE_ARRAY[i].ID.toString()] = this.state.COURSE_ARRAY[i].NAME;
+                for (i = 0; i < users.length; i++) {
+                    teacherlookup_main[users[i].ID] = users[i].FIRST_NAME;
                 }
+                console.log(teacherlookup_main);
             }).catch(error => {
                 alert(error);
             });
@@ -91,6 +86,7 @@ class Syllabus extends React.Component {
                             //courselookup_main[i] = [{ '1': 'İstanbul', '2': 'Şanlıurfa' }];
                             courselookup_main[this.state.COURSE_ARRAY[i].ID.toString()] = this.state.COURSE_ARRAY[i].NAME;
                         }
+                        this.getteacherdata();
                         this.setState({
                             CLASS_ARRAY: class_apicall, COURSE_ARRAY: course_apicall, COLUMNS: [
                                 { title: 'Class Name', field: 'CLASS_ID' },

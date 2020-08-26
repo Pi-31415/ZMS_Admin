@@ -50,6 +50,9 @@ var student_ids = [];
 
 var student_to_add = "";
 var class_to_add = "";
+var course_name_to_add = "";
+var course_to_add = "";
+var teacher_to_add = "";
 
 
 class Syllabus extends React.Component {
@@ -193,6 +196,14 @@ class Syllabus extends React.Component {
         var classcode = final[0] + final2[0] + "-" + makeid(5);
 
         console.log(classcode);
+        course_to_add = event.target.value;
+        course_name_to_add = classcode;
+    }
+
+    newteacher = (event) =>{
+        //console.log(event.target.value);
+        console.log();
+        teacher_to_add = event.target.value;
     }
 
     render() {
@@ -256,11 +267,11 @@ class Syllabus extends React.Component {
                         </Select>
                     </Grid>
                     <Grid item xs={3}>
-                        <InputLabel id="demo-simple-select-label">Choose Teacher:</InputLabel>
+                        <InputLabel id="demo-simple-select-label2">Choose Teacher:</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
+                            labelId="demo-simple-select-label2"
                             id="demo-simple-select"
-                            onChange={this.newcourse}
+                            onChange={this.newteacher}
                         >
                             {
                                 teacher_ids.map((reptile) => <MenuItem key={reptile} value={reptile}>{teacherlookup_main[reptile]}</MenuItem>)

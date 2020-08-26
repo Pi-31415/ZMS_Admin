@@ -30,6 +30,7 @@ var courseid_lookup = [];
 var current_course = "";
 var courselookup_main = {};
 var teacherlookup_main = {};
+var teacherlookup_id = {};
 
 class Syllabus extends React.Component {
 
@@ -53,9 +54,8 @@ class Syllabus extends React.Component {
                 console.log(users);
                 var i;
                 for (i = 0; i < users.length; i++) {
-                    teacherlookup_main[users[i].ID.toString()] = users[i].FIRST_NAME;
+                    teacherlookup_main[users[i].ID] = users[i].FIRST_NAME + " " + users[i].LAST_NAME;
                 }
-                console.log(teacherlookup_main);
             }).catch(error => {
                 alert(error);
             });
@@ -100,7 +100,11 @@ class Syllabus extends React.Component {
                                     field: 'STUDENTS',
                                     render: rowData => rowData.STUDENTS.length
                                 },
-                                { title: 'Teacher', field: 'TEACHER' },
+                                {
+                                    title: 'Teacher',
+                                    field: 'TEACHER',
+                                    lookup: teacherlookup_main
+                                },
                                 { title: "Schedule", field: "NEXT_DATETIME" },
                             ]
                         });

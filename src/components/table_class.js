@@ -29,7 +29,7 @@ var coursename_lookup = [];
 var courseid_lookup = [];
 var current_course = "";
 var courselookup_main = {};
-
+var teacherlookup_main = {};
 
 class Syllabus extends React.Component {
 
@@ -38,18 +38,32 @@ class Syllabus extends React.Component {
         this.state = {
             COURSE_ARRAY: [],
             CLASS_ARRAY: [],
-            COLUMNS: [
-                { title: 'STUDENTS', field: 'STUDENTS' },
-                { title: 'CLASS_ID', field: 'CLASS_ID' },
-                {
-                    title: 'COURSE_ID',
-                    field: 'COURSE_ID',
-                    lookup: courselookup_main
-                },
-                { title: 'TEACHER', field: 'TEACHER' },
-                { title: "NEXT_DATETIME", field: "NEXT_DATETIME" },
-            ]
+            COLUMNS: [],
+            ADD: false,
+            EDIT: false
         };
+    }
+
+    getteacherdata = () => {
+        axios.post("https://zmsedu.com/api/admin/user/get", {
+            ROLE: "Teacher"
+        })
+            .then(res => {
+                const classes = res.data.CLASS;
+                class_apicall = classes;
+                this.setState({ CLASS_ARRAY: class_apicall, COURSE_ARRAY: course_apicall });
+                //console.log(this.state);
+                //then generate the lookup values for material-table
+                var i;
+                for (i = 0; i < this.state.COURSE_ARRAY.length; i++) {
+                    coursename_lookup.push(this.state.COURSE_ARRAY[i].NAME);
+                    courseid_lookup.push(this.state.COURSE_ARRAY[i].ID);
+                    //courselookup_main[i] = [{ '1': 'İstanbul', '2': 'Şanlıurfa' }];
+                    courselookup_main[this.state.COURSE_ARRAY[i].ID.toString()] = this.state.COURSE_ARRAY[i].NAME;
+                }
+            }).catch(error => {
+                alert(error);
+            });
     }
 
     getinitAPIdata = () => {
@@ -111,17 +125,17 @@ class Syllabus extends React.Component {
 
 
     render() {
-
         let editor;
+        editor = <>
+            <Paper style={{ padding: 20, paddingTop: 30 }}>
+                <p>Use the dropdown bar on the left to edit/view the class details.</p>
+            </Paper>
+            <br></br>
+        </>
 
-
-
-        
         return (
             <div>
-                <Paper style={{ padding: 20, paddingTop: 30 }}>
-                </Paper>
-                <br></br>
+                {editor}
                 <div style={{ maxWidth: '100%' }}>
                     <MaterialTable
                         columns={this.state.COLUMNS}
@@ -152,13 +166,19 @@ class Syllabus extends React.Component {
                             actionsColumnIndex: -1
                         }}
 
+                        detailPanel={rowData => {
+                            return (
+                                rowData.STUDENTS.length
+                            )
+                        }}
+
                         actions={[
                             {
                                 icon: 'edit',
                                 tooltip: 'Edit This Class',
                                 onClick: (event, rowData) => {
                                     // Do save operation
-                                    console.log(rowData);
+                                    console.log(this.state);
                                 }
                             }
                         ]}

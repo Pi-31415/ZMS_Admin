@@ -181,7 +181,7 @@ class Syllabus extends React.Component {
                             onChange={this.updatestudent}
                         >
                             {
-                                student_ids.map((shogun)=><MenuItem value={shogun}>{studentlookup_main[shogun]}</MenuItem>)
+                                student_ids.map((shogun) => <MenuItem value={shogun}>{studentlookup_main[shogun]}</MenuItem>)
                             }
                         </Select>
                     </Grid>
@@ -195,7 +195,7 @@ class Syllabus extends React.Component {
                             {
                                 this.state.CLASS_ARRAY.map((reptile) => <MenuItem value={reptile.CLASS_ID}>{reptile.CLASS_ID}</MenuItem>)
                             }
-                            
+
                         </Select>
                     </Grid>
                     <Grid item xs={3}>
@@ -254,6 +254,22 @@ class Syllabus extends React.Component {
                                     </div>
                                 </>
                             )
+                        }}
+
+
+                        editable={{
+                            onRowAdd: newData =>
+                                new Promise((resolve, reject) => {
+                                    
+                                }),
+                            onRowUpdate: (newData, oldData) =>
+                                new Promise((resolve, reject) => {
+                                    
+                                }),
+                            onRowDelete: oldData =>
+                                new Promise((resolve, reject) => {
+                                    
+                                }),
                         }}
 
                     />

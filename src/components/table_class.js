@@ -152,8 +152,7 @@ class Syllabus extends React.Component {
                                     title: 'Teacher',
                                     field: 'TEACHER',
                                     lookup: teacherlookup_main
-                                },
-                                { title: "Schedule", field: "NEXT_DATETIME" },
+                                }
                             ]
                         });
 
@@ -200,17 +199,47 @@ class Syllabus extends React.Component {
         course_name_to_add = classcode;
     }
 
-    newteacher = (event) =>{
+    newteacher = (event) => {
         //console.log(event.target.value);
         console.log();
         teacher_to_add = event.target.value;
     }
 
+    addcourse = (event) => {
+        console.log(teacher_to_add + " " + course_to_add + " " + course_name_to_add);
+
+        if (course_name_to_add == "" || course_to_add == "" || teacher_to_add == "") {
+            alert("Please choose the required fields.");
+        }
+        const query = {
+            "STUDENTS": [],
+            "CLASS_ID": course_name_to_add,
+            "COURSE_ID": course_to_add,
+            "TEACHER": teacher_to_add,
+            "NEXT_DATETIME": ""
+        };
+        console.log(query);
+        axios.post('https://zmsedu.com/api/admin/class/add', query)
+            .then(response => {
+                this.getinitAPIdata();
+            })
+            .catch(error => {
+                alert(error);
+            });
+    }
+
     render() {
+
+        let classaddbutton;
+        classaddbutton =
+            <Button variant="contained" color="primary" onClick={this.addcourse}>
+                Add Class
+            </Button>;
+
         let editor;
         editor = <>
             <Paper style={{ padding: 20 }}>
-                <h3>Add Student to Class</h3>
+                <h3>Add Student to Class (W.I.P) </h3>
 
                 <Grid container spacing={3}>
                     <Grid item xs={3}>
@@ -253,12 +282,11 @@ class Syllabus extends React.Component {
 
                 <Grid container spacing={3}>
                     <Grid item xs={3}>
-                        <InputLabel id="demo-simple-select-label">Add class for Course:</InputLabel>
+                        <InputLabel id="demo-simple-select-label">Choose Course:</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             onChange={this.newcourse}
-                            defaultValue="1"
                         >
                             {
                                 this.state.COURSE_ARRAY.map((reptile) => <MenuItem key={reptile.ID} value={reptile.ID}>{reptile.NAME}</MenuItem>)
@@ -278,6 +306,9 @@ class Syllabus extends React.Component {
                             }
 
                         </Select>
+                    </Grid>
+                    <Grid item xs={3}>
+                        {classaddbutton}
                     </Grid>
                 </Grid>
             </Paper>
@@ -337,16 +368,30 @@ class Syllabus extends React.Component {
 
 
                         editable={{
-                            onRowAdd: newData =>
-                                new Promise((resolve, reject) => {
-
-                                }),
                             onRowUpdate: (newData, oldData) =>
                                 new Promise((resolve, reject) => {
+
+                                    const query = {
+                                        "STUDENTS": newData.STUDENTS,
+                                        "CLASS_ID": oldData.CLASS_ID,
+                                        "COURSE_ID": newData.COURSE_ID,
+                                        "TEACHER": newData.TEACHER,
+                                        "NEXT_DATETIME": ""
+                                    };
+                                    console.log(query);
+                                    axios.post('https://zmsedu.com/api/admin/class/edit', query)
+                                        .then(response => {
+                                            this.getinitAPIdata();
+                                            resolve();
+                                        })
+                                        .catch(error => {
+                                            alert(error);
+                                        });
 
                                 }),
                             onRowDelete: oldData =>
                                 new Promise((resolve, reject) => {
+
 
                                 }),
                         }}

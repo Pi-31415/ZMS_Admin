@@ -24,6 +24,17 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+function makeid(length) {
+    var result = '';
+    var characters = 'x0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+
 
 var course_apicall = [];
 var class_apicall = [];
@@ -166,6 +177,24 @@ class Syllabus extends React.Component {
         alert(class_to_add);
     }
 
+
+    newcourse = (event) => {
+        //alert(event.target.value);
+
+        var str = courselookup_main[event.target.value];
+        var res = str.split(" ");
+        var final = res[0];
+        var final2 = "";
+        if (res[1] != null) {
+            final2 = res[1];
+        } else {
+            final2 = "X";
+        }
+        var classcode = final[0] + final2[0] + "-" + makeid(5);
+
+        console.log(classcode);
+    }
+
     render() {
         let editor;
         editor = <>
@@ -206,9 +235,48 @@ class Syllabus extends React.Component {
             <br></br>
         </>
 
+        let adder;
+        adder = <>
+            <Paper style={{ padding: 20 }}>
+                <h3>Add New Class</h3>
+
+                <Grid container spacing={3}>
+                    <Grid item xs={3}>
+                        <InputLabel id="demo-simple-select-label">Add class for Course:</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            onChange={this.newcourse}
+                            defaultValue="1"
+                        >
+                            {
+                                this.state.COURSE_ARRAY.map((reptile) => <MenuItem key={reptile.ID} value={reptile.ID}>{reptile.NAME}</MenuItem>)
+                            }
+
+                        </Select>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <InputLabel id="demo-simple-select-label">Choose Teacher:</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            onChange={this.newcourse}
+                        >
+                            {
+                                teacher_ids.map((reptile) => <MenuItem key={reptile} value={reptile}>{teacherlookup_main[reptile]}</MenuItem>)
+                            }
+
+                        </Select>
+                    </Grid>
+                </Grid>
+            </Paper>
+            <br></br>
+        </>
+
         return (
             <div>
                 {editor}
+                {adder}
                 <div style={{ maxWidth: '100%' }}>
                     <MaterialTable
                         columns={this.state.COLUMNS}
@@ -260,15 +328,15 @@ class Syllabus extends React.Component {
                         editable={{
                             onRowAdd: newData =>
                                 new Promise((resolve, reject) => {
-                                    
+
                                 }),
                             onRowUpdate: (newData, oldData) =>
                                 new Promise((resolve, reject) => {
-                                    
+
                                 }),
                             onRowDelete: oldData =>
                                 new Promise((resolve, reject) => {
-                                    
+
                                 }),
                         }}
 

@@ -12,6 +12,7 @@ import DashboardStudents from './pages/dashboard_students';
 import DashboardLessons from './pages/dashboard_lessons';
 import DashboardCourses from './pages/dashboard_courses';
 import DashboardSyllabus from './pages/dashboard_syllabus';
+import DashboardClass from './pages/dashboard_class';
 /*
 
 <Route path="/portal/signup"><SignUp></SignUp></Route>
@@ -32,6 +33,7 @@ const App = props => {
       <div>
         <div style={{ padding: '0', margin: '0' }}>
           <Switch>
+          <Route path="/admin/dashboard/class"><DashboardClass></DashboardClass></Route>
           <Route path="/admin/dashboard/syllabus"><DashboardSyllabus></DashboardSyllabus></Route>
           <Route path="/admin/dashboard/courses"><DashboardCourses></DashboardCourses></Route>
           <Route path="/admin/dashboard/lessons"><DashboardLessons></DashboardLessons></Route>

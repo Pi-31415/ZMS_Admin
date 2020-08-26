@@ -30,7 +30,7 @@ var courseid_lookup = [];
 var current_course = "";
 var courselookup_main = {};
 var teacherlookup_main = {};
-var teacherlookup_id = {};
+var studentlookup_main = {};
 
 class Syllabus extends React.Component {
 
@@ -55,6 +55,22 @@ class Syllabus extends React.Component {
                 var i;
                 for (i = 0; i < users.length; i++) {
                     teacherlookup_main[users[i].ID] = users[i].FIRST_NAME + " " + users[i].LAST_NAME;
+                }
+            }).catch(error => {
+                alert(error);
+            });
+    }
+
+    getstudentdata = () => {
+        axios.post("https://zmsedu.com/api/admin/user/get", {
+            ROLE: "Student"
+        })
+            .then(res => {
+                const users = res.data.USERS;
+                console.log(users);
+                var i;
+                for (i = 0; i < users.length; i++) {
+                    studentlookup_main[users[i].ID] = users[i].FIRST_NAME + " " + users[i].LAST_NAME;
                 }
             }).catch(error => {
                 alert(error);
@@ -96,8 +112,9 @@ class Syllabus extends React.Component {
                                     lookup: courselookup_main
                                 },
                                 {
-                                    title: 'Students',
+                                    title: '# of Students',
                                     field: 'STUDENTS',
+                                    type:'numeric',
                                     render: rowData => rowData.STUDENTS.length
                                 },
                                 {
@@ -171,17 +188,6 @@ class Syllabus extends React.Component {
                                 rowData.STUDENTS.length
                             )
                         }}
-
-                        actions={[
-                            {
-                                icon: 'edit',
-                                tooltip: 'Edit This Class',
-                                onClick: (event, rowData) => {
-                                    // Do save operation
-                                    console.log(this.state);
-                                }
-                            }
-                        ]}
 
                     />
                 </div>

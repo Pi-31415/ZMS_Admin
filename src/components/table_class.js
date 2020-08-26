@@ -9,9 +9,11 @@ import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import MDReactComponent from 'markdown-react-js';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import MaterialTable from 'material-table'
+import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,6 +34,13 @@ var courselookup_main = {};
 var teacherlookup_main = {};
 var studentlookup_main = {};
 
+var teacher_ids = [];
+var student_ids = [];
+
+var student_to_add = "";
+var class_to_add = "";
+
+
 class Syllabus extends React.Component {
 
     constructor(props) {
@@ -46,38 +55,47 @@ class Syllabus extends React.Component {
     }
 
     getteacherdata = () => {
+        teacher_ids = [];
         axios.post("https://zmsedu.com/api/admin/user/get", {
             ROLE: "Teacher"
         })
             .then(res => {
                 const users = res.data.USERS;
-                console.log(users);
+                //console.log(users);
                 var i;
                 for (i = 0; i < users.length; i++) {
                     teacherlookup_main[users[i].ID] = users[i].FIRST_NAME + " " + users[i].LAST_NAME;
+                    teacher_ids.push(users[i].ID);
                 }
             }).catch(error => {
                 alert(error);
             });
     }
 
+
+
     getstudentdata = () => {
+        student_ids = [];
         axios.post("https://zmsedu.com/api/admin/user/get", {
             ROLE: "Student"
         })
             .then(res => {
                 const users = res.data.USERS;
-                console.log(users);
+                //console.log(users);
                 var i;
                 for (i = 0; i < users.length; i++) {
                     studentlookup_main[users[i].ID] = users[i].FIRST_NAME + " " + users[i].LAST_NAME;
+                    student_ids.push(users[i].ID);
                 }
+                //console.log(studentlookup_main);
             }).catch(error => {
                 alert(error);
             });
     }
 
     getinitAPIdata = () => {
+        this.getteacherdata();
+        this.getstudentdata();
         //First get course
         axios.post("https://zmsedu.com/api/admin/course/get", {
             //ROLE: "Student"
@@ -102,7 +120,6 @@ class Syllabus extends React.Component {
                             //courselookup_main[i] = [{ '1': 'İstanbul', '2': 'Şanlıurfa' }];
                             courselookup_main[this.state.COURSE_ARRAY[i].ID.toString()] = this.state.COURSE_ARRAY[i].NAME;
                         }
-                        this.getteacherdata();
                         this.setState({
                             CLASS_ARRAY: class_apicall, COURSE_ARRAY: course_apicall, COLUMNS: [
                                 { title: 'Class Name', field: 'CLASS_ID' },
@@ -114,7 +131,7 @@ class Syllabus extends React.Component {
                                 {
                                     title: '# of Students',
                                     field: 'STUDENTS',
-                                    type:'numeric',
+                                    type: 'numeric',
                                     render: rowData => rowData.STUDENTS.length
                                 },
                                 {
@@ -139,13 +156,52 @@ class Syllabus extends React.Component {
 
     }
 
+    updatestudent = (event) => {
+        student_to_add = event.target.value;
+        alert(student_to_add);
+    }
 
+    updateclass = (event) => {
+        class_to_add = event.target.value;
+        alert(class_to_add);
+    }
 
     render() {
         let editor;
         editor = <>
-            <Paper style={{ padding: 20, paddingTop: 30 }}>
-                <p>Use the dropdown bar on the left to edit/view the class details.</p>
+            <Paper style={{ padding: 20 }}>
+                <h3>Add Student to Class</h3>
+
+                <Grid container spacing={3}>
+                    <Grid item xs={3}>
+                        <InputLabel id="demo-simple-select-label">Add the student </InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            onChange={this.updatestudent}
+                        >
+                            {
+                                student_ids.map((shogun)=><MenuItem value={shogun}>{studentlookup_main[shogun]}</MenuItem>)
+                            }
+                        </Select>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <InputLabel id="demo-simple-select-label">to class</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            onChange={this.updateclass}
+                        >
+                            {
+                                this.state.CLASS_ARRAY.map((reptile) => <MenuItem value={reptile.CLASS_ID}>{reptile.CLASS_ID}</MenuItem>)
+                            }
+                            
+                        </Select>
+                    </Grid>
+                    <Grid item xs={3}>
+                        to
+                    </Grid>
+                </Grid>
             </Paper>
             <br></br>
         </>
@@ -179,13 +235,24 @@ class Syllabus extends React.Component {
 
                         options={{
                             filtering: true,
-                            pageSize: 20,
+                            pageSize: 5,
                             actionsColumnIndex: -1
                         }}
 
                         detailPanel={rowData => {
+                            //this.setState({OLD_STUDENT_DATA:rowData.STUDENTS});
                             return (
-                                rowData.STUDENTS.length
+                                <>
+                                    <div style={{ margin: 30 }}>
+                                        <h3>Current students enrolled in {rowData.CLASS_ID} [{courselookup_main[rowData.COURSE_ID]} Course]</h3>
+                                        <ol>
+                                            {rowData.STUDENTS.map((studentid) => (
+                                                <li key={studentid} style={{ margin: 5 }}>{studentlookup_main[studentid]}</li>
+                                            ))}
+                                        </ol>
+                                        <br />
+                                    </div>
+                                </>
                             )
                         }}
 

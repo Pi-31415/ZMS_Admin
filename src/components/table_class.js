@@ -68,7 +68,7 @@ class Syllabus extends React.Component {
                         const classes = res.data.CLASS;
                         class_apicall = classes;
                         this.setState({ CLASS_ARRAY: class_apicall, COURSE_ARRAY: course_apicall });
-                        console.log(this.state);
+                        //console.log(this.state);
                         //then generate the lookup values for material-table
                         var i;
                         for (i = 0; i < this.state.COURSE_ARRAY.length; i++) {
@@ -86,12 +86,12 @@ class Syllabus extends React.Component {
                                     lookup: courselookup_main
                                 },
                                 {
-                                    title: 'STUDENTS',
+                                    title: 'Students',
                                     field: 'STUDENTS',
                                     render: rowData => rowData.STUDENTS.length
                                 },
-                                { title: 'TEACHER', field: 'TEACHER' },
-                                { title: "NEXT_DATETIME", field: "NEXT_DATETIME" },
+                                { title: 'Teacher', field: 'TEACHER' },
+                                { title: "Schedule", field: "NEXT_DATETIME" },
                             ]
                         });
 
@@ -111,6 +111,12 @@ class Syllabus extends React.Component {
 
 
     render() {
+
+        let editor;
+
+
+
+        
         return (
             <div>
                 <Paper style={{ padding: 20, paddingTop: 30 }}>
@@ -121,6 +127,42 @@ class Syllabus extends React.Component {
                         columns={this.state.COLUMNS}
                         data={this.state.CLASS_ARRAY}
                         title="Classes"
+
+                        localization={{
+                            pagination: {
+                                labelDisplayedRows: '{from}-{to} of {count}'
+                            },
+                            toolbar: {
+                                nRowsSelected: '{0} row(s) selected'
+                            },
+                            header: {
+                                actions: ''
+                            },
+                            body: {
+                                emptyDataSourceMessage: 'No records to display',
+                                filterRow: {
+                                    filterTooltip: 'Type in something to filter results.'
+                                }
+                            }
+                        }}
+
+                        options={{
+                            filtering: true,
+                            pageSize: 20,
+                            actionsColumnIndex: -1
+                        }}
+
+                        actions={[
+                            {
+                                icon: 'edit',
+                                tooltip: 'Edit This Class',
+                                onClick: (event, rowData) => {
+                                    // Do save operation
+                                    console.log(rowData);
+                                }
+                            }
+                        ]}
+
                     />
                 </div>
 

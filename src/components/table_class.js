@@ -28,34 +28,31 @@ var class_apicall = [];
 var coursename_lookup = [];
 var courseid_lookup = [];
 var current_course = "";
-var courselookup_main = { '1': 'İstanbul', '2': 'Şanlıurfa' };
+var courselookup_main = {};
 
-const columns = [
-    { title: 'STUDENTS', field: 'STUDENTS' },
-    { title: 'CLASS_ID', field: 'CLASS_ID' },
-    {
-        title: 'COURSE_ID', 
-        field: 'COURSE_ID',
-        lookup: courselookup_main
-    },
-    { title: 'TEACHER', field: 'TEACHER' },
-    { title: "NEXT_DATETIME", field: "NEXT_DATETIME" },
-
-];
 
 class Syllabus extends React.Component {
-
-
 
     constructor(props) {
         super(props);
         this.state = {
             COURSE_ARRAY: [],
-            CLASS_ARRAY: []
+            CLASS_ARRAY: [],
+            COLUMNS: [
+                { title: 'STUDENTS', field: 'STUDENTS' },
+                { title: 'CLASS_ID', field: 'CLASS_ID' },
+                {
+                    title: 'COURSE_ID',
+                    field: 'COURSE_ID',
+                    lookup: courselookup_main
+                },
+                { title: 'TEACHER', field: 'TEACHER' },
+                { title: "NEXT_DATETIME", field: "NEXT_DATETIME" },
+            ]
         };
     }
 
-    componentDidMount() {
+    getinitAPIdata = () => {
         //First get course
         axios.post("https://zmsedu.com/api/admin/course/get", {
             //ROLE: "Student"
@@ -78,9 +75,25 @@ class Syllabus extends React.Component {
                             coursename_lookup.push(this.state.COURSE_ARRAY[i].NAME);
                             courseid_lookup.push(this.state.COURSE_ARRAY[i].ID);
                             //courselookup_main[i] = [{ '1': 'İstanbul', '2': 'Şanlıurfa' }];
-                            courselookup_main[this.state.COURSE_ARRAY[i].ID] = this.state.COURSE_ARRAY[i].NAME;
-                            //console.log(courselookup_main);
+                            courselookup_main[this.state.COURSE_ARRAY[i].ID.toString()] = this.state.COURSE_ARRAY[i].NAME;
                         }
+                        this.setState({
+                            CLASS_ARRAY: class_apicall, COURSE_ARRAY: course_apicall, COLUMNS: [
+                                { title: 'Class Name', field: 'CLASS_ID' },
+                                {
+                                    title: 'Course',
+                                    field: 'COURSE_ID',
+                                    lookup: courselookup_main
+                                },
+                                {
+                                    title: 'STUDENTS',
+                                    field: 'STUDENTS',
+                                    render: rowData => rowData.STUDENTS.length
+                                },
+                                { title: 'TEACHER', field: 'TEACHER' },
+                                { title: "NEXT_DATETIME", field: "NEXT_DATETIME" },
+                            ]
+                        });
 
                     }).catch(error => {
                         alert(error);
@@ -88,6 +101,10 @@ class Syllabus extends React.Component {
             }).catch(error => {
                 alert(error);
             });
+    }
+
+    componentDidMount() {
+        this.getinitAPIdata();
 
     }
 
@@ -101,9 +118,9 @@ class Syllabus extends React.Component {
                 <br></br>
                 <div style={{ maxWidth: '100%' }}>
                     <MaterialTable
-                        columns={columns}
+                        columns={this.state.COLUMNS}
                         data={this.state.CLASS_ARRAY}
-                        title="Demo Title"
+                        title="Classes"
                     />
                 </div>
 

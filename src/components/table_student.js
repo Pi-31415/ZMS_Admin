@@ -10,7 +10,7 @@ function Header(props) {
         { title: 'Username', field: 'USERNAME' },
         { title: 'First Name', field: 'FIRST_NAME' },
         { title: 'Last Name', field: 'LAST_NAME' },
-        { title: 'Phone', field: 'PHONE', type: 'numeric' },
+        { title: 'Phone', field: 'PHONE' },
         { title: 'Email', field: 'EMAIL' },
         {
             title: 'Role',

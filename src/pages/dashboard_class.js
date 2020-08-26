@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Navbar from '../components/navbar';
 import Copyright from '../components/copyright';
+import ClassTable from '../components/table_class';
 //import Upload from '../components/upload';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -98,21 +99,8 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={6}>
-                Class
-            </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={6}>
-                
-            </Grid>
-            {/* Recent Orders */}
             <Grid item xs={12}>
-              {/*
-              <Paper className={classes.paper}>
-              Something can go here
-              </Paper>
-              */}
+              <ClassTable></ClassTable>
             </Grid>
           </Grid>
           <Box pt={4}>

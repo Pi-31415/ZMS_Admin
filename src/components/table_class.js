@@ -53,7 +53,7 @@ class Syllabus extends React.Component {
                 console.log(users);
                 var i;
                 for (i = 0; i < users.length; i++) {
-                    teacherlookup_main[users[i].ID] = users[i].FIRST_NAME;
+                    teacherlookup_main[users[i].ID.toString()] = users[i].FIRST_NAME;
                 }
                 console.log(teacherlookup_main);
             }).catch(error => {

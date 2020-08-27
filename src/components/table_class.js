@@ -321,7 +321,7 @@ class Syllabus extends React.Component {
                 <h3>Add Student to Classes</h3>
 
                 <Grid container spacing={3}>
-                    <Grid item xs={3}>
+                    <Grid item xs={4}>
                         <InputLabel id="demo-simple-select-label">Add the student </InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -333,7 +333,7 @@ class Syllabus extends React.Component {
                             }
                         </Select>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={4}>
                         <InputLabel id="demo-simple-select-label">to class</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -346,7 +346,7 @@ class Syllabus extends React.Component {
 
                         </Select>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={4}>
                         {studentaddbutton}
                     </Grid>
                 </Grid>
@@ -360,7 +360,7 @@ class Syllabus extends React.Component {
                 <h3>Add New Class</h3>
 
                 <Grid container spacing={3}>
-                    <Grid item xs={3}>
+                    <Grid item xs={4}>
                         <InputLabel id="demo-simple-select-label">Choose Course:</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -373,7 +373,7 @@ class Syllabus extends React.Component {
 
                         </Select>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={4}>
                         <InputLabel id="demo-simple-select-label2">Choose Teacher:</InputLabel>
                         <Select
                             labelId="demo-simple-select-label2"
@@ -386,7 +386,7 @@ class Syllabus extends React.Component {
 
                         </Select>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={4}>
                         {classaddbutton}
                     </Grid>
                 </Grid>

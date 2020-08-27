@@ -134,7 +134,7 @@ class Syllabus extends React.Component {
     }
 
     getinitAPIdata = () => {
-
+        
         this.getteacherdata();
         this.getstudentdata();
         //First get course
@@ -161,7 +161,7 @@ class Syllabus extends React.Component {
                             //courselookup_main[i] = [{ '1': 'İstanbul', '2': 'Şanlıurfa' }];
                             courselookup_main[this.state.COURSE_ARRAY[i].ID.toString()] = this.state.COURSE_ARRAY[i].NAME;
                         }
-                        //alert("Refreshed");
+                        alert("Refreshed");
                         this.setState({
                             CLASS_ARRAY: class_apicall, COURSE_ARRAY: course_apicall, COLUMNS: [
                                 { title: 'Class Name (not editable)', field: 'CLASS_ID' },
@@ -201,8 +201,12 @@ class Syllabus extends React.Component {
         var class_manipulating_data = this.state.DELETESTUDENTS;
         this.setState({ DELETESTUDENTS: [] });
         console.log(class_manipulating_data);
-
-
+        var set = new Set(class_manipulating_data);
+        set.delete(event.target.value);
+        console.log(set);
+        const queryarray = [...set]; 
+        console.log(queryarray);
+        this.getinitAPIdata();
     }
 
     addstudent = (event) => {

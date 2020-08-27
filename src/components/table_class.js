@@ -14,6 +14,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import MaterialTable from 'material-table'
 import FormControl from '@material-ui/core/FormControl';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -215,7 +216,9 @@ class Syllabus extends React.Component {
                                 })
                                     .then(response => {
                                         console.log("Success");
-                                        window.location.reload(false);
+                                        //RELOADDDDDDD
+                                        
+                                        //RELOADDDDEND
                                     })
                                     .catch(function (error) {
                                         console.log(error);

@@ -195,7 +195,7 @@ class Syllabus extends React.Component {
     }
 
     deletestudent = (event) => {
-        
+
         alert("Delete");
     }
 
@@ -411,6 +411,30 @@ class Syllabus extends React.Component {
             <br></br>
         </>
 
+        let deleter;
+        deleter = <>
+            <br />
+            <Paper style={{ padding: 20 }}>
+                <h3>Remove Students</h3>
+                <Grid container spacing={3}>
+                    <Grid item xs={4}>
+                        <InputLabel id="demo-simple-select-label">Choose Class:</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            onChange={this.updateclass}
+                        >
+                            {
+                                this.state.CLASS_ARRAY.map((reptile) => <MenuItem value={reptile.CLASS_ID}>{reptile.CLASS_ID}</MenuItem>)
+                            }
+
+                        </Select>
+                    </Grid>
+                </Grid>
+            </Paper>
+
+        </>;
+
         let adder;
         adder = <>
             <Paper style={{ padding: 20 }}>
@@ -460,8 +484,6 @@ class Syllabus extends React.Component {
                     <Grid item xs={6}>
                         {adder}
                     </Grid>
-
-
                 </Grid>
                 <div style={{ maxWidth: '100%' }}>
                     <MaterialTable
@@ -502,11 +524,11 @@ class Syllabus extends React.Component {
                                         <div>
 
                                             {rowData.STUDENTS.map((studentid) => (
-                                                <Chip 
+                                                <Chip
                                                     style={{ margin: 5 }}
                                                     color="primary"
                                                     key={studentid}
-                                                    value = {studentid}
+                                                    value={studentid}
                                                     icon={<FaceIcon />}
                                                     label={studentlookup_main[studentid]}
                                                     variant="outlined"
@@ -566,7 +588,11 @@ class Syllabus extends React.Component {
 
                     />
                 </div>
-
+                <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        {deleter}
+                    </Grid>
+                </Grid>
             </div>
         );
     }

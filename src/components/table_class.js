@@ -203,7 +203,6 @@ class Syllabus extends React.Component {
         console.log(class_manipulating_data);
 
 
-
     }
 
     addstudent = (event) => {

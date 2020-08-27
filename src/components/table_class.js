@@ -68,6 +68,8 @@ class Syllabus extends React.Component {
         };
     }
 
+    
+
     getteacherdata = () => {
         teacher_ids = [];
         axios.post("https://zmsedu.com/api/admin/user/get", {
@@ -85,8 +87,6 @@ class Syllabus extends React.Component {
                 alert(error);
             });
     }
-
-
 
     getstudentdata = () => {
         student_ids = [];

@@ -213,12 +213,10 @@ class Syllabus extends React.Component {
                                     CLASS_ID: class_to_add,
                                     STUDENTS: oldstudarray
                                 })
-                                    .then(function (response) {
-                                        console.log("Success");
-
-                                        //RELOAD START
-                                        
-                                    })
+                                .then(response => {
+                                    console.log("Success");
+                                    this.getinitAPIdata();
+                                })
                                     .catch(function (error) {
                                         console.log(error);
                                     });

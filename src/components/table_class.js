@@ -188,7 +188,9 @@ class Syllabus extends React.Component {
             });
     }
 
-
+    deletestudent = () =>{
+        
+    }
 
     addstudent = (event) => {
         if (student_to_add == "" || class_to_add == "") {

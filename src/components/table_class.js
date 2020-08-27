@@ -89,7 +89,7 @@ class Syllabus extends React.Component {
         };
     }
 
-    
+
 
     getteacherdata = () => {
         teacher_ids = [];
@@ -213,10 +213,10 @@ class Syllabus extends React.Component {
                                     CLASS_ID: class_to_add,
                                     STUDENTS: oldstudarray
                                 })
-                                .then(response => {
-                                    console.log("Success");
-                                    window.location.reload(false);
-                                })
+                                    .then(response => {
+                                        console.log("Success");
+                                        window.location.reload(false);
+                                    })
                                     .catch(function (error) {
                                         console.log(error);
                                     });
@@ -396,8 +396,16 @@ class Syllabus extends React.Component {
 
         return (
             <div>
-                {editor}
-                {adder}
+                <Grid container spacing={3}>
+                    <Grid item xs={6}>
+                        {editor}
+                    </Grid>
+                    <Grid item xs={6}>
+                        {adder}
+                    </Grid>
+
+
+                </Grid>
                 <div style={{ maxWidth: '100%' }}>
                     <MaterialTable
                         columns={this.state.COLUMNS}

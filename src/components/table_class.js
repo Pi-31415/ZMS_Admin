@@ -191,13 +191,11 @@ class Syllabus extends React.Component {
 
 
     addstudent = (event) => {
-
         if (student_to_add == "" || class_to_add == "") {
             alert("Please choose the required fields.");
         } else {
             var oldstudarray = [];
             const query = {
-
             };
             console.log(query);
             axios.post('https://zmsedu.com/api/admin/class/get', query)

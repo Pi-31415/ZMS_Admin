@@ -161,7 +161,7 @@ class Syllabus extends React.Component {
                             //courselookup_main[i] = [{ '1': 'İstanbul', '2': 'Şanlıurfa' }];
                             courselookup_main[this.state.COURSE_ARRAY[i].ID.toString()] = this.state.COURSE_ARRAY[i].NAME;
                         }
-                        alert("Refreshed");
+                        //alert("Refreshed");
                         this.setState({
                             CLASS_ARRAY: class_apicall, COURSE_ARRAY: course_apicall, COLUMNS: [
                                 { title: 'Class Name (not editable)', field: 'CLASS_ID' },
@@ -206,7 +206,20 @@ class Syllabus extends React.Component {
         console.log(set);
         const queryarray = [...set]; 
         console.log(queryarray);
-        this.getinitAPIdata();
+        const query = {
+            CLASS_ID: class_to_delete,
+            STUDENTS: queryarray
+        };
+        console.log(query);
+        axios.post('https://zmsedu.com/api/admin/class/delete', query)
+            .then(response => {
+                alert("User Deleted");
+                this.getinitAPIdata();
+            })
+        .catch(error => {
+            alert(error);
+        });
+
     }
 
     addstudent = (event) => {

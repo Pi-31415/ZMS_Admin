@@ -69,7 +69,7 @@ class Syllabus extends React.Component {
     }
 
     editstudent = (studentdata, classid, action) => {
-        alert(studentdata+"-"+classid+"-"+action);
+        alert(studentdata + "-" + classid + "-" + action);
     }
 
     getteacherdata = () => {
@@ -212,29 +212,31 @@ class Syllabus extends React.Component {
 
         if (course_name_to_add == "" || course_to_add == "" || teacher_to_add == "") {
             alert("Please choose the required fields.");
+        } else {
+            const query = {
+                "STUDENTS": [],
+                "CLASS_ID": course_name_to_add,
+                "COURSE_ID": course_to_add,
+                "TEACHER": teacher_to_add,
+                "NEXT_DATETIME": ""
+            };
+            console.log(query);
+            axios.post('https://zmsedu.com/api/admin/class/add', query)
+                .then(response => {
+                    this.getinitAPIdata();
+                })
+                .catch(error => {
+                    alert(error);
+                });
         }
-        const query = {
-            "STUDENTS": [],
-            "CLASS_ID": course_name_to_add,
-            "COURSE_ID": course_to_add,
-            "TEACHER": teacher_to_add,
-            "NEXT_DATETIME": ""
-        };
-        console.log(query);
-        axios.post('https://zmsedu.com/api/admin/class/add', query)
-            .then(response => {
-                this.getinitAPIdata();
-            })
-            .catch(error => {
-                alert(error);
-            });
+
     }
 
     render() {
 
         let studentaddbutton;
         studentaddbutton =
-            <Button variant="contained" color="primary" onClick={this.addcourse}>
+            <Button variant="contained" color="primary" onClick={this.editstudent(student_to_add, class_to_add, "add")}>
                 Add Student
             </Button>;
 
@@ -404,7 +406,7 @@ class Syllabus extends React.Component {
                                 new Promise((resolve, reject) => {
 
                                     const query = {
-                                        "CLASS_ID": oldData.CLASS_ID       
+                                        "CLASS_ID": oldData.CLASS_ID
                                     };
                                     console.log(query);
                                     axios.post('https://zmsedu.com/api/admin/class/delete', query)

@@ -136,7 +136,7 @@ class Syllabus extends React.Component {
                         }
                         this.setState({
                             CLASS_ARRAY: class_apicall, COURSE_ARRAY: course_apicall, COLUMNS: [
-                                { title: 'Class Name', field: 'CLASS_ID' },
+                                { title: 'Class Name (not editable)', field: 'CLASS_ID' },
                                 {
                                     title: 'Course',
                                     field: 'COURSE_ID',
@@ -370,7 +370,10 @@ class Syllabus extends React.Component {
                         editable={{
                             onRowUpdate: (newData, oldData) =>
                                 new Promise((resolve, reject) => {
-
+                                    if(oldData.CLASS_ID != newData.CLASS_ID){
+                                        alert("Sorry, the Class Name is fixed as it is a unique identifier. Please delete this class and create a new one instead.");
+                                        resolve();
+                                    }
                                     const query = {
                                         "STUDENTS": newData.STUDENTS,
                                         "CLASS_ID": oldData.CLASS_ID,

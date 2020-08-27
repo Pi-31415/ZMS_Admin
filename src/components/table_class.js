@@ -78,6 +78,7 @@ var course_name_to_add = "";
 var course_to_add = "";
 var teacher_to_add = "";
 
+var class_to_delete = "";
 
 class Syllabus extends React.Component {
 
@@ -307,6 +308,22 @@ class Syllabus extends React.Component {
         //alert(class_to_add);
     }
 
+    updatedeleteclass = (event) => {
+        class_to_delete = event.target.value;
+        //alert(class_to_delete);
+        axios.post('https://zmsedu.com/api/admin/class/get', {})
+            .then(response => {
+                for (var i = 0; i < response.data.CLASS.length; i++) {
+                    if (response.data.CLASS[i].CLASS_ID == class_to_delete) {
+                        console.log(response.data.CLASS[i].STUDENTS);
+                    }
+                }
+            })
+            .catch(error => {
+                alert(error);
+            });
+    }
+
 
     newcourse = (event) => {
         //alert(event.target.value);
@@ -372,6 +389,7 @@ class Syllabus extends React.Component {
                 Add Class
             </Button>;
 
+
         let editor;
         editor = <>
             <Paper style={{ padding: 20 }}>
@@ -422,7 +440,7 @@ class Syllabus extends React.Component {
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            onChange={this.updateclass}
+                            onChange={this.updatedeleteclass}
                         >
                             {
                                 this.state.CLASS_ARRAY.map((reptile) => <MenuItem value={reptile.CLASS_ID}>{reptile.CLASS_ID}</MenuItem>)

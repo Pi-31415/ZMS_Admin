@@ -187,8 +187,29 @@ class Syllabus extends React.Component {
     }
 
 
+
     addstudent = (event) => {
-        var oldstudarray = [];
+
+        if (student_to_add == "" || class_to_add == "") {
+            alert("Please choose the required fields.");
+        } else {
+            var oldstudarray = [];
+            const query = {
+  
+            };
+            console.log(query);
+            axios.post('https://zmsedu.com/api/admin/class/get', query)
+                .then(response => {
+                    this.getinitAPIdata();
+                    alert("Yes");
+                })
+                .catch(error => {
+                    alert(error);
+                });
+        }
+
+
+        /*
         if (student_to_add == "" || class_to_add == "") {
             alert("Please choose the required fields.");
         } else {
@@ -215,9 +236,9 @@ class Syllabus extends React.Component {
                                     STUDENTS: oldstudarray
                                 })
                                     .then(response => {
-                                        console.log("Success");
+                                        alert("Success");
                                         //RELOADDDDDDD
-                                        
+                                        //useHistory().push("/admin/dashboard/home");
                                         //RELOADDDDEND
                                     })
                                     .catch(function (error) {
@@ -235,7 +256,7 @@ class Syllabus extends React.Component {
                 .catch(function (error) {
                     console.log(error);
                 });
-        }
+        }*/
     }
 
     componentDidMount() {

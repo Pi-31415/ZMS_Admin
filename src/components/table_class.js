@@ -197,8 +197,8 @@ class Syllabus extends React.Component {
     }
 
     deletestudent = (event) => {
-
-        alert("Delete");
+        alert(class_to_delete + " " +studentlookup_main[event.target.value])
+        //alert("Delete");
     }
 
     addstudent = (event) => {
@@ -311,20 +311,24 @@ class Syllabus extends React.Component {
 
     updatedeleteclass = (event) => {
         class_to_delete = event.target.value;
-        //alert(class_to_delete);
-        axios.post('https://zmsedu.com/api/admin/class/get', {})
-            .then(response => {
-                for (var i = 0; i < response.data.CLASS.length; i++) {
-                    if (response.data.CLASS[i].CLASS_ID == class_to_delete) {
-                        //console.log(this.state);
-                        this.setState({DELETESTUDENTS:response.data.CLASS[i].STUDENTS});
-                        //console.log(this.state);
+        if (class_to_delete == "") {
+            alert("Please choose required fields");
+        } else {
+            //alert(class_to_delete);
+            axios.post('https://zmsedu.com/api/admin/class/get', {})
+                .then(response => {
+                    for (var i = 0; i < response.data.CLASS.length; i++) {
+                        if (response.data.CLASS[i].CLASS_ID == class_to_delete) {
+                            //alert(this.state.DELETESTUDENTS[0]);
+                            this.setState({ DELETESTUDENTS: response.data.CLASS[i].STUDENTS });
+                            //alert(this.state.DELETESTUDENTS[0]);
+                        }
                     }
-                }
-            })
-            .catch(error => {
-                alert(error);
-            });
+                })
+                .catch(error => {
+                    alert(error);
+                });
+        }
     }
 
 
@@ -434,11 +438,43 @@ class Syllabus extends React.Component {
 
 
         let deletestudentchips;
-        deletestudentchips = 
-        <>
-        {/*DELETESTUDENTS*/}
-        Delete Students
-        </>;
+        if (this.state.DELETESTUDENTS[0] == undefined) {
+            deletestudentchips =
+                <>
+                </>;
+        } else {
+            deletestudentchips =
+                <>
+                    {/*DELETESTUDENTS*/}
+                    <Grid item xs={6}>
+                        {this.state.DELETESTUDENTS.map((studentid) => (
+                            <Chip
+                                style={{ margin: 5 }}
+                                color="primary"
+                                key={studentid}
+                                value={studentid}
+                                icon={<FaceIcon />}
+                                label={studentlookup_main[studentid]}
+                                variant="outlined"
+                            />
+                        ))}
+                    </Grid>
+                    <Grid item xs={4}>
+                        <InputLabel id="demo-simple-select-label">Choose student to delete. (Will delete automatically after you select)</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            onChange={this.deletestudent}
+                        >
+                            {
+                                this.state.DELETESTUDENTS.map((ninja) => <MenuItem value={ninja}>{studentlookup_main[ninja]}</MenuItem>)
+                            }
+
+                        </Select>
+                    </Grid>
+                </>;
+        }
+
 
         let deleter;
         deleter = <>
@@ -446,7 +482,7 @@ class Syllabus extends React.Component {
             <Paper style={{ padding: 20 }}>
                 <h3>Remove Students</h3>
                 <Grid container spacing={3}>
-                    <Grid item xs={4}>
+                    <Grid item xs={2}>
                         <InputLabel id="demo-simple-select-label">Choose Class:</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -459,9 +495,11 @@ class Syllabus extends React.Component {
 
                         </Select>
                     </Grid>
-                </Grid>
-                <Grid container spacing={3}>
-                {deletestudentchips}
+
+
+                    {deletestudentchips}
+
+
                 </Grid>
             </Paper>
 

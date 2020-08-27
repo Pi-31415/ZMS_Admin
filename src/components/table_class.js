@@ -193,7 +193,7 @@ class Syllabus extends React.Component {
     }
 
     deletestudent = () =>{
-
+        alert("Delete");
     }
 
     addstudent = (event) => {
@@ -376,7 +376,7 @@ class Syllabus extends React.Component {
 
                 <Grid container spacing={3}>
                     <Grid item xs={4}>
-                        <InputLabel id="demo-simple-select-label">Add the student </InputLabel>
+                        <InputLabel id="demo-simple-select-label">Add the student</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"

@@ -89,7 +89,8 @@ class Syllabus extends React.Component {
             CLASS_ARRAY: [],
             COLUMNS: [],
             ADD: false,
-            EDIT: false
+            EDIT: false,
+            DELETESTUDENTS: []
         };
     }
 
@@ -315,7 +316,9 @@ class Syllabus extends React.Component {
             .then(response => {
                 for (var i = 0; i < response.data.CLASS.length; i++) {
                     if (response.data.CLASS[i].CLASS_ID == class_to_delete) {
-                        console.log(response.data.CLASS[i].STUDENTS);
+                        //console.log(this.state);
+                        this.setState({DELETESTUDENTS:response.data.CLASS[i].STUDENTS});
+                        //console.log(this.state);
                     }
                 }
             })
@@ -429,6 +432,14 @@ class Syllabus extends React.Component {
             <br></br>
         </>
 
+
+        let deletestudentchips;
+        deletestudentchips = 
+        <>
+        {/*DELETESTUDENTS*/}
+        Delete Students
+        </>;
+
         let deleter;
         deleter = <>
             <br />
@@ -448,6 +459,9 @@ class Syllabus extends React.Component {
 
                         </Select>
                     </Grid>
+                </Grid>
+                <Grid container spacing={3}>
+                {deletestudentchips}
                 </Grid>
             </Paper>
 

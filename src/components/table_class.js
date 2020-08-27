@@ -102,14 +102,14 @@ class Syllabus extends React.Component {
                     for (var i = 0; i < response.data.CLASS.length; i++) {
                         if (response.data.CLASS[i].CLASS_ID == class_to_add) {
                             //adding student code
-                            oldstudarray = response.data.CLASS[i].STUDENTS;
+                            //oldstudarray = response.data.CLASS[i].STUDENTS;
                             console.log(oldstudarray);
                             oldstudarray.push(student_to_add);
-                            console.log(oldstudarray);
+                            //console.log(oldstudarray);
                             
                             var detection = find_duplicate_in_array(oldstudarray);
 
-                            console.log();
+                            //console.log();
 
                             if(detection[0] == undefined){
                                 alert("Good to go");

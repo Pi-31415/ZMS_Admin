@@ -130,7 +130,7 @@ class Syllabus extends React.Component {
     }
 
     getinitAPIdata = () => {
-        
+
         this.getteacherdata();
         this.getstudentdata();
         //First get course
@@ -157,7 +157,7 @@ class Syllabus extends React.Component {
                             //courselookup_main[i] = [{ '1': 'İstanbul', '2': 'Şanlıurfa' }];
                             courselookup_main[this.state.COURSE_ARRAY[i].ID.toString()] = this.state.COURSE_ARRAY[i].NAME;
                         }
-                        alert("Refreshed");
+                        //alert("Refreshed");
                         this.setState({
                             CLASS_ARRAY: class_apicall, COURSE_ARRAY: course_apicall, COLUMNS: [
                                 { title: 'Class Name (not editable)', field: 'CLASS_ID' },
@@ -197,22 +197,33 @@ class Syllabus extends React.Component {
         } else {
             var oldstudarray = [];
             const query = {
-  
+
             };
             console.log(query);
             axios.post('https://zmsedu.com/api/admin/class/get', query)
                 .then(response => {
-                    
+
                     for (var i = 0; i < response.data.CLASS.length; i++) {
                         if (response.data.CLASS[i].CLASS_ID == class_to_add) {
                             oldstudarray = response.data.CLASS[i].STUDENTS;
                             oldstudarray.push(student_to_add);
                             var detection = find_duplicate_in_array(oldstudarray);
                             if (detection[0] == undefined) {
-                                alert("Good to go");
-                                this.getinitAPIdata();
-                            }else{
-                                alert(studentlookup_main[student_to_add] + " already exists in class " + class_to_add);
+
+                                axios.post('https://zmsedu.com/api/admin/class/edit', {
+                                    CLASS_ID: class_to_add,
+                                    STUDENTS: oldstudarray
+                                })
+                                    .then(response => {
+                                        //alert("Added");
+                                        this.getinitAPIdata();
+                                    })
+                                    .catch(error => {
+                                        alert(error);
+                                    });
+
+                            } else {
+                                alert(studentlookup_main[student_to_add] + " is already registered in class " + class_to_add);
                             }
                         }
                     }

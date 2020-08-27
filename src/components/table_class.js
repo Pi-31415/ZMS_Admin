@@ -206,8 +206,14 @@ class Syllabus extends React.Component {
                     for (var i = 0; i < response.data.CLASS.length; i++) {
                         if (response.data.CLASS[i].CLASS_ID == class_to_add) {
                             oldstudarray = response.data.CLASS[i].STUDENTS;
-                            console.log(oldstudarray);
-                            this.getinitAPIdata();
+                            oldstudarray.push(student_to_add);
+                            var detection = find_duplicate_in_array(oldstudarray);
+                            if (detection[0] == undefined) {
+                                alert("Good to go");
+                                this.getinitAPIdata();
+                            }else{
+                                alert(studentlookup_main[student_to_add] + " already exists in class " + class_to_add);
+                            }
                         }
                     }
                     //alert("Yes");

@@ -394,7 +394,11 @@ class Syllabus extends React.Component {
             console.log(query);
             axios.post('https://zmsedu.com/api/admin/class/add', query)
                 .then(response => {
+                    course_name_to_add = "";
+                    teacher_to_add = "";
+                    course_to_add = "";
                     this.getinitAPIdata();
+                    alert("Course Added");
                 })
                 .catch(error => {
                     alert(error);
@@ -499,7 +503,7 @@ class Syllabus extends React.Component {
 
         let deleter;
         deleter = <>
-            <br />
+            
             <Paper style={{ padding: 20 }}>
                 <h3>Remove Students</h3>
                 <Grid container spacing={3}>
@@ -523,7 +527,7 @@ class Syllabus extends React.Component {
 
                 </Grid>
             </Paper>
-
+            <br /><br />
         </>;
 
         let adder;
@@ -574,6 +578,11 @@ class Syllabus extends React.Component {
                     </Grid>
                     <Grid item xs={6}>
                         {adder}
+                    </Grid>
+                </Grid>
+                <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        {deleter}
                     </Grid>
                 </Grid>
                 <div style={{ maxWidth: '100%' }}>
@@ -679,11 +688,7 @@ class Syllabus extends React.Component {
 
                     />
                 </div>
-                <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        {deleter}
-                    </Grid>
-                </Grid>
+                
             </div>
         );
     }

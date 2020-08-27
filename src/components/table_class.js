@@ -198,7 +198,9 @@ class Syllabus extends React.Component {
 
     deletestudent = (event) => {
         alert(class_to_delete + " " +studentlookup_main[event.target.value])
-        //alert("Delete");
+        var class_manipulating_data = this.state.DELETESTUDENTS;
+        this.setState({ DELETESTUDENTS: [] });
+        console.log(class_manipulating_data);
     }
 
     addstudent = (event) => {
@@ -446,7 +448,7 @@ class Syllabus extends React.Component {
             deletestudentchips =
                 <>
                     {/*DELETESTUDENTS*/}
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                         {this.state.DELETESTUDENTS.map((studentid) => (
                             <Chip
                                 style={{ margin: 5 }}
@@ -482,7 +484,7 @@ class Syllabus extends React.Component {
             <Paper style={{ padding: 20 }}>
                 <h3>Remove Students</h3>
                 <Grid container spacing={3}>
-                    <Grid item xs={2}>
+                    <Grid item xs={4}>
                         <InputLabel id="demo-simple-select-label">Choose Class:</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -490,7 +492,7 @@ class Syllabus extends React.Component {
                             onChange={this.updatedeleteclass}
                         >
                             {
-                                this.state.CLASS_ARRAY.map((reptile) => <MenuItem value={reptile.CLASS_ID}>{reptile.CLASS_ID}</MenuItem>)
+                                this.state.CLASS_ARRAY.map((reptile) => <MenuItem value={reptile.CLASS_ID}>{courselookup_main[reptile.COURSE_ID]} {reptile.CLASS_ID}</MenuItem>)
                             }
 
                         </Select>

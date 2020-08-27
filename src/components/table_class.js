@@ -232,6 +232,12 @@ class Syllabus extends React.Component {
 
     render() {
 
+        let studentaddbutton;
+        studentaddbutton =
+            <Button variant="contained" color="primary" onClick={this.addcourse}>
+                Add Class
+            </Button>;
+
         let classaddbutton;
         classaddbutton =
             <Button variant="contained" color="primary" onClick={this.addcourse}>
@@ -270,7 +276,7 @@ class Syllabus extends React.Component {
                         </Select>
                     </Grid>
                     <Grid item xs={3}>
-                        to
+                        {studentaddbutton}
                     </Grid>
                 </Grid>
             </Paper>

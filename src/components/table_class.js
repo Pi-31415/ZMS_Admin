@@ -235,7 +235,7 @@ class Syllabus extends React.Component {
         let studentaddbutton;
         studentaddbutton =
             <Button variant="contained" color="primary" onClick={this.addcourse}>
-                Add Class
+                Add Student
             </Button>;
 
         let classaddbutton;

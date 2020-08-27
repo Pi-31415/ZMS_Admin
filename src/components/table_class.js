@@ -68,7 +68,9 @@ class Syllabus extends React.Component {
         };
     }
 
-    
+    editstudent = (studentdata, classid, action) => {
+        alert(studentdata+"-"+classid+"-"+action);
+    }
 
     getteacherdata = () => {
         teacher_ids = [];

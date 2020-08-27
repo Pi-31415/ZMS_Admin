@@ -194,7 +194,7 @@ class Syllabus extends React.Component {
             });
     }
 
-    deletestudent = () => {
+    deletestudent = (event) => {
         
         alert("Delete");
     }
@@ -506,7 +506,7 @@ class Syllabus extends React.Component {
                                                     style={{ margin: 5 }}
                                                     color="primary"
                                                     key={studentid}
-                                                    onDelete={this.deletestudent}
+                                                    value = {studentid}
                                                     icon={<FaceIcon />}
                                                     label={studentlookup_main[studentid]}
                                                     variant="outlined"

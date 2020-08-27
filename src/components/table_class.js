@@ -370,7 +370,7 @@ class Syllabus extends React.Component {
                         editable={{
                             onRowUpdate: (newData, oldData) =>
                                 new Promise((resolve, reject) => {
-                                    if(oldData.CLASS_ID != newData.CLASS_ID){
+                                    if (oldData.CLASS_ID != newData.CLASS_ID) {
                                         alert("Sorry, the Class Name is fixed as it is a unique identifier. Please delete this class and create a new one instead.");
                                         resolve();
                                     }
@@ -395,6 +395,18 @@ class Syllabus extends React.Component {
                             onRowDelete: oldData =>
                                 new Promise((resolve, reject) => {
 
+                                    const query = {
+                                        "CLASS_ID": oldData.CLASS_ID       
+                                    };
+                                    console.log(query);
+                                    axios.post('https://zmsedu.com/api/admin/class/delete', query)
+                                        .then(response => {
+                                            this.getinitAPIdata();
+                                            resolve();
+                                        })
+                                        .catch(error => {
+                                            alert(error);
+                                        });
 
                                 }),
                         }}

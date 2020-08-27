@@ -134,7 +134,7 @@ class Syllabus extends React.Component {
     }
 
     getinitAPIdata = () => {
-        
+
         this.getteacherdata();
         this.getstudentdata();
         //First get course
@@ -197,14 +197,14 @@ class Syllabus extends React.Component {
     }
 
     deletestudent = (event) => {
-        console.log(class_to_delete + " " +studentlookup_main[event.target.value] +" "+event.target.value);
+        console.log(class_to_delete + " " + studentlookup_main[event.target.value] + " " + event.target.value);
         var class_manipulating_data = this.state.DELETESTUDENTS;
         this.setState({ DELETESTUDENTS: [] });
         console.log(class_manipulating_data);
         var set = new Set(class_manipulating_data);
         set.delete(event.target.value);
         console.log(set);
-        const queryarray = [...set]; 
+        const queryarray = [...set];
         console.log(queryarray);
         const query = {
             CLASS_ID: class_to_delete,
@@ -216,9 +216,9 @@ class Syllabus extends React.Component {
                 alert("User Deleted");
                 this.getinitAPIdata();
             })
-        .catch(error => {
-            alert(error);
-        });
+            .catch(error => {
+                alert(error);
+            });
 
     }
 
@@ -245,7 +245,7 @@ class Syllabus extends React.Component {
                                     STUDENTS: oldstudarray
                                 })
                                     .then(response => {
-                                        //alert("Added");
+                                        alert("Student Added");
                                         this.getinitAPIdata();
                                     })
                                     .catch(error => {
@@ -440,6 +440,8 @@ class Syllabus extends React.Component {
                             }
                         </Select>
                     </Grid>
+                </Grid>
+                <Grid container spacing={3}>
                     <Grid item xs={4}>
                         <InputLabel id="demo-simple-select-label">to class</InputLabel>
                         <Select
@@ -458,7 +460,7 @@ class Syllabus extends React.Component {
                     </Grid>
                 </Grid>
             </Paper>
-            <br></br>
+            <br/>
         </>
 
 
@@ -503,7 +505,7 @@ class Syllabus extends React.Component {
 
         let deleter;
         deleter = <>
-            
+
             <Paper style={{ padding: 20 }}>
                 <h3>Remove Students</h3>
                 <Grid container spacing={3}>
@@ -527,7 +529,7 @@ class Syllabus extends React.Component {
 
                 </Grid>
             </Paper>
-            <br /><br />
+            <br />
         </>;
 
         let adder;
@@ -549,7 +551,9 @@ class Syllabus extends React.Component {
 
                         </Select>
                     </Grid>
-                    <Grid item xs={4}>
+                </Grid>
+                <Grid container spacing={3}>
+                    <Grid item xs={6}>
                         <InputLabel id="demo-simple-select-label2">Choose Teacher:</InputLabel>
                         <Select
                             labelId="demo-simple-select-label2"
@@ -567,7 +571,7 @@ class Syllabus extends React.Component {
                     </Grid>
                 </Grid>
             </Paper>
-            <br></br>
+            <br/>
         </>
 
         return (
@@ -688,7 +692,7 @@ class Syllabus extends React.Component {
 
                     />
                 </div>
-                
+
             </div>
         );
     }

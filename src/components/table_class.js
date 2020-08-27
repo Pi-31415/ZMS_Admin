@@ -176,6 +176,10 @@ class Syllabus extends React.Component {
                                     title: 'Teacher',
                                     field: 'TEACHER',
                                     lookup: teacherlookup_main
+                                },
+                                {
+                                    title: 'Schedule',
+                                    field: 'NEXT_DATETIME'
                                 }
                             ]
                         });
@@ -189,7 +193,7 @@ class Syllabus extends React.Component {
     }
 
     deletestudent = () =>{
-        
+
     }
 
     addstudent = (event) => {
@@ -516,7 +520,7 @@ class Syllabus extends React.Component {
                                         "CLASS_ID": oldData.CLASS_ID,
                                         "COURSE_ID": newData.COURSE_ID,
                                         "TEACHER": newData.TEACHER,
-                                        "NEXT_DATETIME": ""
+                                        "NEXT_DATETIME": newData.NEXT_DATETIME
                                     };
                                     console.log(query);
                                     axios.post('https://zmsedu.com/api/admin/class/edit', query)

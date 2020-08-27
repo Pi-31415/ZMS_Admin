@@ -34,6 +34,27 @@ function makeid(length) {
     return result;
 }
 
+function find_duplicate_in_array(arra1) {
+    var object = {};
+    var result = [];
+
+    arra1.forEach(function (item) {
+      if(!object[item])
+          object[item] = 0;
+        object[item] += 1;
+    })
+
+    for (var prop in object) {
+       if(object[prop] >= 2) {
+           result.push(prop);
+       }
+    }
+
+    return result;
+
+}
+
+
 
 
 var course_apicall = [];
@@ -69,13 +90,40 @@ class Syllabus extends React.Component {
     }
 
     addstudent = (event) => {
+        var oldstudarray = [];
         if (student_to_add == "" || class_to_add == "") {
             alert("Please choose the required fields.");
         } else {
-            alert("add");
 
-            
+            axios.post('https://zmsedu.com/api/admin/class/get', {
+            })
+                .then(function (response) {
+                    //console.log(response.data.CLASS);
+                    for (var i = 0; i < response.data.CLASS.length; i++) {
+                        if (response.data.CLASS[i].CLASS_ID == class_to_add) {
+                            //adding student code
+                            oldstudarray = response.data.CLASS[i].STUDENTS;
+                            console.log(oldstudarray);
+                            oldstudarray.push(student_to_add);
+                            console.log(oldstudarray);
+                            
+                            var detection = find_duplicate_in_array(oldstudarray);
 
+                            console.log();
+
+                            if(detection[0] == undefined){
+                                alert("Good to go");
+                            }else{
+                                alert(studentlookup_main[student_to_add]+" already exists in class "+class_to_add);
+                            }
+
+                        }
+                    }
+                    //End
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
     }
 

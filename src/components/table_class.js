@@ -197,10 +197,13 @@ class Syllabus extends React.Component {
     }
 
     deletestudent = (event) => {
-        alert(class_to_delete + " " +studentlookup_main[event.target.value])
+        console.log(class_to_delete + " " +studentlookup_main[event.target.value] +" "+event.target.value);
         var class_manipulating_data = this.state.DELETESTUDENTS;
         this.setState({ DELETESTUDENTS: [] });
         console.log(class_manipulating_data);
+
+
+
     }
 
     addstudent = (event) => {

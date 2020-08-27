@@ -15,6 +15,8 @@ import Divider from '@material-ui/core/Divider';
 import MaterialTable from 'material-table'
 import FormControl from '@material-ui/core/FormControl';
 import { useHistory } from "react-router-dom";
+import Chip from '@material-ui/core/Chip';
+import FaceIcon from '@material-ui/icons/Face';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -192,7 +194,8 @@ class Syllabus extends React.Component {
             });
     }
 
-    deletestudent = () =>{
+    deletestudent = () => {
+        
         alert("Delete");
     }
 
@@ -495,12 +498,21 @@ class Syllabus extends React.Component {
                             return (
                                 <>
                                     <div style={{ margin: 30 }}>
-                                        <h3>Current students enrolled in {rowData.CLASS_ID} [{courselookup_main[rowData.COURSE_ID]} Course]</h3>
-                                        <ol>
+                                        <h3>Current students enrolled in {courselookup_main[rowData.COURSE_ID]} : {rowData.CLASS_ID}</h3>
+                                        <div>
+
                                             {rowData.STUDENTS.map((studentid) => (
-                                                <li key={studentid} style={{ margin: 5 }}>{studentlookup_main[studentid]}</li>
+                                                <Chip 
+                                                    style={{ margin: 5 }}
+                                                    color="primary"
+                                                    key={studentid}
+                                                    onDelete={this.deletestudent}
+                                                    icon={<FaceIcon />}
+                                                    label={studentlookup_main[studentid]}
+                                                    variant="outlined"
+                                                />
                                             ))}
-                                        </ol>
+                                        </div>
                                         <br />
                                     </div>
                                 </>

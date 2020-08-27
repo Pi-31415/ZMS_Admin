@@ -68,8 +68,15 @@ class Syllabus extends React.Component {
         };
     }
 
-    editstudent = (studentdata, classid, action) => {
-        alert(studentdata + "-" + classid + "-" + action);
+    addstudent = (event) => {
+        if (student_to_add == "" || class_to_add == "") {
+            alert("Please choose the required fields.");
+        } else {
+            alert("add");
+
+            
+
+        }
     }
 
     getteacherdata = () => {
@@ -173,12 +180,12 @@ class Syllabus extends React.Component {
 
     updatestudent = (event) => {
         student_to_add = event.target.value;
-        alert(student_to_add);
+        //alert(student_to_add);
     }
 
     updateclass = (event) => {
         class_to_add = event.target.value;
-        alert(class_to_add);
+        //alert(class_to_add);
     }
 
 
@@ -236,7 +243,7 @@ class Syllabus extends React.Component {
 
         let studentaddbutton;
         studentaddbutton =
-            <Button variant="contained" color="primary" onClick={this.editstudent(student_to_add, class_to_add, "add")}>
+            <Button variant="contained" color="primary" onClick={this.addstudent}>
                 Add Student
             </Button>;
 

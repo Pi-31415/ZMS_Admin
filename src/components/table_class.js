@@ -318,7 +318,7 @@ class Syllabus extends React.Component {
         let editor;
         editor = <>
             <Paper style={{ padding: 20 }}>
-                <h3>Add Student to Class</h3>
+                <h3>Add Student to Classes</h3>
 
                 <Grid container spacing={3}>
                     <Grid item xs={3}>

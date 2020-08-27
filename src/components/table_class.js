@@ -206,7 +206,7 @@ class Syllabus extends React.Component {
                             var detection = find_duplicate_in_array(oldstudarray);
                             //console.log();
                             if (detection[0] == undefined) {
-                                alert("Good to go");
+                                //alert("Good to go");
                                 console.log(oldstudarray);
 
                                 axios.post('https://zmsedu.com/api/admin/class/edit', {
@@ -215,7 +215,7 @@ class Syllabus extends React.Component {
                                 })
                                 .then(response => {
                                     console.log("Success");
-                                    this.getinitAPIdata();
+                                    window.location.reload(false);
                                 })
                                     .catch(function (error) {
                                         console.log(error);
@@ -318,7 +318,7 @@ class Syllabus extends React.Component {
         let editor;
         editor = <>
             <Paper style={{ padding: 20 }}>
-                <h3>Add Student to Class (W.I.P) </h3>
+                <h3>Add Student to Class</h3>
 
                 <Grid container spacing={3}>
                     <Grid item xs={3}>

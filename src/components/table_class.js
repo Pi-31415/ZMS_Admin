@@ -211,7 +211,7 @@ class Syllabus extends React.Component {
             STUDENTS: queryarray
         };
         console.log(query);
-        axios.post('https://zmsedu.com/api/admin/class/delete', query)
+        axios.post('https://zmsedu.com/api/admin/class/edit', query)
             .then(response => {
                 alert("User Deleted");
                 this.getinitAPIdata();

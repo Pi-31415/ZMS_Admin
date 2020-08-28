@@ -6,7 +6,15 @@ import Dateparser from './dateparser';
 function Header(props) {
 
 
-    /*
+    /*function formatdate(inputdate) {
+        //format the time from server and return the Hong Kong Time zone
+        var res = inputdate.toString().split(".");
+        var moment = require('moment-timezone');
+        var utcCutoff = moment.utc(res[0], '');
+        var displayCutoff = utcCutoff.clone().tz('Asia/Hong_Kong');
+        localStorage.setItem("tutordate", moment(displayCutoff).format('hh:mm a'));
+        return displayCutoff;
+      }
 */
 
     const [columns, setColumns] = useState([

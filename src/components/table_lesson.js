@@ -18,23 +18,23 @@ function Header(props) {
 */
 
     const [columns, setColumns] = useState([
-        { title: 'CLASS_ID', field: 'CLASS_ID' },
-        { title: 'LESSON_LINK', field: 'LESSON_LINK[ZOOM_LINK]' },
-        { title: 'LESSON_LINK', field: 'LESSON_LINK[PASSCODE]' },
+        { title: 'CLASS Name', field: 'CLASS_ID' },
+        { title: 'Zoom ID', field: 'LESSON_LINK[ZOOM_LINK]' },
+        { title: 'Zoom Passcode', field: 'LESSON_LINK[PASSCODE]' },
         {
-            title: 'START_DATETIME',
+            title: 'Date Time',
             field: 'START_DATETIME'
         },
         {
-            title: 'TOPIC',
+            title: 'Topic',
             field: 'TOPIC'
         },
         {
-            title: 'EXTRA_MATERIAL',
+            title: 'Uploaded Files',
             field: 'EXTRA_MATERIAL'
         },
         {
-            title: 'STATUS',
+            title: 'Status',
             field: 'STATUS',
             lookup: { 'Complete': 'Complete', 'Incomplete': 'Incomplete', 'Cancelled': 'Cancelled' },
         },

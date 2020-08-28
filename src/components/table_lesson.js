@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios';
-import Moment from 'react-moment';
 import Dateparser from './dateparser';
 
 function Header(props) {

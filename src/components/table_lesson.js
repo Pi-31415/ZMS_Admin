@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios';
 import Moment from 'react-moment';
+import Dateparser from './dateparser';
 
 function Header(props) {
 
@@ -23,7 +24,8 @@ function Header(props) {
         { title: 'Zoom Passcode', field: 'LESSON_LINK[PASSCODE]' },
         {
             title: 'Date Time',
-            field: 'START_DATETIME'
+            field: 'START_DATETIME',
+            render: rowData => <Dateparser value={rowData.START_DATETIME}></Dateparser>
         },
         {
             title: 'Topic',

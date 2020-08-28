@@ -18,14 +18,20 @@ function Header(props) {
 */
 
     const [columns, setColumns] = useState([
-
-        { title: 'LESSON_ID', field: 'LESSON_ID' },
-        { title: 'COURSE_ID', field: 'COURSE_ID' },
-        { title: 'TEACHER', field: 'TEACHER' },
-        { title: 'STUDENT', field: 'STUDENT' },
+        { title: 'CLASS_ID', field: 'CLASS_ID' },
+        { title: 'LESSON_LINK', field: 'LESSON_LINK[ZOOM_LINK]' },
+        { title: 'LESSON_LINK', field: 'LESSON_LINK[PASSCODE]' },
         {
             title: 'START_DATETIME',
             field: 'START_DATETIME'
+        },
+        {
+            title: 'TOPIC',
+            field: 'TOPIC'
+        },
+        {
+            title: 'EXTRA_MATERIAL',
+            field: 'EXTRA_MATERIAL'
         },
         {
             title: 'STATUS',

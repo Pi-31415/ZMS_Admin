@@ -115,7 +115,7 @@ export default function DashboardList() {
               <ListItemIcon>
               <FontAwesomeIcon icon={faBookOpen} size='2x' />
               </ListItemIcon>
-              <ListItemText primary="Lessons (Incomplete)" />
+              <ListItemText primary="Lessons" />
             </ListItem>
           </Link>
         

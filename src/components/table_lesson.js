@@ -6,16 +6,16 @@ import Moment from 'react-moment';
 function Header(props) {
 
 
-    function formatdate(inputdate) {
+    /*function formatdate(inputdate) {
         //format the time from server and return the Hong Kong Time zone
-        var res = inputdate.split(".");
+        var res = inputdate.toString().split(".");
         var moment = require('moment-timezone');
         var utcCutoff = moment.utc(res[0], '');
         var displayCutoff = utcCutoff.clone().tz('Asia/Hong_Kong');
         localStorage.setItem("tutordate", moment(displayCutoff).format('hh:mm a'));
         return displayCutoff;
       }
-
+*/
 
     const [columns, setColumns] = useState([
 
@@ -25,11 +25,7 @@ function Header(props) {
         { title: 'STUDENT', field: 'STUDENT' },
         {
             title: 'START_DATETIME',
-            field: 'START_DATETIME',
-            render: rowData => 
-            <Moment format="dddd, DD MMMM YYYY hh:mm a">
-                {formatdate(rowData.START_DATETIME)}
-              </Moment> 
+            field: 'START_DATETIME'
         },
         {
             title: 'STATUS',

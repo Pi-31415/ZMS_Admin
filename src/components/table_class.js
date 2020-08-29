@@ -631,7 +631,7 @@ class Syllabus extends React.Component {
 
                         options={{
                             filtering: true,
-                            pageSize: 5,
+                            pageSize: 20,
                             actionsColumnIndex: -1
                         }}
 

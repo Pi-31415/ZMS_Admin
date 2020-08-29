@@ -107,11 +107,14 @@ function Header(props) {
             alert("Please fill in all information to add a new lesson.");
             setAdding(true);
         } else {
+            var str = zoomlink;
+            var res = str.replace(/ /g, "red");
+
             var apiquery = {
                 "LESSON_ID": lessonid,
                 "CLASS_ID": classid,
                 "LESSON_LINK": {
-                    "ZOOM_LINK": zoomlink,
+                    "ZOOM_LINK": res,
                     "PASSCODE": passcode
                 },
                 "STATUS": "Scheduled",

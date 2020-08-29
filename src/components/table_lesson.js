@@ -34,7 +34,7 @@ function Header(props) {
 
     const [columns, setColumns] = useState([
         {
-            title: 'Date/Time',
+            title: 'Date/Time ('+Intl.DateTimeFormat().resolvedOptions().timeZone+' Time)',
             field: 'START_DATETIME',
             render: rowData => <Dateparser value={rowData.START_DATETIME}></Dateparser>
         },
@@ -204,7 +204,7 @@ function Header(props) {
                     Toolbar: props => (
                         <div style={{ padding: 20 }}>
                             <MTableToolbar {...props} />
-                            <p>{"Lessons : Time Zone - "+Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
+                            <p>{"You are in "+Intl.DateTimeFormat().resolvedOptions().timeZone+". All time here is adjusted to display your local time."}</p>
                             <br/>
                             <Button
                                 variant="contained"

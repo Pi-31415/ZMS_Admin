@@ -112,7 +112,7 @@ function Header(props) {
         } else {
             var str = zoomlink;
             var res = str.replace(/ /g, "");
-
+            
             var apiquery = {
                 "LESSON_ID": lessonid,
                 "CLASS_ID": classid,
@@ -129,6 +129,11 @@ function Header(props) {
             axios.post(api_add, apiquery)
                 .then(res => {
                     refresh();
+                    setLessonid("");
+                    setClassid("");
+                    setZoomlink("");
+                    setPasscode("");
+                    setTopic("");
                     console.log("Refreshed");
                 }).catch(error => {
                     alert(error);

@@ -421,13 +421,13 @@ class Syllabus extends React.Component {
 
         let studentaddbutton;
         studentaddbutton =
-            <Button variant="contained" color="primary" onClick={this.addstudent}>
+            <Button variant="contained" color="primary" onClick={this.addstudent} variant="outlined" style={{width:'100%'}}>
                 Add Student
             </Button>;
 
         let classaddbutton;
         classaddbutton =
-            <Button variant="contained" color="primary" onClick={this.addcourse}>
+            <Button variant="contained" color="primary" onClick={this.addcourse} variant="outlined">
                 Add Class
             </Button>;
 
@@ -436,28 +436,27 @@ class Syllabus extends React.Component {
         editor = <>
             <Paper style={{ padding: 20 }}>
                 <h3>Add Student to Classes</h3>
-
                 <Grid container spacing={3}>
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
                         <InputLabel id="demo-simple-select-label">Add the student</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             onChange={this.updatestudent}
+                            style={{width:'100%'}}
                         >
                             {
                                 student_ids.map((shogun) => <MenuItem value={shogun}>{studentlookup_main[shogun]}</MenuItem>)
                             }
                         </Select>
                     </Grid>
-                </Grid>
-                <Grid container spacing={3}>
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
                         <InputLabel id="demo-simple-select-label">to class</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             onChange={this.updateclass}
+                            style={{width:'100%'}}
                         >
                             {
                                 this.state.CLASS_ARRAY.map((reptile) => <MenuItem value={reptile.CLASS_ID}>{reptile.CLASS_ID}</MenuItem>)
@@ -465,7 +464,11 @@ class Syllabus extends React.Component {
 
                         </Select>
                     </Grid>
-                    <Grid item xs={4}>
+                </Grid>
+                <p style={{color:'#fff',padding:7}}>.</p>
+                <Grid container spacing={3}>
+                    <Grid item xs={6}></Grid>
+                    <Grid item xs={6}>
                         {studentaddbutton}
                     </Grid>
                 </Grid>
@@ -533,9 +536,7 @@ class Syllabus extends React.Component {
                         </Select>
                     </Grid>
 
-
                     {deletestudentchips}
-
 
                 </Grid>
             </Paper>
@@ -546,14 +547,15 @@ class Syllabus extends React.Component {
         adder = <>
             <Paper style={{ padding: 20 }}>
                 <h3>Add New Class</h3>
-
+                <p>Note: Class Code must be unique, if manually typed.</p>
                 <Grid container spacing={3}>
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
                         <InputLabel id="demo-simple-select-label">Choose Course:</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             onChange={this.newcourse}
+                            style ={{width:'100%'}}
                         >
                             {
                                 this.state.COURSE_ARRAY.map((reptile) => <MenuItem key={reptile.ID} value={reptile.ID}>{reptile.NAME}</MenuItem>)
@@ -561,8 +563,8 @@ class Syllabus extends React.Component {
 
                         </Select>
                     </Grid>
-                    <Grid item xs={6}>
-                        <TextField id="outlined-basic" label="Class Code (must be unique)" 
+                    <Grid item xs={4}>
+                        <TextField id="outlined-basic" label="Class Code" 
                         value = {this.state.classcodetoadd}
                         onChange = {this.updateclassname}
                         variant="outlined" />

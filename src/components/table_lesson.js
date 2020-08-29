@@ -53,8 +53,8 @@ function Header(props) {
         {
             title: 'Status',
             field: 'STATUS',
-            lookup: { 'Complete': 'Complete', 'Scheduled': 'Scheduled', 'Cancelled': 'Cancelled' },
-            render: rowData => <Dateparser value={rowData.STATUS}></Dateparser>
+            lookup: { 'Complete': <span style={{ color: 'green' }}>Complete</span>, 'Scheduled': <span style={{ color: 'blue' }}>Scheduled</span>, 'Cancelled': <span style={{ color: 'red' }}>Cancelled</span> }
+
         },
         //Add Columns
     ]);
@@ -302,12 +302,29 @@ function Header(props) {
 
                 actions={[
                     {
-                        icon: 'save',
+                        icon: 'done',
                         tooltip: 'Mark as Complete',
                         onClick: (event, rowData) => {
                             axios.post(api_update, {
                                 "LESSON_ID": rowData.LESSON_ID,
                                 "STATUS": "Complete"
+                            })
+                                .then(res => {
+                                    refresh();
+                                    console.log("Refreshed");
+                                }).catch(error => {
+                                    alert(error);
+                                });
+
+                        }
+                    },
+                    {
+                        icon: 'highlight_off',
+                        tooltip: 'Cancel Class',
+                        onClick: (event, rowData) => {
+                            axios.post(api_update, {
+                                "LESSON_ID": rowData.LESSON_ID,
+                                "STATUS": "Cancelled"
                             })
                                 .then(res => {
                                     refresh();

@@ -36,6 +36,7 @@ function Header(props) {
         {
             title: 'Date/Time (' + Intl.DateTimeFormat().resolvedOptions().timeZone + ' Time)',
             field: 'START_DATETIME',
+            defaultSort: 'desc',
             render: rowData => <Dateparser value={rowData.START_DATETIME}></Dateparser>
         },
         { title: 'Class Name', field: 'CLASS_ID' },
@@ -81,6 +82,8 @@ function Header(props) {
 
     const [allclasses, setAllclasses] = useState([]);
 
+    const [query, setQuery] = useState();
+
     const api_get = "https://zmsedu.com/api/admin/lesson/get";
     const api_update = "https://zmsedu.com/api/admin/lesson/edit";
     const api_delete = "https://zmsedu.com/api/admin/lesson/delete";
@@ -96,6 +99,31 @@ function Header(props) {
             }).catch(error => {
                 alert(error);
             });
+    }
+
+    const apiaddlesson = () => {
+        var apiquery = {
+            "LESSON_ID": lessonid,
+            "CLASS_ID": classid,
+            "LESSON_LINK": {
+                "ZOOM_LINK": zoomlink,
+                "PASSCODE": passcode
+            },
+            "STATUS": "Scheduled",
+            "START_DATETIME": selectedDate,
+            "TOPIC": topic,
+            "EXTRA_MATERIAL": material
+        };
+        console.log(apiquery);
+        axios.post(api_add, apiquery)
+        .then(res => {
+            const lessons = res.data.LESSONS;
+            setData({ lessons });
+            console.log("Refreshed");
+        }).catch(error => {
+            alert(error);
+        });
+
     }
 
     useEffect(() => {
@@ -205,9 +233,9 @@ function Header(props) {
                     color="primary"
                     variant="outlined"
                     startIcon={<Add />}
-                    onClick={() => { setAdding(false) }}
+                    onClick={() => { setAdding(false); apiaddlesson(); }}
                 >
-                    Add Lesson
+                    Add
                 </Button>
             </Paper>
             <br />
@@ -234,30 +262,7 @@ function Header(props) {
                             >
                                 Add Lesson
                             </Button>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                variant="outlined"
-                                startIcon={<Add />}
-                                onClick={() => {
-                                    console.log(
-                                        {
-                                            "LESSON_ID": lessonid,
-                                            "CLASS_ID": classid,
-                                            "LESSON_LINK": {
-                                                "ZOOM_LINK": zoomlink,
-                                                "PASSCODE": passcode
-                                            },
-                                            "STATUS": "Scheduled",
-                                            "START_DATETIME": selectedDate,
-                                            "TOPIC": topic,
-                                            "EXTRA_MATERIAL": material
-                                        }
-                                    );
-                                }}
-                            >
-                                Check
-                            </Button>
+
 
                         </div>
                     ),
@@ -284,6 +289,7 @@ function Header(props) {
                     }
                 }}
                 options={{
+                    sorting: true,
                     filtering: true,
                     pageSize: 20,
                     actionsColumnIndex: -1

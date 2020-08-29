@@ -54,6 +54,7 @@ function Header(props) {
             title: 'Status',
             field: 'STATUS',
             lookup: { 'Complete': 'Complete', 'Scheduled': 'Scheduled', 'Cancelled': 'Cancelled' },
+            render: rowData => <Dateparser value={rowData.STATUS}></Dateparser>
         },
         //Add Columns
     ]);

@@ -19,8 +19,10 @@ export default function UploadButtons(props) {
     const classes = useStyles();
     const [selectedFiles, setSelectedFiles] = useState(undefined);
     const [lessonidtoupload, setLessonidtoupload ] = useState(props.lessonid);
+
     const selectFile = (event) => {
         setSelectedFiles(event.target.files);
+        console.log(event.target.files)
     };
 
     const upload = () => {
@@ -29,7 +31,8 @@ export default function UploadButtons(props) {
             "LESSON_ID": lessonidtoupload,
             "FILE": currentFile
             };
-            axios.post('https://zmsedu.com/api/student/homework/upload', query)
+        console.log(query);
+        axios.post('https://zmsedu.com/api/student/homework/upload', query)
             .then(response => console.log(response.data))
             .catch(error => {
               console.log(error);

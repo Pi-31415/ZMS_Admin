@@ -23,7 +23,7 @@ function Header(props) {
             field: 'START_DATETIME',
             render: rowData => <Dateparser value={rowData.START_DATETIME}></Dateparser>
         },
-        { title: 'CLASS Name', field: 'CLASS_ID' },
+        { title: 'Class Name', field: 'CLASS_ID' },
         {
             title: 'Topic',
             field: 'TOPIC'
@@ -37,7 +37,7 @@ function Header(props) {
         {
             title: 'Status',
             field: 'STATUS',
-            lookup: { 'Complete': 'Complete', 'Incomplete': 'Incomplete', 'Cancelled': 'Cancelled' },
+            lookup: { 'Complete': 'Complete', 'Scheduled': 'Scheduled', 'Cancelled': 'Cancelled' },
         },
         //Add Columns
     ]);

@@ -307,6 +307,14 @@ function Header(props) {
 
                 actions={[
                     {
+                        icon: 'cloud_upload',
+                        tooltip: 'Upload Material',
+                        onClick: (event, rowData) => {
+                            alert("Upload");
+
+                        }
+                    },
+                    {
                         icon: 'done',
                         tooltip: 'Mark as Complete',
                         onClick: (event, rowData) => {

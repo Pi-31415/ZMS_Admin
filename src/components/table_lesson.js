@@ -107,7 +107,6 @@ function Header(props) {
         <div style={{ maxWidth: '100%' }}>
             {adder}
             <MaterialTable
-
                 components={{
                     Toolbar: props => (
                         <div style={{padding:20}}>
@@ -117,6 +116,7 @@ function Header(props) {
                                 color="primary"
                                 variant="outlined" 
                                 startIcon={<Add />}
+                                onClick={() => { setAdding(true) }}
                             >
                                 Add Lesson
                             </Button>

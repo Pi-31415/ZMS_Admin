@@ -121,8 +121,7 @@ function Header(props) {
             console.log(apiquery);
             axios.post(api_add, apiquery)
                 .then(res => {
-                    const lessons = res.data.LESSONS;
-                    setData({ lessons });
+                    refresh();
                     console.log("Refreshed");
                 }).catch(error => {
                     alert(error);

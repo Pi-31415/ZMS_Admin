@@ -81,6 +81,8 @@ function Header(props) {
     const [material, setMaterial] = useState([]);
     const [selectedDate, setSelectedDate] = React.useState(new Date());
 
+    const [lessonidtoupload, setLessonidtoupload] = useState("");
+
     const [allclasses, setAllclasses] = useState([]);
 
     const [query, setQuery] = useState();
@@ -108,7 +110,7 @@ function Header(props) {
             setAdding(true);
         } else {
             var str = zoomlink;
-            var res = str.replace(/ /g, "red");
+            var res = str.replace(/ /g, "");
 
             var apiquery = {
                 "LESSON_ID": lessonid,

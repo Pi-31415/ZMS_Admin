@@ -4,7 +4,8 @@ import axios from 'axios';
 import Dateparser from './dateparser';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-
+import Button from '@material-ui/core/Button';
+import Add from '@material-ui/icons/Add';
 function Header(props) {
 
 
@@ -51,7 +52,7 @@ function Header(props) {
 
     );
 
-    const [adding,setAdding] = useState(false);
+    const [adding, setAdding] = useState(false);
 
     const [query, setQuery] = useState(
         {
@@ -80,7 +81,7 @@ function Header(props) {
             .then(res => {
                 const lessons = res.data.LESSONS;
                 setData({ lessons });
-                
+
             }).catch(error => {
                 alert(error);
             });
@@ -88,22 +89,40 @@ function Header(props) {
 
 
     let adder;
-        adder = <>
-            <Paper style={{ padding: 20 }}>
-                <h3>Add New Class</h3>
+    adder = <>
+        <Paper style={{ padding: 20 }}>
+            <h3>Add New Class</h3>
 
-                <Grid container spacing={3}>
-                    <Grid item xs={4}></Grid>
-                </Grid>
-            </Paper>
-            <br/>
-        </>;
+            <Grid container spacing={3}>
+                <Grid item xs={4}></Grid>
+            </Grid>
+        </Paper>
+        <br />
+    </>;
 
 
     return (
         <div style={{ maxWidth: '100%' }}>
             {adder}
+
+
             <MaterialTable
+
+                components={{
+                    Toolbar: props => (
+                        <div style={{padding:20}}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                variant="outlined" 
+                                startIcon={<Add />}
+                            >
+                                Add Lesson
+                            </Button>
+                        </div>
+                    ),
+                }}
+
                 columns={columns}
                 data={data.lessons}
                 title="Lessons"

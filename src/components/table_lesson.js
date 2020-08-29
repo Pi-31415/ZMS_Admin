@@ -45,9 +45,9 @@ function Header(props) {
             field: 'TOPIC'
         },
         { title: 'Zoom ID', field: 'LESSON_LINK[ZOOM_LINK]' },
-        { title: 'Zoom Passcode', field: 'LESSON_LINK[PASSCODE]' },
+        { title: 'Passcode', field: 'LESSON_LINK[PASSCODE]' },
         {
-            title: 'Uploaded Files',
+            title: 'Lesson Files',
             field: 'EXTRA_MATERIAL'
         },
         {

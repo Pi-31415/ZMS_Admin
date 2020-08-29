@@ -90,7 +90,8 @@ class Syllabus extends React.Component {
             COLUMNS: [],
             ADD: false,
             EDIT: false,
-            DELETESTUDENTS: []
+            DELETESTUDENTS: [],
+            classcodetoadd:""
         };
     }
 
@@ -366,6 +367,7 @@ class Syllabus extends React.Component {
             final2 = "X";
         }
         var classcode = final[0] + final2[0] + "-" + makeid(5);
+        this.setState({ classcodetoadd: classcode});
 
         console.log(classcode);
         course_to_add = event.target.value;
@@ -567,6 +569,7 @@ class Syllabus extends React.Component {
                         </Select>
                     </Grid>
                     <Grid item xs={4}>
+                            {this.state.classcodetoadd}
                         {classaddbutton}
                     </Grid>
                 </Grid>

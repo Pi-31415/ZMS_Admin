@@ -49,6 +49,21 @@ function Header(props) {
 
     );
 
+    const [query, setQuery] = useState(
+        {
+            "LESSON_ID": "aaaaa",
+            "CLASS_ID": "",
+            "LESSON_LINK": {
+                "ZOOM_LINK": "zoom link",
+                "PASSCODE": "password"
+            },
+            "STATUS": "Scheduled",
+            "START_DATETIME": "8-29-2020 12:50",
+            "TOPIC": "Description",
+            "EXTRA_MATERIAL": []
+        }
+    );
+
     const api_get = "https://zmsedu.com/api/admin/lesson/get";
     const api_update = "https://zmsedu.com/api/admin/lesson/edit";
     const api_delete = "https://zmsedu.com/api/admin/lesson/delete";

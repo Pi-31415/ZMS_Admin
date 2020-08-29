@@ -34,7 +34,7 @@ function Header(props) {
 
     const [columns, setColumns] = useState([
         {
-            title: 'Date Time (HKT)',
+            title: 'Date/Time (Timezone' + (Intl.DateTimeFormat().resolvedOptions().timeZone)+")",
             field: 'START_DATETIME',
             render: rowData => <Dateparser value={rowData.START_DATETIME}></Dateparser>
         },

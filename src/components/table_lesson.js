@@ -122,10 +122,10 @@ function Header(props) {
                             {
                                 allclasses.map((reptile) => <MenuItem value={reptile}>{reptile}</MenuItem>)
                             }
-
                         </Select>
                     </Grid>
                 </Grid>
+                <br/>
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
                         <TextField id="outlined-basic" style={{ width: '100%' }} label="Description" variant="outlined"
@@ -184,7 +184,7 @@ function Header(props) {
                                                 "PASSCODE": passcode
                                             },
                                             "STATUS": "Scheduled",
-                                            "START_DATETIME": "8-29-2020 12:50",
+                                            "START_DATETIME": month+"-"+day+"-"+year+" "+hour+":"+minute+" "+ampm,
                                             "TOPIC": topic,
                                             "EXTRA_MATERIAL": material
                                         }

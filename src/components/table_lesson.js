@@ -244,7 +244,7 @@ function Header(props) {
 
                 columns={columns}
                 data={data.lessons}
-                title={"Lessons : Time Zone -"+Intl.DateTimeFormat().resolvedOptions().timeZone}
+                title={"Lessons : Time Zone - "+Intl.DateTimeFormat().resolvedOptions().timeZone}
                 localization={{
                     pagination: {
                         labelDisplayedRows: '{from}-{to} of {count}'

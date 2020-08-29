@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Add from '@material-ui/icons/Add';
+import TextField from '@material-ui/core/TextField';
 function Header(props) {
 
 
@@ -53,21 +54,19 @@ function Header(props) {
     );
 
     const [adding, setAdding] = useState(false);
+    const [lessonid, setLessonid] = useState("aaaa");
+    const [classid, setClassid] = useState("");
+    const [zoomlink, setZoomlink] = useState("");
+    const [passcode, setPasscode] = useState("");
+    const [month, setMonth] = useState(1);
+    const [day, setDay] = useState(1);
+    const [year, setYear] = useState(2020);
+    const [hour, setHour] = useState(1);
+    const [minute, setMinute] = useState(1);
+    const [ampm, setAmpm] = useState("am");
+    const [topic, setTopic] = useState("");
+    const [material, setMaterial] = useState([]);
 
-    const [query, setQuery] = useState(
-        {
-            "LESSON_ID": "aaaaa",
-            "CLASS_ID": "",
-            "LESSON_LINK": {
-                "ZOOM_LINK": "zoom link",
-                "PASSCODE": "password"
-            },
-            "STATUS": "Scheduled",
-            "START_DATETIME": "8-29-2020 12:50",
-            "TOPIC": "Description",
-            "EXTRA_MATERIAL": []
-        }
-    );
 
     const api_get = "https://zmsedu.com/api/admin/lesson/get";
     const api_update = "https://zmsedu.com/api/admin/lesson/edit";
@@ -94,8 +93,23 @@ function Header(props) {
             <Paper style={{ padding: 20 }}>
                 <h3>Add New Class</h3>
                 <Grid container spacing={3}>
-                    <Grid item xs={4}>
-
+                    <Grid item xs={6}>
+                        <TextField id="outlined-basic" label="Description" variant="outlined"
+                            value={topic}
+                            onChange={e => setTopic(e.target.value )}
+                        />
+                    </Grid>
+                    <Grid item xs={3}>
+                        <TextField id="outlined-basic" label="ZOOM ID" variant="outlined"
+                            value={zoomlink}
+                            onChange={e => setZoomlink(e.target.value)}
+                        />
+                    </Grid>
+                    <Grid item xs={3}>
+                        <TextField id="outlined-basic" label="ZOOM Passcode" variant="outlined"
+                            value={passcode}
+                            onChange={e => setPasscode(e.target.value)}
+                        />
                     </Grid>
                 </Grid>
             </Paper>
@@ -120,6 +134,30 @@ function Header(props) {
                                 onClick={() => { setAdding(true) }}
                             >
                                 Add Lesson
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                variant="outlined"
+                                startIcon={<Add />}
+                                onClick={() => {
+                                    console.log(
+                                        {
+                                        "LESSON_ID": lessonid,
+                                        "CLASS_ID": classid,
+                                        "LESSON_LINK": {
+                                            "ZOOM_LINK": zoomlink,
+                                            "PASSCODE": passcode
+                                        },
+                                        "STATUS": "Scheduled",
+                                        "START_DATETIME": "8-29-2020 12:50",
+                                        "TOPIC": topic,
+                                        "EXTRA_MATERIAL": material
+                                    }
+                                    );
+                                }}
+                            >
+                                Check
                             </Button>
 
                         </div>

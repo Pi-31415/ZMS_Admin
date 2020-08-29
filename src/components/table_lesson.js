@@ -298,10 +298,31 @@ function Header(props) {
                     pageSize: 20,
                     actionsColumnIndex: -1
                 }}
+
+                actions={[
+                    {
+                        icon: 'save',
+                        tooltip: 'Mark as Complete',
+                        onClick: (event, rowData) => {
+                            axios.post(api_update, {
+                                "LESSON_ID": rowData.LESSON_ID,
+                                "STATUS": "Complete"
+                            })
+                                .then(res => {
+                                    refresh();
+                                    console.log("Refreshed");
+                                }).catch(error => {
+                                    alert(error);
+                                });
+
+                        }
+                    }
+                ]}
+
                 editable={{
                     onRowDelete: oldData =>
                         new Promise((resolve, reject) => {
-        
+
                             axios.post(api_delete, {
                                 "LESSON_ID": oldData.LESSON_ID
                             })
@@ -312,7 +333,7 @@ function Header(props) {
                                 }).catch(error => {
                                     alert(error);
                                 });
-                            
+
                         }),
                 }}
             />

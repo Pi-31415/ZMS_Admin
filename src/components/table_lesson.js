@@ -204,6 +204,8 @@ function Header(props) {
                     Toolbar: props => (
                         <div style={{ padding: 20 }}>
                             <MTableToolbar {...props} />
+                            <p>{"Lessons : Time Zone - "+Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
+                            <br/>
                             <Button
                                 variant="contained"
                                 color="primary"
@@ -244,7 +246,7 @@ function Header(props) {
 
                 columns={columns}
                 data={data.lessons}
-                title={"Lessons : Time Zone - "+Intl.DateTimeFormat().resolvedOptions().timeZone}
+                title="Lessons"
                 localization={{
                     pagination: {
                         labelDisplayedRows: '{from}-{to} of {count}'

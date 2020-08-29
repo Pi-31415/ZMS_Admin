@@ -126,7 +126,6 @@ function Header(props) {
                 }).catch(error => {
                     alert(error);
                 });
-
         }
 
     }
@@ -298,6 +297,23 @@ function Header(props) {
                     filtering: true,
                     pageSize: 20,
                     actionsColumnIndex: -1
+                }}
+                editable={{
+                    onRowDelete: oldData =>
+                        new Promise((resolve, reject) => {
+                            console.log(apiquery);
+                            axios.post(api_delete, {
+                                "LESSON_ID": oldData.LESSON_ID
+                            })
+                                .then(res => {
+                                    refresh();
+                                    console.log("Refreshed");
+                                    resolve();
+                                }).catch(error => {
+                                    alert(error);
+                                });
+                            
+                        }),
                 }}
             />
         </div>

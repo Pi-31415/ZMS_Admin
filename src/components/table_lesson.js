@@ -102,27 +102,24 @@ function Header(props) {
     }
 
     const apiaddlesson = () => {
-        var apiquery = {
-            "LESSON_ID": lessonid,
-            "CLASS_ID": classid,
-            "LESSON_LINK": {
-                "ZOOM_LINK": zoomlink,
-                "PASSCODE": passcode
-            },
-            "STATUS": "Scheduled",
-            "START_DATETIME": selectedDate,
-            "TOPIC": topic,
-            "EXTRA_MATERIAL": material
-        };
-        console.log(apiquery);
-        axios.post(api_add, apiquery)
-        .then(res => {
-            const lessons = res.data.LESSONS;
-            setData({ lessons });
-            console.log("Refreshed");
-        }).catch(error => {
-            alert(error);
-        });
+        if (lessonid == "" || classid == "" || zoomlink == "" || passcode == "" || topic == "") {
+            alert("Please fill in all informations to add a new lesson.");
+        } else {
+            var apiquery = {
+                "LESSON_ID": lessonid,
+                "CLASS_ID": classid,
+                "LESSON_LINK": {
+                    "ZOOM_LINK": zoomlink,
+                    "PASSCODE": passcode
+                },
+                "STATUS": "Scheduled",
+                "START_DATETIME": selectedDate,
+                "TOPIC": topic,
+                "EXTRA_MATERIAL": material
+            };
+            console.log(apiquery);
+            alert("Ok");
+        }
 
     }
 

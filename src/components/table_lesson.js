@@ -25,7 +25,7 @@ function Header(props) {
         },
         { title: 'Class Name', field: 'CLASS_ID' },
         {
-            title: 'Topic',
+            title: 'Description',
             field: 'TOPIC'
         },
         { title: 'Zoom ID', field: 'LESSON_LINK[ZOOM_LINK]' },

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios';
 import Dateparser from './dateparser';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 function Header(props) {
 
@@ -83,8 +85,21 @@ function Header(props) {
     }, []);
 
 
+    let adder;
+        adder = <>
+            <Paper style={{ padding: 20 }}>
+                <h3>Add New Class</h3>
+
+                <Grid container spacing={3}>
+                    <Grid item xs={4}></Grid>
+                </Grid>
+            </Paper>
+        </>;
+
+
     return (
         <div style={{ maxWidth: '100%' }}>
+            {adder}
             <MaterialTable
                 columns={columns}
                 data={data.lessons}

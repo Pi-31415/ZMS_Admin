@@ -34,7 +34,7 @@ function Header(props) {
 
     const [columns, setColumns] = useState([
         {
-            title: 'Date/Time ('+Intl.DateTimeFormat().resolvedOptions().timeZone+' Time)',
+            title: 'Date/Time (' + Intl.DateTimeFormat().resolvedOptions().timeZone + ' Time)',
             field: 'START_DATETIME',
             render: rowData => <Dateparser value={rowData.START_DATETIME}></Dateparser>
         },
@@ -128,10 +128,15 @@ function Header(props) {
                     <Grid item xs={4}>
                         <InputLabel id="demo-simple-select-label">Choose Class:</InputLabel>
                         <Select
+                            style={{ width: '100%', marginBottom: 0, paddingBottom: 0 }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
+                            defaultValue={classid}
                             onChange={e => setClassid(e.target.value)}
                         >
+                            <MenuItem value="" disabled>
+                                Placeholder
+                            </MenuItem>
                             {
                                 allclasses.map((reptile) => <MenuItem value={reptile}>{reptile}</MenuItem>)
                             }
@@ -190,6 +195,16 @@ function Header(props) {
                         />
                     </Grid>
                 </Grid>
+                <br />
+                <Button
+                    variant="contained"
+                    color="primary"
+                    variant="outlined"
+                    startIcon={<Add />}
+                    onClick={() => { setAdding(false) }}
+                >
+                    Add Lesson
+                </Button>
             </Paper>
             <br />
         </>;
@@ -204,8 +219,8 @@ function Header(props) {
                     Toolbar: props => (
                         <div style={{ padding: 20 }}>
                             <MTableToolbar {...props} />
-                            <p>{"You are in "+Intl.DateTimeFormat().resolvedOptions().timeZone+". All time here is adjusted to display your local time."}</p>
-                            <br/>
+                            <p>{"You are in " + Intl.DateTimeFormat().resolvedOptions().timeZone + ". All time here is adjusted to display your local time."}</p>
+                            <br />
                             <Button
                                 variant="contained"
                                 color="primary"

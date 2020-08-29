@@ -76,7 +76,7 @@ function Header(props) {
             .then(res => {
                 const lessons = res.data.LESSONS;
                 setData({ lessons });
-                console.log("Adding", data);
+                
             }).catch(error => {
                 alert(error);
             });

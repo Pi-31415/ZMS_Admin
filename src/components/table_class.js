@@ -91,7 +91,7 @@ class Syllabus extends React.Component {
             ADD: false,
             EDIT: false,
             DELETESTUDENTS: [],
-            classcodetoadd:""
+            classcodetoadd: ""
         };
     }
 
@@ -367,7 +367,8 @@ class Syllabus extends React.Component {
             final2 = "X";
         }
         var classcode = final[0] + final2[0] + "-" + makeid(5);
-        this.setState({ classcodetoadd: classcode});
+        
+        this.setState({ classcodetoadd: classcode });
 
         console.log(classcode);
         course_to_add = event.target.value;
@@ -380,7 +381,14 @@ class Syllabus extends React.Component {
         teacher_to_add = event.target.value;
     }
 
+    updateclassname = (event) => {
+        this.setState({ classcodetoadd: event.target.value });
+        course_name_to_add = this.state.classcodetoadd;
+        console.log(course_name_to_add);
+    }
+
     addcourse = (event) => {
+        course_name_to_add = this.state.classcodetoadd;
         console.log(teacher_to_add + " " + course_to_add + " " + course_name_to_add);
 
         if (course_name_to_add == "" || course_to_add == "" || teacher_to_add == "") {
@@ -462,7 +470,7 @@ class Syllabus extends React.Component {
                     </Grid>
                 </Grid>
             </Paper>
-            <br/>
+            <br />
         </>
 
 
@@ -553,6 +561,12 @@ class Syllabus extends React.Component {
 
                         </Select>
                     </Grid>
+                    <Grid item xs={6}>
+                        <TextField id="outlined-basic" label="Class Code (must be unique)" 
+                        value = {this.state.classcodetoadd}
+                        onChange = {this.updateclassname}
+                        variant="outlined" />
+                    </Grid>
                 </Grid>
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
@@ -569,12 +583,11 @@ class Syllabus extends React.Component {
                         </Select>
                     </Grid>
                     <Grid item xs={4}>
-                            {this.state.classcodetoadd}
                         {classaddbutton}
                     </Grid>
                 </Grid>
             </Paper>
-            <br/>
+            <br />
         </>
 
         return (

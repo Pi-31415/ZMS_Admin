@@ -77,6 +77,7 @@ function Header(props) {
     const [ampm, setAmpm] = useState("am");
     const [topic, setTopic] = useState("");
     const [material, setMaterial] = useState([]);
+    const [selectedDate, setSelectedDate] = React.useState(new Date());
 
     const [allclasses, setAllclasses] = useState([]);
 
@@ -193,7 +194,7 @@ function Header(props) {
                                                 "PASSCODE": passcode
                                             },
                                             "STATUS": "Scheduled",
-                                            "START_DATETIME": month+"-"+day+"-"+year+" "+hour+":"+minute+" "+ampm,
+                                            "START_DATETIME": selectedDate,
                                             "TOPIC": topic,
                                             "EXTRA_MATERIAL": material
                                         }

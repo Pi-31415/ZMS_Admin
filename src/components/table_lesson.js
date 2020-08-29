@@ -65,7 +65,7 @@ function Header(props) {
         }
 
     );
-
+    const [uploading, setUploading] = useState(false);
     const [adding, setAdding] = useState(false);
     const [lessonid, setLessonid] = useState("aaaa");
     const [classid, setClassid] = useState("class");
@@ -252,10 +252,18 @@ function Header(props) {
         </>;
     }
 
+    let uploader = <></>;
+    if (uploading === true) {
+        uploader = <>
+        Uploading {lessonidtoupload}
+        </>;
+    }
+
 
     return (
         <div style={{ maxWidth: '100%' }}>
             {adder}
+            
             <MaterialTable
                 components={{
                     Toolbar: props => (
@@ -272,8 +280,8 @@ function Header(props) {
                             >
                                 Add Lesson
                             </Button>
-
-
+                            <br/>
+                            {uploader}
                         </div>
                     ),
                 }}
@@ -310,8 +318,8 @@ function Header(props) {
                         icon: 'cloud_upload',
                         tooltip: 'Upload Material',
                         onClick: (event, rowData) => {
-                            alert("Upload");
-
+                            setLessonidtoupload(rowData.LESSON_ID);
+                            setUploading(true);
                         }
                     },
                     {

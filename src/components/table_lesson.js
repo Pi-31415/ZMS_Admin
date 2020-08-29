@@ -103,7 +103,8 @@ function Header(props) {
 
     const apiaddlesson = () => {
         if (lessonid == "" || classid == "" || zoomlink == "" || passcode == "" || topic == "") {
-            alert("Please fill in all informations to add a new lesson.");
+            alert("Please fill in all information to add a new lesson.");
+            setAdding(true);
         } else {
             var apiquery = {
                 "LESSON_ID": lessonid,
@@ -118,7 +119,15 @@ function Header(props) {
                 "EXTRA_MATERIAL": material
             };
             console.log(apiquery);
-            alert("Ok");
+            axios.post(api_add, apiquery)
+                .then(res => {
+                    const lessons = res.data.LESSONS;
+                    setData({ lessons });
+                    console.log("Refreshed");
+                }).catch(error => {
+                    alert(error);
+                });
+
         }
 
     }

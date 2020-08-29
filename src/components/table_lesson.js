@@ -34,7 +34,7 @@ function Header(props) {
 
     const [columns, setColumns] = useState([
         {
-            title: 'Date/Time (Timezone' + (Intl.DateTimeFormat().resolvedOptions().timeZone)+")",
+            title: 'Date/Time',
             field: 'START_DATETIME',
             render: rowData => <Dateparser value={rowData.START_DATETIME}></Dateparser>
         },
@@ -244,7 +244,7 @@ function Header(props) {
 
                 columns={columns}
                 data={data.lessons}
-                title="Lessons"
+                title={"Lessons : Time Zone -"+Intl.DateTimeFormat().resolvedOptions().timeZone}
                 localization={{
                     pagination: {
                         labelDisplayedRows: '{from}-{to} of {count}'

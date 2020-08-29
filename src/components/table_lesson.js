@@ -137,13 +137,12 @@ function Header(props) {
                             }
                         </Select>
                     </Grid>
-                    <Grid item xs={4}>     
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <Grid container justify="space-around">
+                    <Grid item xs={4}>
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <KeyboardDatePicker
                                 margin="normal"
                                 id="date-picker-dialog"
-                                label="Date picker dialog"
+                                label="Choose Date"
                                 format="MM/dd/yyyy"
                                 value={selectedDate}
                                 onChange={handleDateChange}
@@ -151,20 +150,25 @@ function Header(props) {
                                     'aria-label': 'change date',
                                 }}
                             />
+                        </MuiPickersUtilsProvider>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <KeyboardTimePicker
                                 margin="normal"
                                 id="time-picker"
-                                label="Time picker"
+                                label="Choose Time"
                                 value={selectedDate}
                                 onChange={handleDateChange}
                                 KeyboardButtonProps={{
                                     'aria-label': 'change time',
                                 }}
                             />
-                        </Grid>
-                    </MuiPickersUtilsProvider>
-                    </Grid>   
+                        </MuiPickersUtilsProvider>
+                    </Grid>
+
                 </Grid>
+
                 <br />
                 <Grid container spacing={3}>
                     <Grid item xs={6}>

@@ -6,6 +6,9 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Add from '@material-ui/icons/Add';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 function Header(props) {
 
@@ -67,6 +70,7 @@ function Header(props) {
     const [topic, setTopic] = useState("");
     const [material, setMaterial] = useState([]);
 
+    const [allclasses, setAllclasses] = useState([]);
 
     const api_get = "https://zmsedu.com/api/admin/lesson/get";
     const api_update = "https://zmsedu.com/api/admin/lesson/edit";
@@ -75,7 +79,6 @@ function Header(props) {
 
     useEffect(() => {
         axios.post(api_get, {
-            //ROLE: "Student"
         })
             .then(res => {
                 const lessons = res.data.LESSONS;
@@ -84,6 +87,22 @@ function Header(props) {
             }).catch(error => {
                 alert(error);
             });
+
+        //Then get classes
+        axios.post("https://zmsedu.com/api/admin/class/get", {
+        })
+            .then(res => {
+                const classes = res.data.CLASS;
+                var allclasses = [];
+                for (var i = 0; i < classes.length; i++) {
+                    //console.log(classes[i].CLASS_ID);
+                    allclasses.push(classes[i].CLASS_ID)
+                }
+                setAllclasses(allclasses);
+            }).catch(error => {
+                alert(error);
+            });
+
     }, []);
 
 
@@ -93,25 +112,35 @@ function Header(props) {
             <Paper style={{ padding: 20 }}>
                 <h3>Add New Class</h3>
                 <Grid container spacing={3}>
-                    <Grid item xs={6}>
-                        
+                    <Grid item xs={4}>
+                        <InputLabel id="demo-simple-select-label">Choose Class:</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            onChange={e => setClassid(e.target.value)}
+                        >
+                            {
+                                allclasses.map((reptile) => <MenuItem value={reptile}>{reptile}</MenuItem>)
+                            }
+
+                        </Select>
                     </Grid>
                 </Grid>
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
-                        <TextField id="outlined-basic" style={{width:'100%'}} label="Description" variant="outlined"
+                        <TextField id="outlined-basic" style={{ width: '100%' }} label="Description" variant="outlined"
                             value={topic}
-                            onChange={e => setTopic(e.target.value )}
+                            onChange={e => setTopic(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={3}>
-                        <TextField id="outlined-basic"  style={{width:'100%'}} label="ZOOM ID" variant="outlined"
+                        <TextField id="outlined-basic" style={{ width: '100%' }} label="ZOOM ID" variant="outlined"
                             value={zoomlink}
                             onChange={e => setZoomlink(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={3}>
-                        <TextField id="outlined-basic"  style={{width:'100%'}} label="ZOOM Passcode" variant="outlined"
+                        <TextField id="outlined-basic" style={{ width: '100%' }} label="ZOOM Passcode" variant="outlined"
                             value={passcode}
                             onChange={e => setPasscode(e.target.value)}
                         />
@@ -148,17 +177,17 @@ function Header(props) {
                                 onClick={() => {
                                     console.log(
                                         {
-                                        "LESSON_ID": lessonid,
-                                        "CLASS_ID": classid,
-                                        "LESSON_LINK": {
-                                            "ZOOM_LINK": zoomlink,
-                                            "PASSCODE": passcode
-                                        },
-                                        "STATUS": "Scheduled",
-                                        "START_DATETIME": "8-29-2020 12:50",
-                                        "TOPIC": topic,
-                                        "EXTRA_MATERIAL": material
-                                    }
+                                            "LESSON_ID": lessonid,
+                                            "CLASS_ID": classid,
+                                            "LESSON_LINK": {
+                                                "ZOOM_LINK": zoomlink,
+                                                "PASSCODE": passcode
+                                            },
+                                            "STATUS": "Scheduled",
+                                            "START_DATETIME": "8-29-2020 12:50",
+                                            "TOPIC": topic,
+                                            "EXTRA_MATERIAL": material
+                                        }
                                     );
                                 }}
                             >

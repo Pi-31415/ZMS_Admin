@@ -94,19 +94,24 @@ function Header(props) {
                 <h3>Add New Class</h3>
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
-                        <TextField id="outlined-basic" label="Description" variant="outlined"
+                        
+                    </Grid>
+                </Grid>
+                <Grid container spacing={3}>
+                    <Grid item xs={6}>
+                        <TextField id="outlined-basic" style={{width:'100%'}} label="Description" variant="outlined"
                             value={topic}
                             onChange={e => setTopic(e.target.value )}
                         />
                     </Grid>
                     <Grid item xs={3}>
-                        <TextField id="outlined-basic" label="ZOOM ID" variant="outlined"
+                        <TextField id="outlined-basic"  style={{width:'100%'}} label="ZOOM ID" variant="outlined"
                             value={zoomlink}
                             onChange={e => setZoomlink(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={3}>
-                        <TextField id="outlined-basic" label="ZOOM Passcode" variant="outlined"
+                        <TextField id="outlined-basic"  style={{width:'100%'}} label="ZOOM Passcode" variant="outlined"
                             value={passcode}
                             onChange={e => setPasscode(e.target.value)}
                         />

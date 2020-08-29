@@ -89,7 +89,6 @@ function Header(props) {
                 columns={columns}
                 data={data.lessons}
                 title="Lessons"
-
                 localization={{
                     pagination: {
                         labelDisplayedRows: '{from}-{to} of {count}'
@@ -107,13 +106,11 @@ function Header(props) {
                         }
                     }
                 }}
-
                 options={{
                     filtering: true,
                     pageSize: 20,
                     actionsColumnIndex: -1
                 }}
-
             />
         </div>
     )

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MaterialTable,{ MTableToolbar } from 'material-table';
+import MaterialTable, { MTableToolbar } from 'material-table';
 import axios from 'axios';
 import Dateparser from './dateparser';
 import Paper from '@material-ui/core/Paper';
@@ -89,17 +89,18 @@ function Header(props) {
 
 
     let adder = <></>;
-    if(adding === true){
+    if (adding === true) {
         adder = <>
-        <Paper style={{ padding: 20 }}>
-            <h3>Add New Class</h3>
+            <Paper style={{ padding: 20 }}>
+                <h3>Add New Class</h3>
+                <Grid container spacing={3}>
+                    <Grid item xs={4}>
 
-            <Grid container spacing={3}>
-                <Grid item xs={4}></Grid>
-            </Grid>
-        </Paper>
-        <br />
-    </>;
+                    </Grid>
+                </Grid>
+            </Paper>
+            <br />
+        </>;
     }
 
 
@@ -109,18 +110,18 @@ function Header(props) {
             <MaterialTable
                 components={{
                     Toolbar: props => (
-                        <div style={{padding:20}}>
-                        <MTableToolbar {...props} />
+                        <div style={{ padding: 20 }}>
+                            <MTableToolbar {...props} />
                             <Button
                                 variant="contained"
                                 color="primary"
-                                variant="outlined" 
+                                variant="outlined"
                                 startIcon={<Add />}
                                 onClick={() => { setAdding(true) }}
                             >
                                 Add Lesson
                             </Button>
-                            
+
                         </div>
                     ),
                 }}

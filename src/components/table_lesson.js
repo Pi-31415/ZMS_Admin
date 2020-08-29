@@ -301,7 +301,7 @@ function Header(props) {
                 editable={{
                     onRowDelete: oldData =>
                         new Promise((resolve, reject) => {
-                            console.log(apiquery);
+        
                             axios.post(api_delete, {
                                 "LESSON_ID": oldData.LESSON_ID
                             })

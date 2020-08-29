@@ -13,9 +13,9 @@ import TextField from '@material-ui/core/TextField';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
 } from '@material-ui/pickers';
 
 function Header(props) {
@@ -114,6 +114,10 @@ function Header(props) {
 
     }, []);
 
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
+
 
     let adder = <></>;
     if (adding === true) {
@@ -133,9 +137,35 @@ function Header(props) {
                             }
                         </Select>
                     </Grid>
-                    
+                    <Grid item xs={4}>     
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <Grid container justify="space-around">
+                            <KeyboardDatePicker
+                                margin="normal"
+                                id="date-picker-dialog"
+                                label="Date picker dialog"
+                                format="MM/dd/yyyy"
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date',
+                                }}
+                            />
+                            <KeyboardTimePicker
+                                margin="normal"
+                                id="time-picker"
+                                label="Time picker"
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change time',
+                                }}
+                            />
+                        </Grid>
+                    </MuiPickersUtilsProvider>
+                    </Grid>   
                 </Grid>
-                <br/>
+                <br />
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
                         <TextField id="outlined-basic" style={{ width: '100%' }} label="Description" variant="outlined"

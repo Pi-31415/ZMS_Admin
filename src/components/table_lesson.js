@@ -88,8 +88,9 @@ function Header(props) {
     }, []);
 
 
-    let adder;
-    adder = <>
+    let adder = <></>;
+    if(adding === true){
+        adder = <>
         <Paper style={{ padding: 20 }}>
             <h3>Add New Class</h3>
 
@@ -99,13 +100,12 @@ function Header(props) {
         </Paper>
         <br />
     </>;
+    }
 
 
     return (
         <div style={{ maxWidth: '100%' }}>
             {adder}
-
-
             <MaterialTable
 
                 components={{

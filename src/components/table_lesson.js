@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MaterialTable from 'material-table';
+import MaterialTable,{ MTableToolbar } from 'material-table';
 import axios from 'axios';
 import Dateparser from './dateparser';
 import Paper from '@material-ui/core/Paper';
@@ -111,6 +111,7 @@ function Header(props) {
                 components={{
                     Toolbar: props => (
                         <div style={{padding:20}}>
+                        <MTableToolbar {...props} />
                             <Button
                                 variant="contained"
                                 color="primary"
@@ -119,6 +120,7 @@ function Header(props) {
                             >
                                 Add Lesson
                             </Button>
+                            
                         </div>
                     ),
                 }}

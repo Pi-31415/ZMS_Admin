@@ -66,7 +66,7 @@ function Header(props) {
 
     const [adding, setAdding] = useState(false);
     const [lessonid, setLessonid] = useState("aaaa");
-    const [classid, setClassid] = useState("");
+    const [classid, setClassid] = useState("class");
     const [zoomlink, setZoomlink] = useState("");
     const [passcode, setPasscode] = useState("");
     const [month, setMonth] = useState(1);
@@ -86,17 +86,20 @@ function Header(props) {
     const api_delete = "https://zmsedu.com/api/admin/lesson/delete";
     const api_add = "https://zmsedu.com/api/admin/lesson/add";
 
-    useEffect(() => {
+    const refresh = () => {
         axios.post(api_get, {
         })
             .then(res => {
                 const lessons = res.data.LESSONS;
                 setData({ lessons });
-
+                console.log("Refreshed");
             }).catch(error => {
                 alert(error);
             });
+    }
 
+    useEffect(() => {
+        refresh();
         //Then get classes
         axios.post("https://zmsedu.com/api/admin/class/get", {
         })
@@ -126,7 +129,8 @@ function Header(props) {
                 <h3>Add New Class</h3>
                 <Grid container spacing={3}>
                     <Grid item xs={4}>
-                        <InputLabel id="demo-simple-select-label">Choose Class:</InputLabel>
+                        <br />
+                        <InputLabel id="demo-simple-select-label">Class</InputLabel>
                         <Select
                             style={{ width: '100%', marginBottom: 0, paddingBottom: 0 }}
                             labelId="demo-simple-select-label"
@@ -134,8 +138,8 @@ function Header(props) {
                             defaultValue={classid}
                             onChange={e => setClassid(e.target.value)}
                         >
-                            <MenuItem value="" disabled>
-                                Placeholder
+                            <MenuItem value="class" disabled>
+                                Choose Class
                             </MenuItem>
                             {
                                 allclasses.map((reptile) => <MenuItem value={reptile}>{reptile}</MenuItem>)

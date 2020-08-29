@@ -51,6 +51,8 @@ function Header(props) {
 
     );
 
+    const [adding,setAdding] = useState(false);
+
     const [query, setQuery] = useState(
         {
             "LESSON_ID": "aaaaa",

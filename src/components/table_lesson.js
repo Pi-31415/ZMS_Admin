@@ -106,7 +106,7 @@ function Header(props) {
     }
 
     const apiaddlesson = () => {
-        if (lessonid == "" || classid == "" || zoomlink == "" || passcode == "" || topic == "") {
+        if (classid == "" || zoomlink == "" || passcode == "" || topic == "") {
             alert("Please fill in all information to add a new lesson.");
             setAdding(true);
         } else {
@@ -129,7 +129,6 @@ function Header(props) {
             axios.post(api_add, apiquery)
                 .then(res => {
                     refresh();
-                    setLessonid("");
                     setClassid("");
                     setZoomlink("");
                     setPasscode("");

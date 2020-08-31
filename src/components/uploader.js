@@ -22,11 +22,11 @@ class FileUpload extends React.Component{
 
     submit(){
         const data = new FormData() 
-        data.append('LESSON_ID', this.props.lessonid)
-        data.append('FILE', this.state.selectedFile)
-        
+        data.append('LESSON_ID', this.props.lessonid);
+        data.append('FILE', this.state.selectedFile);
+        data.append('TOKEN',localStorage.getItem("TOKEN"));
         let url = "https://zmsedu.com/api/student/homework/upload";
-        console.warn(data);
+        console.log(data);
         axios.post(url, data, { // receive two parameter endpoint url ,form data 
         })
         .then(res => {

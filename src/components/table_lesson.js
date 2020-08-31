@@ -260,7 +260,6 @@ function Header(props) {
     let uploader = <></>;
     if (uploading === true) {
         uploader = <>
-        <h1>W.I.P</h1>
         <Uploadcomponent lessonid={lessonidtoupload}></Uploadcomponent>
         </>;
     }
@@ -286,7 +285,6 @@ function Header(props) {
                             >
                                 Add Lesson
                             </Button>
-                            <br/>
                             {uploader}
                         </div>
                     ),

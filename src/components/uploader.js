@@ -1,53 +1,68 @@
-import React, { useState} from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import React from 'react'
+import axios from 'axios';
 
-import axios from "axios";
+class FileUpload extends React.Component{
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-        },
-    },
-    input: {
-        display: 'none',
-    },
-}));
+    constructor(){
+        super();
+        this.state = {
+            selectedFile:'',
+        }
 
-export default function UploadButtons(props) {
-    const classes = useStyles();
-    const [selectedFiles, setSelectedFiles] = useState(undefined);
-    const [lessonidtoupload, setLessonidtoupload ] = useState(props.lessonid);
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
 
-    const selectFile = (event) => {
-        setSelectedFiles(event.target.files);
-        console.log(event.target.files)
-    };
+    handleInputChange(event) {
+        this.setState({
+            selectedFile: event.target.files[0],
+          })
+    }
 
-    const upload = () => {
-        let currentFile = selectedFiles[0];
-        const query = {
-            "LESSON_ID": lessonidtoupload,
-            "FILE": currentFile
-            };
-        console.log(query);
-        axios.post('https://zmsedu.com/api/student/homework/upload', query)
-            .then(response => console.log(response.data))
-            .catch(error => {
-              console.log(error);
+    
+
+    submit(){
+        const data = new FormData() 
+        data.append('LESSON_ID', this.props.lessonid)
+        data.append('FILE', this.state.selectedFile)
+        
+        let url = "https://zmsedu.com/api/student/homework/upload";
+        console.warn(data);
+        axios.post(url, data, { // receive two parameter endpoint url ,form data 
+        })
+        .then(res => {
+            console.log(res.data);
+        }).catch(error => {
+            console.log(error);
         });
-    };
 
-    return (
-        <div className={classes.root}>
-            <label className="btn btn-default">
-                <input type="file" onChange={selectFile} />
-            </label>
-            <Button variant="contained" color="primary" component="span" disabled={!selectedFiles}
-                onClick={upload}>
-                Upload
-            </Button>
-        </div>
-    );
+    }
+
+    render(){
+        return(
+            <div>
+                <div className="row">
+                    <div className="col-md-6 offset-md-3">
+                        <br /><br />
+
+                            <h3 className="text-white">File Upload Test {this.props.lessonid}</h3>
+                            <br />
+                            <div className="form-row">
+                                <div className="form-group col-md-6">
+                                    <label className="text-white">Select File :</label>
+                                    <input type="file" className="form-control" name="upload_file" onChange={this.handleInputChange} />
+                                </div>
+                            </div>
+
+                            <div className="form-row">
+                                <div className="col-md-6">
+                                    <button type="submit" className="btn btn-dark" onClick={()=>this.submit()}>Save</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        )  
+    }
 }
+
+export default FileUpload;

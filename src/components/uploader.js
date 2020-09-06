@@ -25,13 +25,35 @@ class FileUpload extends React.Component{
         data.append('LESSON_ID', this.props.lessonid);
         data.append('FILE', this.state.selectedFile);
         data.append('TOKEN',localStorage.getItem("TOKEN"));
+
+
         let url = "https://zmsedu.com/api/admin/homework/upload";
-        console.log(data);
+        //console.log(data);
         axios.post(url, data, { // receive two parameter endpoint url ,form data 
         })
         .then(res => {
             alert("File Uploaded");
-            console.log(res.data);
+            var file_id = res.data.FILE_ID;
+
+            //then get into lessons API
+            url = "https://zmsedu.com/api/admin/lesson/get";
+            axios.post(url, data, { // receive two parameter endpoint url ,form data 
+            })
+            .then(res => {
+                alert("File Uploaded");
+                var file_id = res.data.FILE_ID;
+    
+                //then edit the Lessons
+                //url = "https://zmsedu.com/api/admin/lesson/get";
+                
+    
+    
+            }).catch(error => {
+                console.log(error);
+            });
+
+
+
         }).catch(error => {
             console.log(error);
         });

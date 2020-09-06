@@ -3,13 +3,6 @@ import axios from 'axios';
 
 class FileUpload extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-            filelist: ''
-        }
-
-    }
 
     render() {
         return (

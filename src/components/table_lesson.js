@@ -49,10 +49,7 @@ function Header(props) {
         },
         { title: 'Zoom ID', field: 'LESSON_LINK[ZOOM_LINK]' },
         { title: 'Passcode', field: 'LESSON_LINK[PASSCODE]' },
-        {
-            title: 'Lesson Files',
-            render: rowData => rowData.EXTRA_MATERIAL.length
-        },
+        
         {
             title: 'Status',
             field: 'STATUS',

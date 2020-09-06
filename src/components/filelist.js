@@ -23,9 +23,11 @@ class FileUpload extends React.Component {
         })
             .then(res => {
 
-                for (var i=0 ; i <= res.data.HOMEWORK.length;i++)
+                for (var i=0 ; i < res.data.HOMEWORK.length;i++)
                 {
-                    console.log(res.data.HOMEWORK[i].LESSON_ID);
+                    if(res.data.HOMEWORK[i].LESSON_ID == this.props.lessonid){
+                        console.log(res.data.HOMEWORK[i].TEACHER_UPLOAD);
+                    }
                 }
             
                 //then edit the Lessons

@@ -22,9 +22,9 @@ class FileUpload extends React.Component {
     handleClick(name, lessonid, fileid) {
         var url = "https://zmsedu.com/api/student/homework/download";
         axios.post(url, {
-            "LESSON_ID": "5f4b927bfcdfa224050ad698",
-            "FILE_ID": "fa5f6bf756637789405f"
-          }, { // receive two parameter endpoint url ,form data 
+            LESSON_ID: lessonid,
+            FILE_ID: fileid
+        }, { // receive two parameter endpoint url ,form data 
         })
             .then(res => {
                 

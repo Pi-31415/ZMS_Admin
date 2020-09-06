@@ -26,7 +26,10 @@ class FileUpload extends React.Component {
                 for (var i=0 ; i < res.data.HOMEWORK.length;i++)
                 {
                     if(res.data.HOMEWORK[i].LESSON_ID == this.props.lessonid){
-                        console.log(res.data.HOMEWORK[i].TEACHER_UPLOAD);
+                        this.setState({
+                            filelist: res.data.HOMEWORK[i].TEACHER_UPLOAD,
+                        })
+                        console.log(this.state.filelist[0]);
                     }
                 }
             
@@ -41,6 +44,7 @@ class FileUpload extends React.Component {
         return (
             <div>
                 asdf {this.props.lessonid}
+                
             </div>
         )
     }

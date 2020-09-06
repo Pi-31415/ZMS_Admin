@@ -57,6 +57,7 @@ class FileUpload extends React.Component {
                                 })
                                     .then(res => {
                                         console.log(res.data);
+                                        alert("File Uploaded");
                                         //then edit the Lessons
                                         //
                                     }).catch(error => {

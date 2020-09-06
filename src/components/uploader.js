@@ -25,7 +25,7 @@ class FileUpload extends React.Component{
         data.append('LESSON_ID', this.props.lessonid);
         data.append('FILE', this.state.selectedFile);
         data.append('TOKEN',localStorage.getItem("TOKEN"));
-        let url = "https://zmsedu.com//api/admin/homework/upload";
+        let url = "https://zmsedu.com/api/admin/homework/upload";
         console.log(data);
         axios.post(url, data, { // receive two parameter endpoint url ,form data 
         })

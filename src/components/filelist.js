@@ -39,7 +39,7 @@ class FileUpload extends React.Component {
                 <ul>
                     {
                         this.state.filelist[0] == undefined ? "No uploaded files." :
-                        this.state.filelist.map((u) => <Individualfile></Individualfile><li onClick={this.download}>{u.NAME}{this.props.lessonid}{u.FILE_ID}</li>)
+                        this.state.filelist.map((u) => <Individualfile lessonid={this.props.lessonid} fileid={u.FILE_ID} name={u.NAME}></Individualfile>)
                     }
                 </ul>
             </div>

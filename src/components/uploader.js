@@ -42,9 +42,9 @@ class FileUpload extends React.Component{
             .then(res => {
                 console.log("Requested");
                 
-                console.log(res.data);
+                
                 for (var i=0;i<res.data.length;i++){
-                    
+                    console.log(res.data.LESSONS[i]);
                 }
     
                 //then edit the Lessons

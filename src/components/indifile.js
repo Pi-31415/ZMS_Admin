@@ -26,8 +26,14 @@ class FileUpload extends React.Component {
             FILE_ID: fileid
         }, { // receive two parameter endpoint url ,form data 
         })
-            .then(res => {
-                console.log(res.data)
+            .then(response => {
+                //console.log(res.data)
+                /*const type = response.headers['content-type']
+                const blob = new Blob([response.data], { type: type, encoding: 'UTF-8' })
+                const link = document.createElement('a')
+                link.href = window.URL.createObjectURL(blob)
+                link.download = name
+                link.click()*/
                 //fileDownload(res.data, name);
                 //then edit the Lessons
                 //

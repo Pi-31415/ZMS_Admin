@@ -19,11 +19,11 @@ class FileUpload extends React.Component {
         })
     }
 
-
     render() {
         return (
             <div onClick={this.download}>
                 {this.props.name}
+                
             </div>
         )
     }

@@ -19,9 +19,13 @@ class FileUpload extends React.Component {
         });
     }
 
+    handleClick(name,lessonid,filename) {
+        
+    }
+
     render() {
         return (
-            <div onClick={this.download}>
+            <div onClick={() => this.handleClick(this.props.name,this.props.lessonid,this.props.filename)}>
                 {this.props.name}
                 
             </div>

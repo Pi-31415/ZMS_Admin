@@ -17,7 +17,6 @@ class FileUpload extends React.Component {
     }
 
     componentDidMount() {
-
         var url = "https://zmsedu.com/api/admin/homework/get";
         axios.post(url, {}, { // receive two parameter endpoint url ,form data 
         })

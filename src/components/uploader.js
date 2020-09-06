@@ -58,9 +58,7 @@ class FileUpload extends React.Component {
                                     .then(res => {
                                         console.log(res.data);
                                         alert("File Uploaded");
-                                        this.setState({
-                                            selectedFile: ''
-                                        })
+                                        
                                         //then edit the Lessons
                                         //
                                     }).catch(error => {
@@ -86,7 +84,7 @@ class FileUpload extends React.Component {
                     <div className="col-md-6 offset-md-3">
                         <br /><br />
 
-                        <h3 className="text-white">File Upload Test {this.props.lessonid}</h3>
+                        <h3 className="text-white">File Upload</h3>
                         <br />
                         <div className="form-row">
                             <div className="form-group col-md-6">
@@ -94,7 +92,7 @@ class FileUpload extends React.Component {
                                 <input type="file" className="form-control" name="upload_file" onChange={this.handleInputChange} />
                             </div>
                         </div>
-
+                        <br/>
                         <div className="form-row">
                             <div className="col-md-6">
                                 <button type="submit" className="btn btn-dark" onClick={() => this.submit()}>Upload</button>

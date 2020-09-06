@@ -11,11 +11,6 @@ class FileUpload extends React.Component {
 
     }
 
-
-    submit() {
-
-    }
-
     componentDidMount() {
         var url = "https://zmsedu.com/api/admin/homework/get";
         axios.post(url, {}, { // receive two parameter endpoint url ,form data 
@@ -38,13 +33,17 @@ class FileUpload extends React.Component {
             });
     }
 
+    download(){
+        alert("Yes");
+    }
+
     render() {
         return (
             <div>
                 <ul>
                     {
                         this.state.filelist[0] == undefined ? "No uploaded files." :
-                        this.state.filelist.map((u) => <li>{u.NAME}</li>)
+                        this.state.filelist.map((u) => <li onClick={this.download}>{u.NAME}{this.props.lessonid}{u.FILE_ID}</li>)
                     }
                 </ul>
             </div>

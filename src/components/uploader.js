@@ -44,7 +44,7 @@ class FileUpload extends React.Component{
                     <div className="col-md-6 offset-md-3">
                         <br /><br />
 
-                            <h3 className="text-white">File Yayaaya Upload Test {this.props.lessonid}</h3>
+                            <h3 className="text-white">File Upload Test {this.props.lessonid}</h3>
                             <br />
                             <div className="form-row">
                                 <div className="form-group col-md-6">

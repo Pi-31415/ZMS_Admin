@@ -22,7 +22,7 @@ class FileUpload extends React.Component {
                         this.setState({
                             filelist: res.data.HOMEWORK[i].TEACHER_UPLOAD,
                         })
-                        console.log(this.state.filelist[0]);
+                        //console.log(this.state.filelist[0]);
                     }
                 }
 

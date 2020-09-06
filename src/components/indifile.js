@@ -27,7 +27,7 @@ class FileUpload extends React.Component {
         }, { // receive two parameter endpoint url ,form data 
         })
             .then(res => {
-                
+                console.log(res)
                 //then edit the Lessons
                 //
             }).catch(error => {

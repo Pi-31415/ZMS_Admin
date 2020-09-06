@@ -42,13 +42,13 @@ class FileUpload extends React.Component{
             .then(res => {
                 console.log("Requested");
                 console.log(res.data);
-                
+
+                for (var i=0;i<res.data.length;i++){
+
+                }
     
                 //then edit the Lessons
                 //url = "https://zmsedu.com/api/admin/lesson/get";
-                
-    
-    
             }).catch(error => {
                 console.log(error);
             });

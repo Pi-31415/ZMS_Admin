@@ -112,7 +112,7 @@ function Header(props) {
         } else {
             var str = zoomlink;
             var res = str.replace(/ /g, "");
-            
+
             var apiquery = {
                 "LESSON_ID": lessonid,
                 "CLASS_ID": classid,
@@ -260,7 +260,7 @@ function Header(props) {
     let uploader = <></>;
     if (uploading === true) {
         uploader = <>
-        <Uploadcomponent lessonid={lessonidtoupload}></Uploadcomponent>
+            <Uploadcomponent lessonid={lessonidtoupload}></Uploadcomponent>
         </>;
     }
 
@@ -268,7 +268,7 @@ function Header(props) {
     return (
         <div style={{ maxWidth: '100%' }}>
             {adder}
-            
+
             <MaterialTable
                 components={{
                     Toolbar: props => (
@@ -361,6 +361,19 @@ function Header(props) {
                         }
                     }
                 ]}
+
+                detailPanel={rowData => {
+                    return (
+                        <iframe
+                            width="100%"
+                            height="315"
+                            src="https://www.youtube.com/embed/C0DPdy98e4c"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        />
+                    )
+                }}
 
                 editable={{
                     onRowDelete: oldData =>

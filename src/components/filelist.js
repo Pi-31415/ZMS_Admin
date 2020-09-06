@@ -19,20 +19,19 @@ class FileUpload extends React.Component {
     componentDidMount() {
 
         var url = "https://zmsedu.com/api/admin/homework/get";
-        axios.post(url,{}, { // receive two parameter endpoint url ,form data 
+        axios.post(url, {}, { // receive two parameter endpoint url ,form data 
         })
             .then(res => {
 
-                for (var i=0 ; i < res.data.HOMEWORK.length;i++)
-                {
-                    if(res.data.HOMEWORK[i].LESSON_ID == this.props.lessonid){
+                for (var i = 0; i < res.data.HOMEWORK.length; i++) {
+                    if (res.data.HOMEWORK[i].LESSON_ID == this.props.lessonid) {
                         this.setState({
                             filelist: res.data.HOMEWORK[i].TEACHER_UPLOAD,
                         })
                         console.log(this.state.filelist[0]);
                     }
                 }
-            
+
                 //then edit the Lessons
                 //
             }).catch(error => {
@@ -43,10 +42,12 @@ class FileUpload extends React.Component {
     render() {
         return (
             <div>
-                {
-                this.state.filelist[0] == undefined ? "Yes" : 
-                this.state.filelist.map((u)=> <li>{u.NAME}</li>)
-                }
+                <ul>
+                    {
+                        this.state.filelist[0] == undefined ? "Yes" :
+                            this.state.filelist.map((u) => <li>{u.NAME}</li>)
+                    }
+                </ul>
             </div>
         )
     }

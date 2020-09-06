@@ -51,7 +51,7 @@ function Header(props) {
         { title: 'Passcode', field: 'LESSON_LINK[PASSCODE]' },
         {
             title: 'Lesson Files',
-            render: rowData => rowData.EXTRA_MATERIAL.length
+            render: rowData => {rowData.EXTRA_MATERIAL.length > 0 ? "Yes":"No"}
         },
         {
             title: 'Status',

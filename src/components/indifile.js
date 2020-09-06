@@ -16,7 +16,7 @@ class FileUpload extends React.Component {
         this.setState({
             filename: this.props.filename,
             lessonid: this.props.lessonid
-        })
+        });
     }
 
     render() {

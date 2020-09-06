@@ -3,8 +3,14 @@ import axios from 'axios';
 
 class FileUpload extends React.Component {
 
+
+
     submit() {
        
+    }
+
+    componentDidMount() {
+        alert("Yes");
     }
 
     render() {

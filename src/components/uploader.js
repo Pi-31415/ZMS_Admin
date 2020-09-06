@@ -32,7 +32,7 @@ class FileUpload extends React.Component{
         axios.post(url, data, { // receive two parameter endpoint url ,form data 
         })
         .then(res => {
-            alert("File Uploaded");
+            //alert("File Uploaded");
             var file_id = res.data.FILE_ID;
 
             //then get into lessons API
@@ -40,8 +40,9 @@ class FileUpload extends React.Component{
             axios.post(url, data, { // receive two parameter endpoint url ,form data 
             })
             .then(res => {
-                alert("File Uploaded");
-                var file_id = res.data.FILE_ID;
+                console.log("Requested");
+                console.log(res.data);
+                
     
                 //then edit the Lessons
                 //url = "https://zmsedu.com/api/admin/lesson/get";

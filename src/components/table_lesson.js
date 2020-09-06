@@ -12,6 +12,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import Filelist from './filelist';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -376,14 +377,7 @@ function Header(props) {
 
                 detailPanel={rowData => {
                     return (
-                        <iframe
-                            width="100%"
-                            height="315"
-                            src="https://www.youtube.com/embed/C0DPdy98e4c"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                        />
+                        <Filelist lessonid={rowData.LESSON_ID}></Filelist>
                     )
                 }}
 

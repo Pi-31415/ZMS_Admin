@@ -7,6 +7,7 @@ class FileUpload extends React.Component {
         super();
         this.state = {
             selectedFile: '',
+            uploading: false
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -15,12 +16,16 @@ class FileUpload extends React.Component {
     handleInputChange(event) {
         this.setState({
             selectedFile: event.target.files[0],
+            uploading: false
         })
     }
 
 
 
     submit() {
+        this.setState({
+            uploading: true
+        })
         const data = new FormData()
         data.append('LESSON_ID', this.props.lessonid);
         data.append('FILE', this.state.selectedFile);
@@ -58,7 +63,9 @@ class FileUpload extends React.Component {
                                     .then(res => {
                                         console.log(res.data);
                                         alert("File Uploaded. Please click Refresh to update the table.");
-                                        
+                                        this.setState({
+                                            uploading: false
+                                        })
                                         //then edit the Lessons
                                         //
                                     }).catch(error => {
@@ -77,6 +84,7 @@ class FileUpload extends React.Component {
             });
     }
 
+
     render() {
         return (
             <div>
@@ -94,9 +102,12 @@ class FileUpload extends React.Component {
                         </div>
                         <br/>
                         <div className="form-row">
+                            {this.state.uploading === true ? "Uploading File ... ":
                             <div className="col-md-6">
                                 <button type="submit" className="btn btn-dark" onClick={() => this.submit()}>Upload</button>
                             </div>
+                            }
+                            
                         </div>
                     </div>
                 </div>

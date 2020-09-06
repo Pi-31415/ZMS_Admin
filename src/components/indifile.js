@@ -21,19 +21,23 @@ class FileUpload extends React.Component {
 
     handleClick(name, lessonid, fileid) {
         var url = "https://zmsedu.com/api/student/homework/download";
-        axios.post(url, {
-            LESSON_ID: lessonid,
-            FILE_ID: fileid
-        }, { // receive two parameter endpoint url ,form data 
+        axios({
+            method:'post',
+            url: url,
+            data:{
+                LESSON_ID: lessonid,
+                FILE_ID: fileid
+            },
+            responseType: 'blob'
         })
             .then(response => {
-                //console.log(res.data)
-                /*const type = response.headers['content-type']
+                console.log(response)
+                const type = response.headers['content-type']
                 const blob = new Blob([response.data], { type: type, encoding: 'UTF-8' })
                 const link = document.createElement('a')
                 link.href = window.URL.createObjectURL(blob)
                 link.download = name
-                link.click()*/
+                link.click()
                 //fileDownload(res.data, name);
                 //then edit the Lessons
                 //

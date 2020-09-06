@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Add from '@material-ui/icons/Add';
+import Refresh from '@material-ui/icons/Refresh';
 import Uploadcomponent from './uploader';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -289,7 +290,7 @@ function Header(props) {
                                 variant="contained"
                                 color="primary"
                                 variant="outlined"
-                                startIcon={<Add />}
+                                startIcon={<Refresh />}
                                 style={{marginLeft:10}}
                                 onClick={() => { refresh();setUploading(false) }}
                             >

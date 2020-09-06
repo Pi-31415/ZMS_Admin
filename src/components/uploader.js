@@ -30,6 +30,7 @@ class FileUpload extends React.Component{
         axios.post(url, data, { // receive two parameter endpoint url ,form data 
         })
         .then(res => {
+            alert("File Uploaded");
             console.log(res.data);
         }).catch(error => {
             console.log(error);
@@ -55,7 +56,7 @@ class FileUpload extends React.Component{
 
                             <div className="form-row">
                                 <div className="col-md-6">
-                                    <button type="submit" className="btn btn-dark" onClick={()=>this.submit()}>Save</button>
+                                    <button type="submit" className="btn btn-dark" onClick={()=>this.submit()}>Upload</button>
                                 </div>
                             </div>
                     </div>

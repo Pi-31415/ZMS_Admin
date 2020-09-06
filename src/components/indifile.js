@@ -46,11 +46,39 @@ class FileUpload extends React.Component {
             });
     }
 
+    delete(name, lessonid, fileid,homework) {
+        console.log({
+            LESSON_ID: lessonid,
+            FILE_ID: fileid,
+            HOMEWORK_ID: homework
+        });
+        var url = "https://zmsedu.com/api/admin/homework/delete";
+        axios({
+            method:'post',
+            url: url,
+            data:{
+                LESSON_ID: lessonid,
+                FILE_ID: fileid,
+                HOMEWORK_ID: homework
+            },
+            responseType: 'blob'
+        })
+            .then(response => {
+                console.log(response)
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+
     render() {
         return (
+            <div>
             <div onClick={() => this.handleClick(this.props.name, this.props.lessonid, this.props.fileid)}>
                 {this.props.name}
-
+            </div>
+            <div onClick={() => this.delete(this.props.name, this.props.lessonid, this.props.fileid,this.props.homeworkid)}>
+                [Delete]
+            </div>
             </div>
         )
     }

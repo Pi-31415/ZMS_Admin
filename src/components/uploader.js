@@ -25,7 +25,7 @@ class FileUpload extends React.Component{
         data.append('LESSON_ID', this.props.lessonid);
         data.append('FILE', this.state.selectedFile);
         data.append('TOKEN',localStorage.getItem("TOKEN"));
-        let url = "https://zmsedu.com/api/student/homework/upload";
+        let url = "https://zmsedu.com//api/admin/homework/upload";
         console.log(data);
         axios.post(url, data, { // receive two parameter endpoint url ,form data 
         })
@@ -44,7 +44,7 @@ class FileUpload extends React.Component{
                     <div className="col-md-6 offset-md-3">
                         <br /><br />
 
-                            <h3 className="text-white">File Upload Test {this.props.lessonid}</h3>
+                            <h3 className="text-white">File Yayaaya Upload Test {this.props.lessonid}</h3>
                             <br />
                             <div className="form-row">
                                 <div className="form-group col-md-6">

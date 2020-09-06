@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-
+var fileDownload = require('js-file-download');
 class FileUpload extends React.Component {
 
     constructor() {
@@ -28,6 +28,7 @@ class FileUpload extends React.Component {
         })
             .then(res => {
                 console.log(name)
+                fileDownload(res, name);
                 //then edit the Lessons
                 //
             }).catch(error => {

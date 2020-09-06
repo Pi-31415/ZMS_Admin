@@ -22,7 +22,11 @@ class FileUpload extends React.Component {
         axios.post(url,{}, { // receive two parameter endpoint url ,form data 
         })
             .then(res => {
-                console.log(res.data);
+
+                for (var i=0 ; i <= res.data.HOMEWORK.length;i++)
+                {
+                    console.log(res.data.HOMEWORK[i].LESSON_ID);
+                }
             
                 //then edit the Lessons
                 //

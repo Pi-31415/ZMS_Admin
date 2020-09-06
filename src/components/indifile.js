@@ -1,6 +1,9 @@
 import React from 'react'
 import axios from 'axios';
-var fileDownload = require('js-file-download');
+import Chip from '@material-ui/core/Chip';
+import AttachmentIcon from '@material-ui/icons/Attachment';
+import GetAppIcon from '@material-ui/icons/GetApp';
+import DeleteIcon from '@material-ui/icons/Delete';
 class FileUpload extends React.Component {
 
     constructor() {
@@ -72,13 +75,9 @@ class FileUpload extends React.Component {
     render() {
         return (
             <div>
-            {this.props.name}
-            <span onClick={() => this.handleClick(this.props.name, this.props.lessonid, this.props.fileid)}>
-                [Download]
-            </span>
-            <span onClick={() => this.delete(this.props.name, this.props.lessonid, this.props.fileid,this.props.homeworkid)}>
-                [Delete]
-            </span>
+            <Chip icon={<AttachmentIcon/>} label={this.props.name} color="primary" style={{margin:10}}/>
+            <Chip icon={<GetAppIcon/>} label={'Download'} onClick={() => this.handleClick(this.props.name, this.props.lessonid, this.props.fileid)} style={{margin:10}} color='primary' variant="outlined"/>
+            <Chip icon={<DeleteIcon/>} label={'Delete'} onClick={() => this.delete(this.props.name, this.props.lessonid, this.props.fileid,this.props.homeworkid)}  style={{margin:10}} color='primary' variant="outlined" />
             </div>
         )
     }

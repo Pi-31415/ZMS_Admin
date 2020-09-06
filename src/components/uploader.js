@@ -57,7 +57,7 @@ class FileUpload extends React.Component {
                                 })
                                     .then(res => {
                                         console.log(res.data);
-                                        alert("File Uploaded");
+                                        alert("File Uploaded. Please click Refresh to update the table.");
                                         
                                         //then edit the Lessons
                                         //

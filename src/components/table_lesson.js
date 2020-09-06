@@ -285,6 +285,17 @@ function Header(props) {
                             >
                                 Add Lesson
                             </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                variant="outlined"
+                                startIcon={<Add />}
+                                style={{marginLeft:10}}
+                                onClick={() => { refresh();setUploading(false) }}
+                            >
+                                Refresh
+                            </Button>
+                            <br/>
                             {uploader}
                         </div>
                     ),

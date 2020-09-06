@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 class FileUpload extends React.Component {
 
     constructor() {
@@ -102,7 +102,7 @@ class FileUpload extends React.Component {
                         </div>
                         <br/>
                         <div className="form-row">
-                            {this.state.uploading === true ? "Uploading File ... ":
+                            {this.state.uploading === true ? <CircularProgress />:
                             <div className="col-md-6">
                                 <button type="submit" className="btn btn-dark" onClick={() => this.submit()}>Upload</button>
                             </div>

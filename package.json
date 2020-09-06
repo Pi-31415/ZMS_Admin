@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
     "date-fns": "^2.16.0",
+    "js-file-download": "^0.4.12",
     "markdown-react-js": "^1.0.2",
     "material-table": "^1.68.1",
     "material-ui-icons": "^1.0.0-beta.36",

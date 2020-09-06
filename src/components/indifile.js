@@ -1,13 +1,28 @@
 import React from 'react'
 import axios from 'axios';
-import { isThisHour } from 'date-fns';
 
 class FileUpload extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            filename: '',
+            lessonid: ''
+        }
+
+    }
+    
+    componentDidMount() {
+        this.setState({
+            filename: this.props.filename,
+            lessonid: this.props.lessonid
+        })
+    }
 
 
     render() {
         return (
-            <div>
+            <div onClick={this.download}>
                 {this.props.name}
             </div>
         )

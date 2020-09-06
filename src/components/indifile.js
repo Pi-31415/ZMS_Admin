@@ -61,10 +61,9 @@ class FileUpload extends React.Component {
                 FILE_ID: fileid,
                 HOMEWORK_ID: homework
             },
-            responseType: 'blob'
         })
             .then(response => {
-                console.log(response)
+                alert("File Deleted, please refresh to see changes.");
             }).catch(error => {
                 console.log(error);
             });

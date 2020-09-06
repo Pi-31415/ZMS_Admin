@@ -44,8 +44,8 @@ class FileUpload extends React.Component {
             <div>
                 <ul>
                     {
-                        this.state.filelist[0] == undefined ? "Yes" :
-                            this.state.filelist.map((u) => <li>{u.NAME}</li>)
+                        this.state.filelist[0] == undefined ? "No uploaded files." :
+                        this.state.filelist.map((u) => <li>{u.NAME}</li>)
                     }
                 </ul>
             </div>

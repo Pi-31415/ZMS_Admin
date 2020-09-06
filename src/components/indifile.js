@@ -11,10 +11,6 @@ class FileUpload extends React.Component {
 
     }
 
-    componentDidMount() {
-        
-    }
-
     render() {
         return (
             <div>
